@@ -1,5 +1,5 @@
 :root {
-    --primary: #314b81;
+    --primary: #3359a4;
     /* Navy blue from the logo */
     --primary-dark: #1e325a;
     /* Darker navy for hover states */
@@ -177,6 +177,17 @@ header {
     text-align: center;
     max-width: 800px;
     margin: 0 auto;
+    z-index: 2;
+    text-shadow: 0 2px 4px rgba(241, 236, 236, 0.5);
+    /* Text shadow for better readability */
+
+
+}
+
+.hero-description {
+    color: var(--gray);
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px #FFF;
 }
 
 .hero-video {
@@ -187,6 +198,17 @@ header {
     height: 100%;
     object-fit: cover;
     z-index: -1;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(241, 236, 236, 0.5);
+    /* Semi-transparent black overlay */
+    z-index: 1;
 }
 
 .hero h1 {

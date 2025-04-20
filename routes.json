@@ -1,0 +1,12 @@
+{
+  "routes": [
+    {
+      "route": "/",
+      "allowedRoles": ["anonymous"],
+      "redirect": {
+        "statusCode": 301,
+        "to": "https://www.nutrics.ca"
+      }
+    }
+  ]
+}

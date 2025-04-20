@@ -1,12 +1,22 @@
+-website/routes.json
 {
   "routes": [
     {
-      "route": "/",
-      "allowedRoles": ["anonymous"],
-      "redirect": {
-        "statusCode": 301,
-        "to": "https://www.nutrics.ca"
-      }
+      "route": "/*",
+      "serve": "/index.html",
+      "statusCode": 200
     }
-  ]
+  ],
+  "platformErrorOverrides": [
+    {
+      "errorType": "NotFound",
+      "serve": "/index.html"
+    }
+  ],
+  "defaultHeaders": {
+    "cache-control": "must-revalidate, max-age=86400"
+  },
+  "navigationFallback": {
+    "rewrite": "/index.html"
+  }
 }

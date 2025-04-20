@@ -141,57 +141,82 @@
       </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
+    <!-- How It Works -->
+    <section class="section how-it-works" id="how-it-works">
       <div class="container">
-        <h2 class="section-title">About Nutrics</h2>
+        <h2 class="section-title">How Nutrics Works</h2>
         <p class="section-description">
-          Nutrics makes advanced nutrition simple — we turn your health data
-          into a curated meal plan, fulfilled by nearby restaurants and
-          delivered to your door. Your goals, your taste, no compromises.
+          Explore how users create profiles, select meals, and receive
+          personalized plans.
         </p>
 
-        <div class="values">
-          <div class="value-card">
-            <div class="value-icon">
-              <i class="fas fa-bullseye"></i>
+        <div class="slider-container">
+          <button class="slide-btn prev" onclick="moveSlide(-1)">‹</button>
+          <div class="slider-wrapper">
+            <div class="slides">
+              <div class="slide">
+                <img src="assets/app-screenshots/01.PNG" alt="User Profile" />
+                <div class="slide-caption">
+                  Create your profile with dietary preferences
+                </div>
+              </div>
+              <div class="slide">
+                <img
+                  src="assets/app-screenshots/02.PNG"
+                  alt="Set Daily Macro Target"
+                />
+                <div class="slide-caption">
+                  Set your daily nutrition targets
+                </div>
+              </div>
+              <div class="slide">
+                <img
+                  src="assets/app-screenshots/03.PNG"
+                  alt="Browse Restaurant Options"
+                />
+                <div class="slide-caption">Discover Local Options</div>
+              </div>
+              <div class="slide">
+                <img
+                  src="assets/app-screenshots/04.PNG"
+                  alt="Place Your Order"
+                />
+                <div class="slide-caption">
+                  <strong>Unlock Premium Features</strong> — Get personalized AI
+                  meal planning for optimal health outcomes
+                </div>
+              </div>
+              <div class="slide">
+                <img
+                  src="assets/app-screenshots/05.PNG"
+                  alt="Place Your Order"
+                />
+                <div class="slide-caption">
+                  <strong>Custom Meal Plans</strong> — Our AI builds perfect
+                  meal combinations from your favorites
+                </div>
+              </div>
+              <div class="slide">
+                <img
+                  src="assets/app-screenshots/06.PNG"
+                  alt="Place Your Order"
+                />
+                <div class="slide-caption">
+                  <strong>Doorstep Delivery</strong> — Enjoy restaurant-quality
+                  meals that perfectly match your nutrition needs
+                </div>
+              </div>
             </div>
-            <h3>Our Mission</h3>
-            <p>
-              Our mission is to empower individuals to achieve their health
-              goals through personalized nutrition plans — crafted around their
-              unique needs, preferences, and fulfilled by real meals from local
-              kitchens.
-            </p>
           </div>
+          <button class="slide-btn next" onclick="moveSlide(1)">›</button>
+        </div>
 
-          <div class="value-card">
-            <div class="value-icon">
-              <i class="fas fa-heart"></i>
-            </div>
-            <h3>Our Vision</h3>
-            <p>
-              A world where everyone has access to nutrition guidance tailored
-              specifically to their body, goals, and lifestyle.
-            </p>
-          </div>
-
-          <div class="value-card">
-            <div class="value-icon">
-              <i class="fas fa-handshake"></i>
-            </div>
-            <h3>Our Values</h3>
-            <p>
-              To make precision nutrition universal — local, intelligent, and
-              effortless.
-            </p>
-          </div>
+        <div class="slider-dots" id="sliderDots">
+          <!-- Dots will be added by JavaScript -->
         </div>
       </div>
     </section>
-
-    <!-- How It Works -->
-    <section class="how-it-works" id="how-it-works">
+    <!-- <section class="how-it-works" id="how-it-works">
       <div class="container">
         <h2 class="section-title">How Nutrics Works</h2>
         <p class="section-description">
@@ -241,8 +266,56 @@
           <a href="#features" class="btn btn-secondary">Explore Features</a>
         </div>
       </div>
-    </section>
+    </section> -->
 
+    <!-- About Section -->
+    <section class="about" id="about">
+      <div class="container">
+        <h2 class="section-title">About Nutrics</h2>
+        <p class="section-description">
+          Nutrics makes advanced nutrition simple — we turn your health data
+          into a curated meal plan, fulfilled by nearby restaurants and
+          delivered to your door. Your goals, your taste, no compromises.
+        </p>
+
+        <div class="values">
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fas fa-bullseye"></i>
+            </div>
+            <h3>Our Mission</h3>
+            <p>
+              Our mission is to empower individuals to achieve their health
+              goals through personalized nutrition plans — crafted around their
+              unique needs, preferences, and fulfilled by real meals from local
+              kitchens.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fas fa-heart"></i>
+            </div>
+            <h3>Our Vision</h3>
+            <p>
+              A world where everyone has access to nutrition guidance tailored
+              specifically to their body, goals, and lifestyle.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fas fa-handshake"></i>
+            </div>
+            <h3>Our Values</h3>
+            <p>
+              To make precision nutrition universal — local, intelligent, and
+              effortless.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
     <!-- Features -->
     <section class="features" id="features">
       <div class="container">
@@ -658,6 +731,51 @@
           icon.classList.add("fa-bars");
         });
       });
+    </script>
+
+    <script>
+      let currentSlide = 0;
+      const slides = document.querySelector(".slides");
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // Create dot indicators
+        const totalSlides = slides.children.length;
+        const dotsContainer = document.getElementById("sliderDots");
+
+        for (let i = 0; i < totalSlides; i++) {
+          const dot = document.createElement("div");
+          dot.className = i === 0 ? "slider-dot active" : "slider-dot";
+          dot.onclick = function () {
+            goToSlide(i);
+          };
+          dotsContainer.appendChild(dot);
+        }
+      });
+
+      function moveSlide(dir) {
+        const totalSlides = slides.children.length;
+        currentSlide = (currentSlide + dir + totalSlides) % totalSlides;
+        updateSlider();
+      }
+
+      function goToSlide(index) {
+        currentSlide = index;
+        updateSlider();
+      }
+
+      function updateSlider() {
+        slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+        // Update dots
+        const dots = document.querySelectorAll(".slider-dot");
+        dots.forEach((dot, index) => {
+          if (index === currentSlide) {
+            dot.classList.add("active");
+          } else {
+            dot.classList.remove("active");
+          }
+        });
+      }
     </script>
   </body>
 </html>

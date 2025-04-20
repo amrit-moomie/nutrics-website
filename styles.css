@@ -165,8 +165,14 @@ header {
 .hero {
     position: relative;
     overflow: hidden;
-    padding-top: 140px;
-    padding-bottom: 80px;
+    min-height: 50vh;
+    /* Use viewport height instead of fixed padding */
+    display: flex;
+    align-items: center;
+    padding: 0;
+    /* Remove fixed padding */
+    margin-top: 70px;
+    /* Account for the fixed header height */
 }
 
 .hero-content {
@@ -180,6 +186,8 @@ header {
     z-index: 2;
     text-shadow: 0 2px 4px rgba(241, 236, 236, 0.5);
     /* Text shadow for better readability */
+    padding: 4rem 1rem;
+    /* Add padding to the content instead */
 
 
 }
@@ -197,6 +205,8 @@ header {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center 40%;
+    /* Adjust vertical position of the video */
     z-index: -1;
 }
 
@@ -688,4 +698,148 @@ footer {
     text-decoration: none;
     border-radius: 4px;
     font-weight: 600;
+}
+
+/* How It Works Section */
+.how-it-works {
+    padding: 5rem 0;
+    background-color: var(--light);
+}
+
+.slider-container {
+    position: relative;
+    max-width: 100%;
+    margin: 3rem auto;
+    overflow: hidden;
+}
+
+.slider-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    max-height: 650px;
+    /* Limit the height */
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease;
+    height: 100%;
+}
+
+.slide {
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 20px;
+}
+
+.slide img {
+    max-height: 550px;
+    /* Control the image height */
+    width: auto;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.slide-caption {
+    margin-top: 1rem;
+    text-align: center;
+    font-weight: 500;
+    color: var(--dark);
+    font-size: 1.1rem;
+}
+
+.slide-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--primary);
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.slide-btn:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.slider-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--gray-light);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.slider-dot.active {
+    background-color: var(--primary);
+    transform: scale(1.2);
+}
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+    .slide img {
+        max-height: 450px;
+    }
+
+    .slider-wrapper {
+        max-height: 500px;
+    }
+
+    .slide-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .slide img {
+        max-height: 350px;
+    }
+
+    .slider-wrapper {
+        max-height: 400px;
+    }
+
+    .slide-caption {
+        font-size: 0.9rem;
+    }
+
+    .slide-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
 }

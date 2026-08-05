@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap"
       rel="stylesheet"
     />
     <link
@@ -101,14 +101,16 @@
       <div class="container">
         <nav class="navbar">
           <a href="#" class="logo">
-            <img src="./assets/logos/logo_transparent_background.png"
-            alt="Nutrics Logo" height="60" Nutrics
+            <img
+              src="./assets/logos/logo_transparent_background.png"
+              alt="Nutrics Logo"
+              height="60"
+            />
           </a>
           <div class="nav-links" id="navLinks">
             <a href="#about">About Us</a>
-            <a href="#how-it-works">How It Works</a>
-            <a href="#features">Features</a>
-            <a href="#testimonials">Testimonials</a>
+            <a href="#engine">Technology</a>
+            <a href="#how-it-works">The App</a>
             <a href="#contact">Contact</a>
           </div>
           <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -125,116 +127,1351 @@
         <source src="assets/video/nutrics-main-video.mp4" type="video/webm" />
         Your browser does not support the video tag.
       </video>
-      <div class="container">
+      <div class="container hero-grid">
         <div class="hero-content">
+          <span class="hero-eyebrow">Toronto &middot; Local kitchens, precisely fueled</span>
           <h1>
-            Precision <span class="hero-highlight">Nutrition</span>. Local
-            Kitchens.
+            Precision <span class="hero-highlight">Nutrition</span>.<br />
+            Local Kitchens.
           </h1>
 
           <p class="hero-description">
-            Healthy and Delicious meals from your favorite local restaurants,
+            Healthy and delicious meals from your favorite local restaurants,
             perfectly tailored to your unique nutritional needs, dietary
-            preferences, and fitness goals
+            preferences, and fitness goals.
           </p>
           <div class="hero-buttons">
-            <a href="#how-it-works" class="btn">Get Started</a>
+            <a href="#launch" class="btn">Get Notified</a>
             <a href="#contact" class="btn btn-outline">Contact Us</a>
+          </div>
+
+          <div class="app-store-badges">
+            <p>Launching Fall 2026 &mdash; app coming to:</p>
+            <div class="badge-container">
+              <a href="#launch" class="store-badge">
+                <img
+                  src="assets/app-store-badge.png"
+                  alt="Coming soon to the App Store"
+                />
+              </a>
+              <a href="#launch" class="store-badge">
+                <img
+                  src="assets/google-play-badge.png"
+                  alt="Coming soon to Google Play"
+                />
+              </a>
+            </div>
           </div>
         </div>
 
-        <div class="app-store-badges">
-          <p>App available soon:</p>
-          <div class="badge-container">
-            <a href="#" class="store-badge">
-              <img
-                src="assets/app-store-badge.png"
-                alt="Download on the App Store"
-              />
-            </a>
-            <a href="#" class="store-badge">
-              <img
-                src="assets/google-play-badge.png"
-                alt="Get it on Google Play"
-              />
-            </a>
-          </div>
+        <div class="hero-visual">
+          <ol class="hero-flow">
+            <!-- Step 1 — the user's numbers -->
+            <li class="flow-step">
+              <p class="flow-tag"><b>1</b> Your body, your goal</p>
+              <div class="flow-card flow-target">
+                <span class="flow-who" data-who
+                  >M &middot; 29 &middot; 78kg &middot; lifts 4&times;/week</span
+                >
+                <div class="flow-target-head">
+                  <span class="flow-kcal"
+                    ><b data-kcal>2,090</b> <small>kcal/day</small></span
+                  >
+                  <span class="flow-goal"
+                    ><i class="fas fa-dumbbell" data-goal-icon></i>
+                    <b data-goal>Build muscle</b></span
+                  >
+                </div>
+                <div class="flow-macros">
+                  <div>
+                    <em>Protein</em><b><span data-target="p">160</span><i>g</i></b>
+                  </div>
+                  <div>
+                    <em>Carbs</em><b><span data-target="c">220</span><i>g</i></b>
+                  </div>
+                  <div>
+                    <em>Fat</em><b><span data-target="f">63</span><i>g</i></b>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <!-- Step 2 — the match -->
+            <li class="flow-step">
+              <p class="flow-tag"><b>2</b> Matched against local menus</p>
+              <div class="flow-match">
+                <div class="flow-beam" aria-hidden="true">
+                  <i></i><i></i><i></i>
+                </div>
+                <div class="flow-chips" data-chips>
+                  <span>Mediterranean</span>
+                  <span>Portuguese</span>
+                  <span>Japanese</span>
+                  <span>Levantine</span>
+                  <span class="more">+37 kitchens</span>
+                </div>
+              </div>
+            </li>
+
+            <!-- Step 3 — the plan that hits the numbers -->
+            <li class="flow-step">
+              <p class="flow-tag"><b>3</b> Your day, delivered</p>
+              <div class="flow-card flow-plan">
+                <ul class="flow-meals" data-meals>
+                  <li style="--i: 1">
+                    <i class="fas fa-bowl-food ico" aria-hidden="true"></i>
+                    <span class="flow-meal-name"
+                      >Greek yogurt &amp; berry bowl
+                      <em>Sunroom Caf&eacute; &middot; breakfast</em></span
+                    >
+                    <span class="flow-meal-num"
+                      >470<small>kcal</small><em>38g protein</em></span
+                    >
+                  </li>
+                  <li style="--i: 2">
+                    <i class="fas fa-drumstick-bite ico" aria-hidden="true"></i>
+                    <span class="flow-meal-name"
+                      >Peri-peri chicken bowl
+                      <em>Casa Verde &middot; lunch</em></span
+                    >
+                    <span class="flow-meal-num"
+                      >780<small>kcal</small><em>62g protein</em></span
+                    >
+                  </li>
+                  <li style="--i: 3">
+                    <i class="fas fa-leaf ico" aria-hidden="true"></i>
+                    <span class="flow-meal-name"
+                      >Edamame &amp; sea salt
+                      <em>Hoshi Kitchen &middot; snack</em></span
+                    >
+                    <span class="flow-meal-num"
+                      >190<small>kcal</small><em>17g protein</em></span
+                    >
+                  </li>
+                  <li style="--i: 4">
+                    <i class="fas fa-utensils ico" aria-hidden="true"></i>
+                    <span class="flow-meal-name"
+                      >Seitan shawarma bowl
+                      <em>Zeytoun &middot; dinner</em></span
+                    >
+                    <span class="flow-meal-num"
+                      >720<small>kcal</small><em>52g protein</em></span
+                    >
+                  </li>
+                </ul>
+
+                <div class="flow-total">
+                  <div class="flow-total-head">
+                    <span class="flow-total-sum"
+                      ><b data-sum-kcal>2,160 kcal</b> &middot;
+                      <span data-sum-protein>169g protein</span></span
+                    >
+                    <span class="flow-total-badge"
+                      ><i class="fas fa-check"></i>
+                      <b data-match>96%</b> match</span
+                    >
+                  </div>
+                  <div class="flow-bars">
+                    <div>
+                      <span style="--fill: 100%" data-bar="kcal"></span
+                      ><em data-bar-label="kcal">Calories 103%</em>
+                    </div>
+                    <div>
+                      <span style="--fill: 100%" data-bar="p"></span
+                      ><em data-bar-label="p">Protein 106%</em>
+                    </div>
+                    <div>
+                      <span style="--fill: 100%" data-bar="c"></span
+                      ><em data-bar-label="c">Carbs 103%</em>
+                    </div>
+                    <div>
+                      <span style="--fill: 100%" data-bar="f"></span
+                      ><em data-bar-label="f">Fat 102%</em>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ol>
         </div>
       </div>
     </section>
 
-    <!-- How It Works -->
-    <section class="section how-it-works" id="how-it-works">
-      <div class="container">
-        <h2 class="section-title">How Nutrics Works</h2>
-        <p class="section-description">
-          Explore how users create profiles, select meals, and receive
-          personalized plans.
-        </p>
+    <!-- Catalog snapshot: regenerate with scripts/build-hero-catalog.mjs -->
+    <script src="assets/data/hero-catalog.js"></script>
+    <script>
+      /*
+       * Hero flow — a miniature of the matching engine.
+       *
+       * On every load it picks a different profile (goal + body + macro
+       * targets), searches meal combinations across the sample kitchens, and
+       * renders the combination that lands closest to that profile's targets.
+       * Every percentage on screen is computed from the meals actually shown,
+       * so the numbers always reconcile. Runs inline (not on DOMContentLoaded)
+       * so the swap happens before first paint.
+       *
+       * The kitchens, meals and profiles below are illustrative sample data.
+       */
+      (function () {
+        var flow = document.querySelector(".hero-flow");
+        if (!flow) return;
 
-        <div class="slider-container">
-          <button class="slide-btn prev" onclick="moveSlide(-1)">‹</button>
-          <div class="slider-wrapper">
-            <div class="slides">
-              <div class="slide">
-                <img src="assets/app-screenshots/01.PNG" alt="User Profile" />
-                <div class="slide-caption">
-                  Create your profile with dietary preferences
-                </div>
-              </div>
-              <div class="slide">
-                <img
-                  src="assets/app-screenshots/02.PNG"
-                  alt="Set Daily Macro Target"
-                />
-                <div class="slide-caption">
-                  Set your daily nutrition targets
-                </div>
-              </div>
-              <div class="slide">
-                <img
-                  src="assets/app-screenshots/03.PNG"
-                  alt="Browse Restaurant Options"
-                />
-                <div class="slide-caption">Discover Local Options</div>
-              </div>
-              <div class="slide">
-                <img
-                  src="assets/app-screenshots/04.PNG"
-                  alt="Place Your Order"
-                />
-                <div class="slide-caption">
-                  <strong>Unlock Premium Features</strong> — Get personalized AI
-                  meal planning for optimal health outcomes
-                </div>
-              </div>
-              <div class="slide">
-                <img
-                  src="assets/app-screenshots/05.PNG"
-                  alt="Place Your Order"
-                />
-                <div class="slide-caption">
-                  <strong>Custom Meal Plans</strong> — Our AI builds perfect
-                  meal combinations from your favorites
-                </div>
-              </div>
-              <div class="slide">
-                <img
-                  src="assets/app-screenshots/06.PNG"
-                  alt="Place Your Order"
-                />
-                <div class="slide-caption">
-                  <strong>Doorstep Delivery</strong> — Enjoy restaurant-quality
-                  meals that perfectly match your nutrition needs
-                </div>
-              </div>
-            </div>
-          </div>
-          <button class="slide-btn next" onclick="moveSlide(1)">›</button>
+        // kcal, p/c/f in grams. plant = suitable for a plant-based profile.
+        var PROFILES = [
+          {
+            goal: "Build muscle",
+            icon: "fa-dumbbell",
+            who: "M · 29 · 78kg · lifts 4×/week",
+            kcal: 2090, p: 160, c: 220, f: 63,
+          },
+          {
+            goal: "Lose fat",
+            icon: "fa-fire",
+            who: "F · 34 · 68kg · walks + 2 classes/week",
+            kcal: 1680, p: 140, c: 130, f: 67,
+          },
+          {
+            goal: "Endurance training",
+            icon: "fa-person-running",
+            who: "F · 41 · 59kg · runs 50km/week",
+            kcal: 2120, p: 140, c: 250, f: 62,
+          },
+          {
+            goal: "Recomposition",
+            icon: "fa-bolt",
+            who: "M · 36 · 84kg · gym 3× + cycling",
+            kcal: 1980, p: 150, c: 180, f: 73,
+          },
+          {
+            goal: "Maintain & feel better",
+            icon: "fa-heart",
+            who: "M · 52 · 91kg · desk job, 8k steps",
+            kcal: 2300, p: 150, c: 230, f: 87,
+          },
+          {
+            goal: "Plant-based strength",
+            icon: "fa-seedling",
+            who: "F · 26 · 62kg · vegan, lifts 5×/week",
+            kcal: 1960, p: 120, c: 230, f: 62,
+            plantOnly: true,
+          },
+          {
+            goal: "Lean down for the wedding",
+            icon: "fa-fire",
+            who: "F · 31 · 71kg · HIIT 3×/week",
+            kcal: 1850, p: 135, c: 160, f: 74,
+          },
+        ];
+
+        var MEALS = {
+          breakfast: [
+            { name: "Greek yogurt & berry bowl", kitchen: "Sunroom Café", cuisine: "Mediterranean", icon: "fa-bowl-food", kcal: 470, p: 38, c: 52, f: 12 },
+            { name: "Shakshuka & sourdough", kitchen: "Zeytoun", cuisine: "Levantine", icon: "fa-egg", kcal: 540, p: 26, c: 58, f: 23 },
+            { name: "Congee with poached egg", kitchen: "Lotus & Pearl", cuisine: "Cantonese", icon: "fa-bowl-food", kcal: 400, p: 24, c: 56, f: 9 },
+            { name: "Tofu scramble burrito", kitchen: "Verde Sol", cuisine: "Mexican", icon: "fa-leaf", kcal: 540, p: 34, c: 62, f: 17, plant: true },
+            { name: "Steel-cut oats, banana & PB", kitchen: "Mill & Maple", cuisine: "Canadian", icon: "fa-mug-hot", kcal: 610, p: 24, c: 86, f: 19, plant: true },
+            { name: "Masala egg wrap", kitchen: "Chai Corner", cuisine: "North Indian", icon: "fa-egg", kcal: 450, p: 27, c: 48, f: 17 },
+            { name: "Protein açaí bowl", kitchen: "Sunroom Café", cuisine: "Brazilian", icon: "fa-bowl-food", kcal: 425, p: 42, c: 46, f: 8 },
+            { name: "Miso soup & natto rice", kitchen: "Hoshi Kitchen", cuisine: "Japanese", icon: "fa-bowl-rice", kcal: 350, p: 20, c: 50, f: 8, plant: true },
+            { name: "Smoked salmon & egg plate", kitchen: "Bistro Nord", cuisine: "French", icon: "fa-fish", kcal: 380, p: 34, c: 14, f: 20 },
+            { name: "Banana oat pancakes", kitchen: "Mill & Maple", cuisine: "Canadian", icon: "fa-mug-hot", kcal: 620, p: 22, c: 104, f: 13 },
+          ],
+          lunch: [
+            { name: "Peri-peri chicken bowl", kitchen: "Casa Verde", cuisine: "Portuguese", icon: "fa-drumstick-bite", kcal: 780, p: 62, c: 78, f: 24 },
+            { name: "Falafel & quinoa mezze", kitchen: "Zeytoun", cuisine: "Levantine", icon: "fa-leaf", kcal: 690, p: 28, c: 84, f: 27, plant: true },
+            { name: "Chicken pho", kitchen: "Sen Hai", cuisine: "Vietnamese", icon: "fa-bowl-food", kcal: 620, p: 45, c: 74, f: 16 },
+            { name: "Jerk chicken, rice & peas", kitchen: "Kingston Yard", cuisine: "Caribbean", icon: "fa-pepper-hot", kcal: 850, p: 48, c: 96, f: 30 },
+            { name: "Tempeh banh mi + slaw", kitchen: "Sen Hai", cuisine: "Vietnamese", icon: "fa-bread-slice", kcal: 640, p: 32, c: 78, f: 22, plant: true },
+            { name: "Butter chicken & basmati", kitchen: "Chai Corner", cuisine: "North Indian", icon: "fa-bowl-rice", kcal: 820, p: 50, c: 84, f: 31 },
+            { name: "Poke bowl, brown rice", kitchen: "Hoshi Kitchen", cuisine: "Japanese", icon: "fa-fish", kcal: 700, p: 44, c: 82, f: 22 },
+            { name: "Lentil & squash tagine", kitchen: "Marrakesh Table", cuisine: "Moroccan", icon: "fa-carrot", kcal: 560, p: 24, c: 78, f: 17, plant: true },
+            { name: "Grilled chicken & big salad", kitchen: "Kostas Grill", cuisine: "Greek", icon: "fa-leaf", kcal: 520, p: 48, c: 24, f: 26 },
+            { name: "Seitan shawarma bowl", kitchen: "Zeytoun", cuisine: "Levantine", icon: "fa-utensils", kcal: 720, p: 52, c: 82, f: 20, plant: true },
+            { name: "Pasta pomodoro & white beans", kitchen: "Trattoria Bela", cuisine: "Italian", icon: "fa-utensils", kcal: 760, p: 28, c: 120, f: 19, plant: true },
+          ],
+          snack: [
+            { name: "Almond & date protein bites", kitchen: "Mill & Maple", cuisine: "Canadian", icon: "fa-seedling", kcal: 240, p: 12, c: 26, f: 10, plant: true },
+            { name: "Greek yogurt & honey", kitchen: "Sunroom Café", cuisine: "Mediterranean", icon: "fa-bowl-food", kcal: 210, p: 18, c: 22, f: 5 },
+            { name: "Hummus & veg crudités", kitchen: "Zeytoun", cuisine: "Levantine", icon: "fa-carrot", kcal: 260, p: 9, c: 28, f: 13, plant: true },
+            { name: "Edamame & sea salt", kitchen: "Hoshi Kitchen", cuisine: "Japanese", icon: "fa-leaf", kcal: 190, p: 17, c: 15, f: 8, plant: true },
+            { name: "Miso corn soup", kitchen: "Lotus & Pearl", cuisine: "Cantonese", icon: "fa-bowl-food", kcal: 220, p: 8, c: 30, f: 8, plant: true },
+            { name: "Chocolate protein mousse", kitchen: "Sunroom Café", cuisine: "Brazilian", icon: "fa-mug-hot", kcal: 250, p: 24, c: 22, f: 8 },
+          ],
+          dinner: [
+            { name: "Miso salmon & rice", kitchen: "Hoshi Kitchen", cuisine: "Japanese", icon: "fa-fish", kcal: 860, p: 64, c: 86, f: 29 },
+            { name: "Charred aubergine & farro", kitchen: "Zeytoun", cuisine: "Levantine", icon: "fa-leaf", kcal: 700, p: 22, c: 84, f: 30, plant: true },
+            { name: "Thai green curry & jasmine rice", kitchen: "Ban Thai", cuisine: "Thai", icon: "fa-pepper-hot", kcal: 780, p: 40, c: 90, f: 29 },
+            { name: "Chana masala & roti", kitchen: "Chai Corner", cuisine: "North Indian", icon: "fa-bowl-food", kcal: 640, p: 26, c: 88, f: 21, plant: true },
+            { name: "Steak frites & side salad", kitchen: "Bistro Nord", cuisine: "French", icon: "fa-utensils", kcal: 980, p: 52, c: 78, f: 51 },
+            { name: "Chicken souvlaki plate", kitchen: "Kostas Grill", cuisine: "Greek", icon: "fa-drumstick-bite", kcal: 810, p: 55, c: 76, f: 32 },
+            { name: "Black bean & sweet potato bowl", kitchen: "Verde Sol", cuisine: "Mexican", icon: "fa-bowl-food", kcal: 660, p: 24, c: 94, f: 20, plant: true },
+            { name: "Seared tofu & greens", kitchen: "Lotus & Pearl", cuisine: "Cantonese", icon: "fa-leaf", kcal: 480, p: 32, c: 26, f: 27, plant: true },
+            { name: "Injera with misir wot", kitchen: "Addis Room", cuisine: "Ethiopian", icon: "fa-bowl-food", kcal: 780, p: 30, c: 118, f: 21, plant: true },
+            { name: "Tempeh & broccoli stir-fry", kitchen: "Lotus & Pearl", cuisine: "Cantonese", icon: "fa-bowl-rice", kcal: 700, p: 44, c: 74, f: 25, plant: true },
+            { name: "Grilled shrimp & orzo", kitchen: "Kostas Grill", cuisine: "Greek", icon: "fa-shrimp", kcal: 720, p: 46, c: 80, f: 24 },
+          ],
+        };
+
+        var CUISINES = [
+          "Levantine", "Japanese", "Thai", "Vietnamese", "Caribbean",
+          "North Indian", "Mexican", "Greek", "Portuguese", "Moroccan",
+          "Cantonese", "French", "Ethiopian", "Italian", "Brazilian",
+          "Mediterranean", "Korean", "Peruvian", "Filipino", "Persian",
+          "Sri Lankan",
+        ];
+
+        var SLOTS = ["breakfast", "lunch", "snack", "dinner"];
+        var KEYS = ["kcal", "p", "c", "f"];
+
+        // Real catalog snapshot, baked at build time by
+        // scripts/build-hero-catalog.mjs. Falls back to the sample data above
+        // if it hasn't been generated.
+        var CATALOG = window.NUTRICS_CATALOG || null;
+
+        // Items sampled per slot before the search. Each item expands into one
+        // candidate per size variant, so this caps the search at a few tens of
+        // thousands of combinations — a couple of milliseconds.
+        var SAMPLE_PER_SLOT = 8;
+
+        var VARIANT_LABELS = {
+          normal: "regular",
+          "high-protein": "high-protein",
+          "low-fat": "low-fat",
+          "high-carb": "high-carb",
+        };
+
+        function pick(list) {
+          return list[Math.floor(Math.random() * list.length)];
+        }
+
+        function sample(list, count) {
+          var copy = list.slice();
+          var out = [];
+          while (copy.length && out.length < count) {
+            out.push(copy.splice(Math.floor(Math.random() * copy.length), 1)[0]);
+          }
+          return out;
+        }
+
+        function eligible(list, profile) {
+          if (!profile.plantOnly) return list;
+          return list.filter(function (meal) {
+            return meal.plant;
+          });
+        }
+
+        // Expand catalog items into one candidate per size variant, so the
+        // search chooses both the dish and the portion that fits the targets.
+        function fromCatalog(slot, profile) {
+          var pool = CATALOG.items.filter(function (item) {
+            return (
+              item.s.indexOf(slot) > -1 && (!profile.plantOnly || item.p === 1)
+            );
+          });
+
+          var candidates = [];
+          sample(pool, SAMPLE_PER_SLOT).forEach(function (item) {
+            Object.keys(item.v).forEach(function (variant) {
+              var macros = item.v[variant];
+              candidates.push({
+                name: item.n,
+                kitchen: item.k,
+                cuisine: item.t,
+                icon: item.i,
+                variant: VARIANT_LABELS[variant] || variant,
+                kcal: macros[0],
+                p: macros[1],
+                c: macros[2],
+                f: macros[3],
+              });
+            });
+          });
+          return candidates;
+        }
+
+        // All-or-nothing: if the catalog can't fill every slot for this
+        // profile (it currently has no vegan-tagged breakfast items, for
+        // example) fall back to the sample data for the whole plan rather than
+        // mixing two sources in one day.
+        function poolsFor(profile) {
+          if (CATALOG && CATALOG.items && CATALOG.items.length) {
+            var pools = SLOTS.map(function (slot) {
+              return fromCatalog(slot, profile);
+            });
+            var complete = pools.every(function (pool) {
+              return pool.length > 0;
+            });
+            if (complete) return pools;
+          }
+          return SLOTS.map(function (slot) {
+            return sample(eligible(MEALS[slot], profile), SAMPLE_PER_SLOT);
+          });
+        }
+
+        function sum(combo) {
+          var total = { kcal: 0, p: 0, c: 0, f: 0 };
+          combo.forEach(function (meal) {
+            KEYS.forEach(function (key) {
+              total[key] += meal[key] * (meal.servings || 1);
+            });
+          });
+          return total;
+        }
+
+        // Mean relative distance from target, with calories and protein
+        // weighted double — they are what people actually feel.
+        function distance(total, profile) {
+          var weights = { kcal: 2, p: 2, c: 1, f: 1 };
+          var weighted = 0;
+          var divisor = 0;
+          KEYS.forEach(function (key) {
+            weighted +=
+              (weights[key] * Math.abs(total[key] - profile[key])) / profile[key];
+            divisor += weights[key];
+          });
+          return weighted / divisor;
+        }
+
+        // No catalog item exceeds ~472 kcal, so a 2,000+ kcal day is covered
+        // with four meals rather than stacked servings of three. Servings are
+        // capped at two — beyond that it stops reading like a real order.
+        //
+        // `score` is pure macro distance and is what gets displayed; `rank`
+        // adds a nudge towards spreading the day across different kitchens.
+        var SEARCH_SAMPLES = 40000;
+        var MAX_SERVINGS = 2;
+        var KEEP = 5;
+
+        // Hot loop: no allocation per sample. Candidates are only turned into
+        // plan objects once a sample beats the current top-5.
+        function solve(profile) {
+          var pools = poolsFor(profile);
+          var slots = pools.length;
+          var best = [];
+          var seen = {};
+          var ceiling = Infinity;
+          // Every time the search finds a new leader we note it, so the
+          // technology section can replay the real convergence.
+          var trace = [];
+
+          var tKcal = profile.kcal, tP = profile.p, tC = profile.c, tF = profile.f;
+          var picked = new Array(slots);
+          var servings = new Array(slots);
+
+          for (var n = 0; n < SEARCH_SAMPLES; n++) {
+            var kcal = 0, p = 0, c = 0, f = 0;
+            var clash = false;
+
+            for (var s = 0; s < slots; s++) {
+              var pool = pools[s];
+              var meal = pool[(Math.random() * pool.length) | 0];
+              for (var prev = 0; prev < s; prev++) {
+                if (picked[prev].name === meal.name) {
+                  clash = true;
+                  break;
+                }
+              }
+              if (clash) break;
+              var qty = 1 + ((Math.random() * MAX_SERVINGS) | 0);
+              picked[s] = meal;
+              servings[s] = qty;
+              kcal += meal.kcal * qty;
+              p += meal.p * qty;
+              c += meal.c * qty;
+              f += meal.f * qty;
+            }
+            if (clash) continue;
+
+            // Same weighting as distance(): calories and protein count double.
+            var score =
+              (2 * Math.abs(kcal - tKcal)) / tKcal / 6 +
+              (2 * Math.abs(p - tP)) / tP / 6 +
+              Math.abs(c - tC) / tC / 6 +
+              Math.abs(f - tF) / tF / 6;
+
+            var kitchens = 0;
+            var key = "";
+            for (var k = 0; k < slots; k++) {
+              var fresh = true;
+              for (var j = 0; j < k; j++) {
+                if (picked[j].kitchen === picked[k].kitchen) fresh = false;
+              }
+              if (fresh) kitchens++;
+              key += picked[k].name + picked[k].variant + servings[k] + "~";
+            }
+
+            var rank = score + (slots - kitchens) * 0.015;
+            if (rank >= ceiling) continue;
+            if (seen[key]) continue;
+            seen[key] = 1;
+
+            var combo = [];
+            for (var m = 0; m < slots; m++) {
+              combo.push(withServings(picked[m], servings[m]));
+            }
+
+            best.push({
+              combo: combo,
+              total: { kcal: kcal, p: p, c: c, f: f },
+              score: score,
+              rank: rank,
+            });
+            best.sort(function (x, y) {
+              return x.rank - y.rank;
+            });
+            if (best.length > KEEP) best.length = KEEP;
+            if (best.length === KEEP) ceiling = best[KEEP - 1].rank;
+
+            if (best[0].rank === rank) {
+              trace.push({ n: n + 1, score: score, combo: combo });
+            }
+          }
+
+          var chosen = pick(best);
+          chosen.trace = trace;
+          chosen.pool = pools.reduce(function (count, pool) {
+            return count + pool.length;
+          }, 0);
+          return chosen;
+        }
+
+        function withServings(meal, servings) {
+          var copy = {};
+          for (var key in meal) copy[key] = meal[key];
+          copy.servings = servings;
+          return copy;
+        }
+
+        function percent(actual, target) {
+          return Math.round((actual / target) * 100);
+        }
+
+        function el(tag, className, text) {
+          var node = document.createElement(tag);
+          if (className) node.className = className;
+          if (text != null) node.textContent = text;
+          return node;
+        }
+
+        function mealRow(meal, slot, index) {
+          var row = document.createElement("li");
+          row.style.setProperty("--i", index + 1);
+
+          var icon = el("i", "fas " + meal.icon + " ico");
+          icon.setAttribute("aria-hidden", "true");
+
+          var servings = meal.servings || 1;
+
+          var name = el("span", "flow-meal-name");
+          name.appendChild(document.createTextNode(meal.name));
+          if (servings > 1) {
+            name.appendChild(el("b", "flow-servings", "×" + servings));
+          }
+          // Only flag the portion when it isn't the standard one — that's the
+          // part worth noticing.
+          if (meal.variant && meal.variant !== "regular") {
+            name.appendChild(el("b", "flow-variant", meal.variant));
+          }
+          name.appendChild(el("em", null, meal.kitchen + " · " + slot));
+
+          var numbers = el("span", "flow-meal-num");
+          numbers.appendChild(
+            document.createTextNode(String(meal.kcal * servings))
+          );
+          numbers.appendChild(el("small", null, "kcal"));
+          numbers.appendChild(el("em", null, meal.p * servings + "g protein"));
+
+          row.appendChild(icon);
+          row.appendChild(name);
+          row.appendChild(numbers);
+          return row;
+        }
+
+        function renderChips(combo) {
+          var chips = flow.querySelector("[data-chips]");
+          var more = chips.querySelector(".more");
+          var shown = [];
+
+          // "Breakfast" is a slot, not a kind of food — it reads oddly in a
+          // row of cuisines.
+          var skip = ["Breakfast", "Dessert"];
+
+          combo.forEach(function (meal) {
+            if (shown.indexOf(meal.cuisine) === -1 && skip.indexOf(meal.cuisine) === -1) {
+              shown.push(meal.cuisine);
+            }
+          });
+
+          // Top up from the catalog's own categories when we have them.
+          var vocabulary = CUISINES;
+          if (CATALOG && CATALOG.items) {
+            vocabulary = [];
+            CATALOG.items.forEach(function (item) {
+              if (
+                vocabulary.indexOf(item.t) === -1 &&
+                skip.indexOf(item.t) === -1
+              ) {
+                vocabulary.push(item.t);
+              }
+            });
+            if (CATALOG.totals && CATALOG.totals.kitchens) {
+              more.textContent = "+" + CATALOG.totals.kitchens + " kitchens";
+            }
+          }
+
+          var rest = vocabulary.filter(function (cuisine) {
+            return shown.indexOf(cuisine) === -1;
+          });
+          while (shown.length < 4 && rest.length) {
+            shown.push(rest.splice(Math.floor(Math.random() * rest.length), 1)[0]);
+          }
+
+          chips.innerHTML = "";
+          shown.forEach(function (cuisine) {
+            chips.appendChild(el("span", null, cuisine));
+          });
+          chips.appendChild(more);
+        }
+
+        function render() {
+          // Avoid showing the same profile twice in one session.
+          var previous = null;
+          try {
+            previous = window.sessionStorage.getItem("nutricsHeroProfile");
+          } catch (e) {
+            /* storage blocked — fall back to plain random */
+          }
+
+          var choices = PROFILES.filter(function (profile) {
+            return profile.goal !== previous;
+          });
+          var profile = pick(choices.length ? choices : PROFILES);
+
+          try {
+            window.sessionStorage.setItem("nutricsHeroProfile", profile.goal);
+          } catch (e) {
+            /* ignore */
+          }
+
+          var started = Date.now();
+          var plan = solve(profile);
+          var elapsed = Date.now() - started;
+          var total = plan.total;
+
+          // Published for the technology section below, so it can show this
+          // load's actual search rather than a mock-up.
+          window.NUTRICS_HERO = {
+            profiles: PROFILES,
+            profile: profile,
+            plan: plan,
+            slots: SLOTS,
+            samples: SEARCH_SAMPLES,
+            candidates: plan.pool,
+            ms: elapsed,
+          };
+
+          flow.querySelector("[data-who]").textContent = profile.who;
+          flow.querySelector("[data-kcal]").textContent =
+            profile.kcal.toLocaleString("en-US");
+          flow.querySelector("[data-goal]").textContent = profile.goal;
+          flow.querySelector("[data-goal-icon]").className = "fas " + profile.icon;
+
+          ["p", "c", "f"].forEach(function (key) {
+            flow.querySelector('[data-target="' + key + '"]').textContent =
+              profile[key];
+          });
+
+          renderChips(plan.combo);
+
+          var meals = flow.querySelector("[data-meals]");
+          meals.innerHTML = "";
+          plan.combo.forEach(function (meal, index) {
+            meals.appendChild(mealRow(meal, SLOTS[index], index));
+          });
+
+          flow.querySelector("[data-sum-kcal]").textContent =
+            total.kcal.toLocaleString("en-US") + " kcal";
+          flow.querySelector("[data-sum-protein]").textContent =
+            total.p + "g protein";
+          flow.querySelector("[data-match]").textContent =
+            Math.max(0, Math.round(100 - plan.score * 100)) + "%";
+
+          var labels = {
+            kcal: "Calories",
+            p: "Protein",
+            c: "Carbs",
+            f: "Fat",
+          };
+          KEYS.forEach(function (key) {
+            var value = percent(total[key], profile[key]);
+            flow
+              .querySelector('[data-bar="' + key + '"]')
+              .style.setProperty("--fill", Math.min(value, 100) + "%");
+            flow.querySelector('[data-bar-label="' + key + '"]').textContent =
+              labels[key] + " " + value + "%";
+          });
+        }
+
+        render();
+      })();
+    </script>
+
+    <!-- The engine — our nutritional intelligence -->
+    <section class="engine" id="engine">
+      <div class="container">
+        <div class="engine-head">
+          <span class="engine-eyebrow">Nutrics Intelligence</span>
+          <h2 class="section-title">
+            The engine behind every&nbsp;<span class="engine-highlight"
+              >plate</span
+            >
+          </h2>
+          <p class="section-description">
+            Personalized nutrition falls apart at the last mile: knowing your
+            macros is easy, finding real food that hits them is not. Our
+            in-house engine turns restaurant menus into structured nutrition
+            data, then solves your day against it — the part nobody else has
+            built.
+          </p>
         </div>
 
-        <div class="slider-dots" id="sliderDots">
-          <!-- Dots will be added by JavaScript -->
+        <!-- Real figures: the first two come from the catalog snapshot, the
+             last two from the search the hero panel just ran. -->
+        <div class="eng-stats" data-eng-stats>
+          <div>
+            <b data-stat="dishes">358</b><span>dishes indexed</span>
+          </div>
+          <div>
+            <b data-stat="variants">4</b><span>portion profiles per dish</span>
+          </div>
+          <div>
+            <b data-stat="samples">40,000</b><span>combinations per solve</span>
+          </div>
+          <div>
+            <b data-stat="ms">6<i>ms</i></b><span>to a matched day</span>
+          </div>
+        </div>
+
+        <ol class="eng-pipeline">
+          <li class="eng-stage">
+            <div class="eng-copy">
+              <span class="eng-step"
+                ><i class="fas fa-calculator"></i> Stage 01</span
+              >
+              <h3>Metabolic modelling</h3>
+              <p>
+                Body composition, activity and goal become a calorie and
+                macronutrient target, then recalibrate as your weight and
+                training load actually move — not a fixed formula applied once
+                at signup.
+              </p>
+            </div>
+
+            <div class="eng-panel" data-panel="model">
+              <div class="eng-panel-head">
+                <span class="eng-live"></span> metabolic model
+                <em data-model-goal>Build muscle</em>
+              </div>
+              <div class="eng-inputs" data-model-in>
+                <span>78 kg</span><span>29 y</span><span>lifts 4×/wk</span>
+              </div>
+              <div class="eng-arrow"><i class="fas fa-arrow-down"></i></div>
+              <div class="eng-readout">
+                <b data-model-kcal>2,090</b><small>kcal / day</small>
+              </div>
+              <ul class="eng-macros">
+                <li>
+                  <span>Protein</span
+                  ><i data-model-bar="p" style="--fill: 76%"></i
+                  ><b data-model="p">160g</b>
+                </li>
+                <li>
+                  <span>Carbs</span
+                  ><i data-model-bar="c" style="--fill: 88%"></i
+                  ><b data-model="c">220g</b>
+                </li>
+                <li>
+                  <span>Fat</span><i data-model-bar="f" style="--fill: 48%"></i
+                  ><b data-model="f">63g</b>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="eng-stage">
+            <div class="eng-copy">
+              <span class="eng-step"
+                ><i class="fas fa-diagram-project"></i> Stage 02</span
+              >
+              <h3>Menu structuring</h3>
+              <p>
+                Restaurant menus arrive as names on a page. We decompose each
+                dish into portions and map it to verified nutrition data, so an
+                unstructured menu becomes a record a solver can reason about.
+              </p>
+            </div>
+
+            <div class="eng-panel eng-panel--mono" data-panel="parse">
+              <div class="eng-panel-head">
+                <span class="eng-live"></span> menu → structured record
+              </div>
+              <div class="eng-raw">
+                <i class="fas fa-file-lines"></i>
+                <span data-parse-raw>Lemon Garlic Chicken</span>
+                <em data-parse-kitchen>Clean Cravings</em>
+              </div>
+              <div class="eng-arrow"><i class="fas fa-arrow-down"></i></div>
+              <div class="eng-tags">
+                <span data-parse-tag>Chicken</span>
+                <span data-parse-slots>lunch · dinner</span>
+              </div>
+              <table class="eng-table">
+                <thead>
+                  <tr>
+                    <th>portion</th>
+                    <th>kcal</th>
+                    <th>P</th>
+                    <th>C</th>
+                    <th>F</th>
+                  </tr>
+                </thead>
+                <tbody data-parse-rows>
+                  <tr>
+                    <td>normal</td>
+                    <td>300</td>
+                    <td>27</td>
+                    <td>30</td>
+                    <td>8</td>
+                  </tr>
+                  <tr>
+                    <td>high-protein</td>
+                    <td>379</td>
+                    <td>38</td>
+                    <td>23</td>
+                    <td>15</td>
+                  </tr>
+                  <tr>
+                    <td>low-fat</td>
+                    <td>297</td>
+                    <td>25</td>
+                    <td>29</td>
+                    <td>9</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </li>
+
+          <li class="eng-stage">
+            <div class="eng-copy">
+              <span class="eng-step"
+                ><i class="fas fa-shuffle"></i> Stage 03</span
+              >
+              <h3>Portion &amp; combination solver</h3>
+              <p>
+                Every dish carries several portion profiles. The solver searches
+                dishes, portions and quantities together to land your whole day
+                inside your macro targets — the same search the panel at the top
+                of this page ran on load.
+              </p>
+            </div>
+
+            <div class="eng-panel eng-panel--mono" data-panel="solver">
+              <div class="eng-panel-head">
+                <span class="eng-live"></span> solver trace
+                <em data-solve-meta>96 portion candidates</em>
+              </div>
+              <ul class="eng-trace" data-trace>
+                <li>
+                  <span>#1</span><i style="--fill: 61%"></i><b>61%</b>
+                </li>
+                <li>
+                  <span>#38</span><i style="--fill: 79%"></i><b>79%</b>
+                </li>
+                <li>
+                  <span>#2,904</span><i style="--fill: 93%"></i><b>93%</b>
+                </li>
+                <li class="is-best">
+                  <span>#18,551</span><i style="--fill: 98%"></i><b>98%</b>
+                </li>
+              </ul>
+              <div class="eng-panel-foot">
+                <span
+                  ><i class="fas fa-check"></i> best of
+                  <b data-solve-samples>40,000</b> sampled days</span
+                >
+                <span data-solve-ms>6ms</span>
+              </div>
+            </div>
+          </li>
+
+          <li class="eng-stage">
+            <div class="eng-copy">
+              <span class="eng-step"
+                ><i class="fas fa-wand-magic-sparkles"></i> Stage 04</span
+              >
+              <h3>Taste learning</h3>
+              <p>
+                Every like, skip and reorder tunes your ranking, so plans stay
+                nutritionally correct <em>and</em> made of food you'll actually
+                eat. Adherence is the metric that matters — a perfect plan you
+                don't finish is worth nothing.
+              </p>
+            </div>
+
+            <div class="eng-panel" data-panel="taste">
+              <div class="eng-panel-head">
+                <span class="eng-live"></span> preference ranking
+                <em data-taste-signal>learning</em>
+              </div>
+              <ul class="eng-rank" data-rank>
+                <li style="--row: 0">
+                  <span>1</span><span class="dish">Miso salmon &amp; rice</span
+                  ><i style="--fill: 92%"></i><span class="sig"></span>
+                </li>
+                <li style="--row: 1">
+                  <span>2</span
+                  ><span class="dish">Peri-peri chicken bowl</span
+                  ><i style="--fill: 81%"></i><span class="sig"></span>
+                </li>
+                <li style="--row: 2">
+                  <span>3</span
+                  ><span class="dish">Greek yogurt &amp; berry bowl</span
+                  ><i style="--fill: 70%"></i><span class="sig"></span>
+                </li>
+                <li style="--row: 3">
+                  <span>4</span
+                  ><span class="dish">Charred aubergine &amp; farro</span
+                  ><i style="--fill: 58%"></i><span class="sig"></span>
+                </li>
+                <li style="--row: 4">
+                  <span>5</span><span class="dish">Thai green curry</span
+                  ><i style="--fill: 44%"></i><span class="sig"></span>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+
+        <div class="engine-proof">
+          <p>
+            <i class="fas fa-lock"></i> Built in-house. The menu-structuring
+            pipeline and the macro solver are proprietary Nutrics technology.
+          </p>
+          <a href="mailto:hello@nutrics.ca?subject=Nutrics%20technology" class="engine-link"
+            >Technical deep dive for investors <i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      /*
+       * Technology section instruments.
+       *
+       * Everything here is driven by the same data the hero uses: the catalog
+       * snapshot in assets/data/hero-catalog.js and window.NUTRICS_HERO, which
+       * the hero publishes after its solve. The solver trace is that load's
+       * actual convergence, not a scripted animation. Panels only animate
+       * while the section is on screen.
+       */
+      (function () {
+        var section = document.getElementById("engine");
+        if (!section) return;
+
+        var CATALOG = window.NUTRICS_CATALOG || null;
+        var HERO = window.NUTRICS_HERO || null;
+        var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var timers = [];
+
+        function q(selector) {
+          return section.querySelector(selector);
+        }
+
+        function comma(value) {
+          return Number(value).toLocaleString("en-US");
+        }
+
+        function set(node, text) {
+          if (!node || node.textContent === String(text)) return;
+          node.textContent = text;
+          if (still) return;
+          node.classList.remove("eng-swap");
+          void node.offsetWidth; /* restart the animation */
+          node.classList.add("eng-swap");
+        }
+
+        function every(ms, fn) {
+          timers.push(window.setInterval(fn, ms));
+        }
+
+        /* ---- stat rail ------------------------------------------------- */
+        function stats() {
+          var values = {};
+          if (CATALOG && CATALOG.totals) {
+            values.dishes = CATALOG.totals.items;
+            var variants = {};
+            CATALOG.items.forEach(function (item) {
+              for (var name in item.v) variants[name] = 1;
+            });
+            values.variants = Object.keys(variants).length;
+          }
+          if (HERO) {
+            values.samples = HERO.samples;
+            values.ms = Math.max(1, HERO.ms);
+          }
+
+          Object.keys(values).forEach(function (key) {
+            var node = q('[data-stat="' + key + '"]');
+            if (!node) return;
+            var target = values[key];
+
+            if (still) {
+              node.firstChild.nodeValue = comma(target);
+              return;
+            }
+
+            // Count up once, on first view.
+            var steps = 28;
+            var step = 0;
+            var id = window.setInterval(function () {
+              step++;
+              var eased = 1 - Math.pow(1 - step / steps, 3);
+              node.firstChild.nodeValue = comma(Math.round(target * eased));
+              if (step >= steps) {
+                node.firstChild.nodeValue = comma(target);
+                window.clearInterval(id);
+              }
+            }, 26);
+            timers.push(id);
+          });
+        }
+
+        /* ---- 01 metabolic model ---------------------------------------- */
+        function model() {
+          var profiles = (HERO && HERO.profiles) || [];
+          if (!profiles.length) return;
+
+          // Bar fills are relative to the largest target in the set, so the
+          // bars actually compare across profiles.
+          var ceilings = { p: 0, c: 0, f: 0 };
+          profiles.forEach(function (profile) {
+            ["p", "c", "f"].forEach(function (key) {
+              ceilings[key] = Math.max(ceilings[key], profile[key]);
+            });
+          });
+
+          var index = profiles.indexOf(HERO.profile);
+          if (index < 0) index = 0;
+
+          function draw() {
+            var profile = profiles[index];
+            set(q("[data-model-goal]"), profile.goal);
+            set(q("[data-model-kcal]"), comma(profile.kcal));
+
+            var inputs = q("[data-model-in]");
+            inputs.innerHTML = "";
+            // "M · 29 · 78kg · lifts 4×/week" — one chip per fact, with the
+            // bare sex and age tokens spelled out so they read on their own.
+            profile.who.split(" · ").forEach(function (fact) {
+              var chip = document.createElement("span");
+              if (fact === "M" || fact === "F") {
+                chip.textContent = fact === "M" ? "male" : "female";
+              } else if (/^\d+$/.test(fact)) {
+                chip.textContent = fact + " y";
+              } else {
+                chip.textContent = fact;
+              }
+              inputs.appendChild(chip);
+            });
+
+            ["p", "c", "f"].forEach(function (key) {
+              set(q('[data-model="' + key + '"]'), profile[key] + "g");
+              q('[data-model-bar="' + key + '"]').style.setProperty(
+                "--fill",
+                Math.round((profile[key] / ceilings[key]) * 100) + "%"
+              );
+            });
+          }
+
+          draw();
+          if (still) return;
+          every(3200, function () {
+            index = (index + 1) % profiles.length;
+            draw();
+          });
+        }
+
+        /* ---- 02 menu structuring --------------------------------------- */
+        function parse() {
+          if (!CATALOG || !CATALOG.items || !CATALOG.items.length) return;
+
+          // Show dishes carrying the most portion profiles — they make the
+          // point of the panel.
+          var items = CATALOG.items.filter(function (item) {
+            return Object.keys(item.v).length >= 3;
+          });
+          if (!items.length) items = CATALOG.items;
+
+          var index = Math.floor(Math.random() * items.length);
+
+          function draw() {
+            var item = items[index];
+            set(q("[data-parse-raw]"), item.n);
+            set(q("[data-parse-kitchen]"), item.k);
+            set(q("[data-parse-tag]"), item.t);
+            set(q("[data-parse-slots]"), item.s.join(" · "));
+
+            var body = q("[data-parse-rows]");
+            body.innerHTML = "";
+            Object.keys(item.v).forEach(function (name) {
+              var macros = item.v[name];
+              var row = document.createElement("tr");
+              [name, macros[0], macros[1], macros[2], macros[3]].forEach(
+                function (value) {
+                  var cell = document.createElement("td");
+                  cell.textContent = value;
+                  row.appendChild(cell);
+                }
+              );
+              body.appendChild(row);
+            });
+            if (!still) {
+              body.classList.remove("eng-swap");
+              void body.offsetWidth;
+              body.classList.add("eng-swap");
+            }
+          }
+
+          draw();
+          if (still) return;
+          every(3600, function () {
+            index = (index + 1) % items.length;
+            draw();
+          });
+        }
+
+        /* ---- 03 solver trace ------------------------------------------- */
+        function solver() {
+          if (!HERO || !HERO.plan || !HERO.plan.trace) return;
+          var trace = HERO.plan.trace;
+          if (trace.length < 2) return;
+
+          set(q("[data-solve-samples]"), comma(HERO.samples));
+          set(q("[data-solve-ms]"), Math.max(1, HERO.ms) + "ms");
+          set(q("[data-solve-meta]"), HERO.candidates + " portion candidates");
+
+          // The real trace can be dozens of leaders long; show the first, the
+          // last and an even spread between.
+          var want = Math.min(5, trace.length);
+          var shown = [];
+          for (var i = 0; i < want; i++) {
+            shown.push(trace[Math.round((i * (trace.length - 1)) / (want - 1))]);
+          }
+
+          var list = q("[data-trace]");
+          list.innerHTML = "";
+          shown.forEach(function (entry, i) {
+            var match = Math.max(0, Math.round(100 - entry.score * 100));
+            var row = document.createElement("li");
+            row.style.setProperty("--i", i);
+            if (i === shown.length - 1) row.className = "is-best";
+
+            var step = document.createElement("span");
+            step.textContent = "#" + comma(entry.n);
+            var bar = document.createElement("i");
+            bar.style.setProperty("--fill", match + "%");
+            var value = document.createElement("b");
+            value.textContent = match + "%";
+
+            row.appendChild(step);
+            row.appendChild(bar);
+            row.appendChild(value);
+            list.appendChild(row);
+          });
+        }
+
+        /* ---- 04 taste learning ----------------------------------------- */
+        function taste() {
+          var list = q("[data-rank]");
+          if (!list) return;
+
+          var names = [];
+          if (CATALOG && CATALOG.items) {
+            var pool = CATALOG.items.slice();
+            while (names.length < 5 && pool.length) {
+              names.push(
+                pool.splice(Math.floor(Math.random() * pool.length), 1)[0].n
+              );
+            }
+          }
+          if (names.length < 5) {
+            names = [
+              "Miso salmon & rice",
+              "Peri-peri chicken bowl",
+              "Charred aubergine & farro",
+              "Greek yogurt & berry bowl",
+              "Thai green curry",
+            ];
+          }
+
+          list.innerHTML = ""; /* drop the static fallback rows */
+          var rows = names.map(function (name) {
+            var row = document.createElement("li");
+            var rank = document.createElement("span");
+            var dish = document.createElement("span");
+            dish.className = "dish";
+            dish.textContent = name;
+            var bar = document.createElement("i");
+            var sig = document.createElement("span");
+            sig.className = "sig";
+
+            row.appendChild(rank);
+            row.appendChild(dish);
+            row.appendChild(bar);
+            row.appendChild(sig);
+            list.appendChild(row);
+
+            return {
+              node: row,
+              rankNode: rank,
+              bar: bar,
+              sig: sig,
+              score: 55 + Math.floor(Math.random() * 25),
+            };
+          });
+
+          function draw() {
+            var order = rows.slice().sort(function (a, b) {
+              return b.score - a.score;
+            });
+            order.forEach(function (row, i) {
+              row.node.style.setProperty("--row", i);
+              row.rankNode.textContent = i + 1;
+              row.bar.style.setProperty("--fill", row.score + "%");
+            });
+          }
+
+          draw();
+          if (still) return;
+
+          var signal = q("[data-taste-signal]");
+          every(2600, function () {
+            var row = rows[Math.floor(Math.random() * rows.length)];
+            var liked = Math.random() > 0.4;
+
+            row.score = Math.max(
+              12,
+              Math.min(98, row.score + (liked ? 6 + Math.random() * 12 : -(6 + Math.random() * 12)))
+            );
+            row.score = Math.round(row.score);
+
+            rows.forEach(function (other) {
+              other.sig.className = "sig";
+              other.sig.textContent = "";
+            });
+            row.sig.className = "sig " + (liked ? "up" : "down");
+            row.sig.textContent = liked ? "＋ liked" : "− skipped";
+            set(signal, liked ? "liked" : "skipped");
+
+            draw();
+          });
+        }
+
+        function start() {
+          stats();
+          model();
+          parse();
+          solver();
+          taste();
+        }
+
+        // Nothing above the fold depends on this, and idle timers on an
+        // off-screen section are just wasted work — so wait for the section.
+        if (!("IntersectionObserver" in window)) {
+          start();
+          return;
+        }
+        var watcher = new IntersectionObserver(
+          function (entries) {
+            if (!entries[0].isIntersecting) return;
+            watcher.disconnect();
+            start();
+          },
+          { rootMargin: "0px 0px -15% 0px" }
+        );
+        watcher.observe(section);
+      })();
+    </script>
+
+    <!-- How It Works -->
+    <!-- The app itself — the engine section explains the mechanism, this one
+         shows it landing in a real product. Labels stay short on purpose. -->
+    <section class="app" id="how-it-works">
+      <div class="container">
+        <div class="app-head">
+          <span class="engine-eyebrow">Inside the app</span>
+          <h2 class="section-title">
+            Where it all&nbsp;<span class="engine-highlight">lands</span>
+          </h2>
+          <p class="section-description">
+            Four screens, start to plate. Built and running — launching in
+            Toronto this fall.
+          </p>
+        </div>
+
+        <div class="app-grid">
+          <figure class="app-shot">
+            <div class="app-phone">
+              <img
+                src="assets/app-screenshots/01-web.png"
+                alt="Nutrics profile setup: activity level, body fat and goal"
+                loading="lazy"
+                width="360"
+                height="780"
+              />
+            </div>
+            <figcaption><b>01</b> Your profile</figcaption>
+          </figure>
+
+          <figure class="app-shot">
+            <div class="app-phone">
+              <img
+                src="assets/app-screenshots/03-web.png"
+                alt="Browsing dishes from local kitchens with portions matched to your goals"
+                loading="lazy"
+                width="360"
+                height="780"
+              />
+            </div>
+            <figcaption><b>02</b> Browse local kitchens</figcaption>
+          </figure>
+
+          <figure class="app-shot">
+            <div class="app-phone">
+              <img
+                src="assets/app-screenshots/04-web.png"
+                alt="Plan alignment against protein, carb, fat and calorie goals"
+                loading="lazy"
+                width="360"
+                height="780"
+              />
+            </div>
+            <figcaption><b>03</b> Your match score</figcaption>
+          </figure>
+
+          <figure class="app-shot">
+            <div class="app-phone">
+              <img
+                src="assets/app-screenshots/05-web.png"
+                alt="A day of meals with portion profiles and one-tap swaps"
+                loading="lazy"
+                width="360"
+                height="780"
+              />
+            </div>
+            <figcaption><b>04</b> Your day, swappable</figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -293,194 +1530,100 @@
     <!-- About Section -->
     <section class="about" id="about">
       <div class="container">
-        <h2 class="section-title">About Nutrics</h2>
+        <h2 class="section-title">Why Nutrics</h2>
         <p class="section-description">
-          Nutrics makes advanced nutrition simple — we turn your health data
-          into a curated meal plan, fulfilled by nearby restaurants and
-          delivered to your door. Your goals, your taste, no compromises.
+          Making precision nutrition universal means solving the last mile, not
+          the first. Here is the gap we build into, and the work we did before
+          writing a line of the launch catalog.
         </p>
 
         <div class="values">
           <div class="value-card">
             <div class="value-icon">
-              <i class="fas fa-bullseye"></i>
+              <i class="fas fa-code-branch"></i>
             </div>
-            <h3>Our Mission</h3>
+            <h3>The gap we build into</h3>
             <p>
-              Our mission is to empower individuals to achieve their health
-              goals through personalized nutrition plans — crafted around their
-              unique needs, preferences, and fulfilled by real meals from local
-              kitchens.
+              Macro trackers tell you what to hit, then hand you a grocery list.
+              Delivery apps have the restaurants but treat a menu as names and
+              prices. Neither can hand you a day of real food that lands on your
+              numbers — and closing that gap is a data and solving problem, not
+              another app.
             </p>
           </div>
 
           <div class="value-card">
             <div class="value-icon">
-              <i class="fas fa-heart"></i>
+              <i class="fas fa-flask-vial"></i>
             </div>
-            <h3>Our Vision</h3>
+            <h3>Built for every profile</h3>
             <p>
-              A world where everyone has access to nutrition guidance tailored
-              specifically to their body, goals, and lifestyle.
+              Systems designed around the average user fail at the edges. Ours
+              is designed to hold a plan together for any body and any goal —
+              including the roughly one in seven people whose protein target
+              runs past 40% of their calories, who get a portion profile built
+              for them rather than a shrunken version of someone else's.
             </p>
+            <ul class="value-proof">
+              <li><b>4</b><span>macro profiles spanning every goal</span></li>
+              <li><b>9</b><span>dietary tags, each carrying all four</span></li>
+              <li><b>1 in 7</b><span>high-protein bodies served by a dedicated plate</span></li>
+            </ul>
           </div>
 
           <div class="value-card">
             <div class="value-icon">
               <i class="fas fa-handshake"></i>
             </div>
-            <h3>Our Values</h3>
+            <h3>Designed around real kitchens</h3>
             <p>
-              To make precision nutrition universal — local, intelligent, and
-              effortless.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Features -->
-    <section class="features" id="features">
-      <div class="container">
-        <h2 class="section-title">What Makes Us Different</h2>
-        <p class="section-description">
-          Our platform combines nutritional science with personalization to
-          deliver a truly unique experience
-        </p>
-
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon">
-              <i class="fas fa-dna"></i>
-            </div>
-            <h3>Personalized Macros</h3>
-            <p>
-              Get precise macro targets based on your body type, activity level,
-              and specific goals.
-            </p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">
-              <i class="fas fa-utensils"></i>
-            </div>
-            <h3>Curated Recipes</h3>
-            <p>
-              Discover delicious meals that fit your nutritional requirements
-              and taste preferences.
-            </p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">
-              <i class="fas fa-shipping-fast"></i>
-            </div>
-            <h3>Flexible Delivery</h3>
-            <p>
-              Enjoy nutritious meals prepared by your favorite local
-              restaurants, delivered fresh to your door when you need them.
-            </p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">
-              <i class="fas fa-leaf"></i>
-            </div>
-            <h3>Dietary Adaptability</h3>
-            <p>
-              Accommodates allergies, preferences, and specialty diets like
-              keto, vegan, or paleo.
-            </p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">
-              <i class="fas fa-mobile-alt"></i>
-            </div>
-            <h3>Mobile Experience</h3>
-            <p>
-              Access your personalized nutrition plan on any device with our
-              responsive app.
-            </p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">
-              <i class="fas fa-chart-line"></i>
-            </div>
-            <h3>Track Progress</h3>
-            <p>
-              Monitor your nutrition intake and progress toward your health
-              goals over time.
+              A model a restaurant cannot execute is worth nothing.
+              Consolidating six macro shapes into four cut the partner-facing
+              ask by a third with no loss in accuracy — three portion cards per
+              dish, two if that is all a kitchen can manage. We gate expansion
+              on catalog coverage, not calendar dates: 3–6 partners at launch,
+              15–20 at growth, 40+ at scale.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="testimonials" id="testimonials">
+    <!-- Launch / Signup -->
+    <section class="launch" id="launch">
       <div class="container">
-        <h2 class="section-title">What Our Users Say</h2>
+        <div class="launch-date">
+          <i class="fas fa-calendar-check"></i>
+          <span>Launching Fall 2026 in Toronto</span>
+        </div>
+        <h2 class="section-title">Be first to know when we launch</h2>
         <p class="section-description">
-          Real stories from people who transformed their relationship with food
-          through Nutrics
+          We're onboarding local restaurant partners now. Leave your email and
+          we'll let you know the moment Nutrics is live in your area.
         </p>
 
-        <div class="testimonials-grid">
-          <div class="testimonial">
-            <p class="testimonial-text">
-              "Nutrics has completely changed how I approach meal planning. The
-              personalized macro targets helped me lose 15 pounds while making
-              sure I'm getting all the nutrients I need."
-            </p>
-            <div class="testimonial-author">
-              <img
-                src="https://randomuser.me/api/portraits/women/32.jpg"
-                alt="Sarah D."
-              />
-              <div class="author-info">
-                <h4>Sarah M.</h4>
-                <p>Active user for 6 months</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="testimonial">
-            <p class="testimonial-text">
-              "As someone with multiple food allergies, finding suitable recipes
-              has always been a challenge. Nutrics makes it easy with detailed
-              filtering options and a wide variety of suitable meals."
-            </p>
-            <div class="testimonial-author">
-              <img
-                src="https://randomuser.me/api/portraits/men/54.jpg"
-                alt="David K."
-              />
-              <div class="author-info">
-                <h4>David K.</h4>
-                <p>Active user for 3 months</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="testimonial">
-            <p class="testimonial-text">
-              "The meal delivery service is a game-changer for my busy
-              lifestyle. Everything arrives perfectly portioned, and I'm eating
-              healthier than ever without spending hours meal prepping."
-            </p>
-            <div class="testimonial-author">
-              <img
-                src="https://randomuser.me/api/portraits/women/69.jpg"
-                alt="Jennifer P."
-              />
-              <div class="author-info">
-                <h4>Jennifer P.</h4>
-                <p>Active user for 1 year</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <form
+          id="launchForm"
+          class="launch-form"
+          action="https://formsubmit.co/amritpal750@gmail.com"
+          method="POST"
+        >
+          <input type="text" name="_honey" style="display: none" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_next" value="#launch" />
+          <input type="hidden" name="_subject" value="New Nutrics launch signup" />
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter your email address"
+            required
+          />
+          <button type="submit" class="btn" id="launchSubmitBtn">
+            Notify Me
+          </button>
+        </form>
+        <div class="form-status" id="launchFormStatus"></div>
+        <p class="launch-note">No spam — just a heads up when we go live.</p>
       </div>
     </section>
 
@@ -499,7 +1642,7 @@
               <i class="fas fa-map-marker-alt"></i>
               <div>
                 <h4>Our Location</h4>
-                <p>67 Mowat Ave Toronto, Suite 300 <br />ON M6K 3E3</p>
+                <p>60 Atlantic Ave #200, Toronto <br />ON M6K 1X9</p>
               </div>
             </div>
 
@@ -593,7 +1736,7 @@
       <p>
         We're building the future of personalized eating. Partner with us early.
       </p>
-      <a href="#">Download Investor Summary</a>
+      <a href="mailto:hello@nutrics.ca?subject=Investor%20Inquiry">Get in Touch</a>
     </section>
     <!-- Footer -->
     <footer>
@@ -605,21 +1748,14 @@
               Personalized nutrition plans and meal deliveries tailored to your
               unique needs and goals.
             </p>
-            <div class="social-links">
-              <a href="#"><i class="fab fa-facebook-f"></i></a>
-              <a href="#"><i class="fab fa-twitter"></i></a>
-              <a href="#"><i class="fab fa-instagram"></i></a>
-              <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            </div>
           </div>
 
           <div class="footer-column">
             <h3>Quick Links</h3>
             <ul class="footer-links">
               <li><a href="#about">About Us</a></li>
-              <li><a href="#how-it-works">How It Works</a></li>
-              <li><a href="#features">Features</a></li>
-              <li><a href="#testimonials">Testimonials</a></li>
+              <li><a href="#engine">Technology</a></li>
+              <li><a href="#how-it-works">The App</a></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
           </div>
@@ -627,32 +1763,26 @@
           <div class="footer-column">
             <h3>Our Services</h3>
             <ul class="footer-links">
-              <li><a href="#">Personalized Meal Plans</a></li>
-              <li><a href="#">Meal Delivery</a></li>
-              <li><a href="#">Nutrition Consultation</a></li>
-              <li><a href="#">Recipe Collection</a></li>
-              <li><a href="#">Health Coaching</a></li>
+              <li><a href="#how-it-works">Personalized Meal Plans</a></li>
+              <li><a href="#how-it-works">Meal Delivery</a></li>
+              <li><a href="#about">Nutrition Consultation</a></li>
+              <li><a href="#how-it-works">Recipe Collection</a></li>
+              <li><a href="#about">Health Coaching</a></li>
             </ul>
           </div>
 
           <div class="footer-column">
-            <h3>Subscribe</h3>
+            <h3>Stay Updated</h3>
             <p>
-              Subscribe to our newsletter for tips, new recipes, and special
-              offers
+              Sign up on our <a href="#launch">launch page</a> to be notified
+              the moment Nutrics opens in your city.
             </p>
-            <form>
-              <div class="form-group">
-                <input type="email" placeholder="Your email address" />
-              </div>
-              <button type="submit" class="btn">Subscribe</button>
-            </form>
           </div>
         </div>
 
         <div class="copyright">
           <p>
-            &copy; 2025 Nutrics. All rights reserved. | Privacy Policy | Terms
+            &copy; 2026 Nutrics. All rights reserved. | Privacy Policy | Terms
             of Service
           </p>
         </div>
@@ -728,6 +1858,54 @@
       });
     </script>
     <script>
+      // Launch signup form
+      document.addEventListener("DOMContentLoaded", function () {
+        const launchForm = document.getElementById("launchForm");
+        const launchFormStatus = document.getElementById("launchFormStatus");
+        const launchSubmitBtn = document.getElementById("launchSubmitBtn");
+
+        if (launchForm) {
+          launchForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            launchFormStatus.className = "form-status loading";
+            launchFormStatus.textContent = "Submitting...";
+            launchSubmitBtn.disabled = true;
+
+            const formData = new FormData(launchForm);
+
+            fetch("https://formsubmit.co/ajax/amritpal750@gmail.com", {
+              method: "POST",
+              body: formData,
+              headers: {
+                Accept: "application/json",
+              },
+            })
+              .then((response) => {
+                if (!response.ok) {
+                  throw new Error("Network response was not ok");
+                }
+                return response.json();
+              })
+              .then(() => {
+                launchFormStatus.className = "form-status success";
+                launchFormStatus.textContent =
+                  "You're on the list — we'll email you when we launch.";
+                launchForm.reset();
+                launchSubmitBtn.disabled = true;
+              })
+              .catch((error) => {
+                launchFormStatus.className = "form-status error";
+                launchFormStatus.textContent =
+                  "There was a problem signing you up. Please try again.";
+                console.error("Launch form submission error:", error);
+                launchSubmitBtn.disabled = false;
+              });
+          });
+        }
+      });
+    </script>
+    <script>
       // Mobile Menu Toggle
       document
         .getElementById("mobileMenuBtn")
@@ -753,51 +1931,6 @@
           icon.classList.add("fa-bars");
         });
       });
-    </script>
-
-    <script>
-      let currentSlide = 0;
-      const slides = document.querySelector(".slides");
-
-      document.addEventListener("DOMContentLoaded", function () {
-        // Create dot indicators
-        const totalSlides = slides.children.length;
-        const dotsContainer = document.getElementById("sliderDots");
-
-        for (let i = 0; i < totalSlides; i++) {
-          const dot = document.createElement("div");
-          dot.className = i === 0 ? "slider-dot active" : "slider-dot";
-          dot.onclick = function () {
-            goToSlide(i);
-          };
-          dotsContainer.appendChild(dot);
-        }
-      });
-
-      function moveSlide(dir) {
-        const totalSlides = slides.children.length;
-        currentSlide = (currentSlide + dir + totalSlides) % totalSlides;
-        updateSlider();
-      }
-
-      function goToSlide(index) {
-        currentSlide = index;
-        updateSlider();
-      }
-
-      function updateSlider() {
-        slides.style.transform = `translateX(-${currentSlide * 100}%)`;
-
-        // Update dots
-        const dots = document.querySelectorAll(".slider-dot");
-        dots.forEach((dot, index) => {
-          if (index === currentSlide) {
-            dot.classList.add("active");
-          } else {
-            dot.classList.remove("active");
-          }
-        });
-      }
     </script>
 
     <!-- Google tag (gtag.js) -->

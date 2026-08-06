@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Partner Link Builder (internal) - Nutrics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+    <style>
+      /*
+       * Internal tool, not part of the marketing site — no header/nav/footer,
+       * just a working page. Reuses the homepage's tokens (styles.css) so it
+       * doesn't look out of place, but it's deliberately plain.
+       */
+      body {
+        min-height: 100vh;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 4rem 24px;
+      }
+
+      .lb-card {
+        width: 100%;
+        max-width: 620px;
+        background: white;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-soft);
+        padding: 2.5rem;
+      }
+
+      .lb-tag {
+        display: inline-block;
+        margin-bottom: 0.75rem;
+        padding: 0.3rem 0.75rem;
+        border-radius: 999px;
+        background: var(--paper-2);
+        color: var(--gray);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .lb-card h1 {
+        font-family: var(--display);
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: var(--ink);
+        margin-bottom: 0.5rem;
+      }
+
+      .lb-card > p {
+        color: var(--gray);
+        font-size: 0.94rem;
+        margin-bottom: 2rem;
+      }
+
+      .lb-search {
+        position: relative;
+        margin-bottom: 1.25rem;
+      }
+
+      .lb-search i {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--gray);
+      }
+
+      .lb-search input {
+        width: 100%;
+        padding: 0.9rem 1rem 0.9rem 2.6rem;
+        border: 1.5px solid var(--gray-light);
+        border-radius: var(--radius-sm);
+        font-family: inherit;
+        font-size: 1.02rem;
+        background: var(--paper-2);
+      }
+
+      .lb-search input:focus {
+        outline: none;
+        border-color: var(--primary);
+        background: white;
+        box-shadow: 0 0 0 4px rgba(255, 90, 54, 0.12);
+      }
+
+      .lb-place {
+        display: none;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: 1rem 1.1rem;
+        margin-bottom: 1.5rem;
+        background: rgba(52, 211, 153, 0.08);
+        border: 1px solid rgba(52, 211, 153, 0.35);
+        border-radius: var(--radius-sm);
+      }
+
+      .lb-place.is-visible {
+        display: flex;
+      }
+
+      .lb-place i {
+        color: #059669;
+        margin-top: 0.2rem;
+      }
+
+      .lb-place b {
+        display: block;
+        color: var(--ink);
+        font-size: 0.95rem;
+      }
+
+      .lb-place span {
+        display: block;
+        color: var(--gray);
+        font-size: 0.85rem;
+        margin-top: 0.15rem;
+      }
+
+      .lb-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 1.25rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .lb-note {
+        font-size: 0.85rem;
+        color: var(--gray);
+        margin: 1.75rem 0 1rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--line);
+      }
+
+      .lb-output {
+        display: none;
+      }
+
+      .lb-output.is-visible {
+        display: block;
+      }
+
+      .lb-output-row {
+        display: flex;
+        gap: 0.6rem;
+      }
+
+      .lb-output-row input {
+        flex: 1;
+        min-width: 0;
+        padding: 0.8rem 1rem;
+        border: 1.5px solid var(--gray-light);
+        border-radius: var(--radius-sm);
+        font-family: monospace;
+        font-size: 0.84rem;
+        background: var(--paper-2);
+        color: var(--ink);
+      }
+
+      .lb-output-row button {
+        flex: none;
+      }
+
+      .lb-copied {
+        margin-top: 0.6rem;
+        font-size: 0.82rem;
+        color: #059669;
+        font-weight: 600;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+      }
+
+      .lb-copied.is-visible {
+        opacity: 1;
+      }
+
+      .pac-container {
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow-lift);
+        font-family: "Inter", sans-serif;
+        margin-top: 4px;
+      }
+
+      gmp-place-autocomplete {
+        display: block;
+        width: 100%;
+      }
+
+      .lb-search.is-live i {
+        display: none;
+      }
+
+      .lb-search.is-live #placeSearchFallback {
+        display: none;
+      }
+
+      @media (max-width: 500px) {
+        .lb-grid {
+          grid-template-columns: 1fr;
+        }
+        .lb-card {
+          padding: 1.75rem 1.4rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="lb-card">
+      <span class="lb-tag">Internal &middot; not linked from the site</span>
+      <h1>Partner invite link builder</h1>
+      <p>
+        Search the business you just called, confirm it's the right one,
+        then copy the link below and send it. It opens the partner
+        application with everything pre-filled — all they have to do is
+        review and hit Next.
+      </p>
+
+      <div class="lb-search" id="placeSearchWrap">
+        <i class="fas fa-magnifying-glass"></i>
+        <input
+          type="text"
+          id="placeSearchFallback"
+          placeholder="Search for the business…"
+          autocomplete="off"
+        />
+      </div>
+
+      <div class="lb-place" id="placeConfirm">
+        <i class="fas fa-circle-check"></i>
+        <div>
+          <b id="placeConfirmName"></b>
+          <span id="placeConfirmAddress"></span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="repName">Your name (rep)</label>
+        <input type="text" id="repName" placeholder="e.g. Amrit" />
+      </div>
+
+      <p class="lb-note">
+        Search isn't required — leave it blank and the link will just carry
+        your name, and the applicant fills in the rest manually on the
+        page.
+      </p>
+
+      <div class="lb-output" id="lbOutput">
+        <label for="lbUrl">Link to send</label>
+        <div class="lb-output-row">
+          <input type="text" id="lbUrl" readonly />
+          <button type="button" class="btn" id="lbCopyBtn">Copy</button>
+        </div>
+        <div class="lb-copied" id="lbCopied">Copied to clipboard.</div>
+      </div>
+    </div>
+
+    <script>
+      window.NUTRICS_MAPS_API_KEY = "AIzaSyDioiNodrBUjRs6cAnbEelNwCvTqib0_GQ";
+    </script>
+    <script>
+      /*
+       * This tool is only ever meant to be opened by someone on the Nutrics
+       * team, so unlike partners.js there's no lazy-loading here — it loads
+       * Places immediately. The referrer restriction on the API key still
+       * applies (this page ships from the same domain as partners.html), so
+       * the same Cloud Console protections cover it automatically.
+       */
+      var BASE_URL = "https://www.nutrics.ca/partners.html";
+      var selectedPlace = null;
+
+      function buildUrl() {
+        var params = new URLSearchParams();
+        if (selectedPlace && selectedPlace.place_id) {
+          params.set("placeId", selectedPlace.place_id);
+        }
+        var rep = document.getElementById("repName").value.trim();
+        if (rep) params.set("rep", rep);
+
+        var output = document.getElementById("lbOutput");
+        var urlField = document.getElementById("lbUrl");
+
+        if ([...params.keys()].length === 0) {
+          output.classList.remove("is-visible");
+          return;
+        }
+        urlField.value = BASE_URL + "?" + params.toString();
+        output.classList.add("is-visible");
+      }
+
+      document.getElementById("repName").addEventListener("input", buildUrl);
+
+      document.getElementById("lbCopyBtn").addEventListener("click", function () {
+        var urlField = document.getElementById("lbUrl");
+        urlField.select();
+        navigator.clipboard.writeText(urlField.value).then(function () {
+          var copied = document.getElementById("lbCopied");
+          copied.classList.add("is-visible");
+          setTimeout(function () {
+            copied.classList.remove("is-visible");
+          }, 2000);
+        });
+      });
+
+      window.__nutricsPlacesReady = function () {
+        if (!google.maps.places || !google.maps.places.PlaceAutocompleteElement) {
+          document.getElementById("placeSearchFallback").placeholder =
+            "Search unavailable — paste details in manually";
+          return;
+        }
+
+        var wrap = document.getElementById("placeSearchWrap");
+        var el = new google.maps.places.PlaceAutocompleteElement({
+          includedRegionCodes: ["ca"],
+          locationBias: { west: -80.2, south: 43.3, east: -78.9, north: 44.2 },
+        });
+        el.id = "placeSearch";
+        wrap.appendChild(el);
+        wrap.classList.add("is-live");
+
+        el.addEventListener("gmp-select", function (event) {
+          var place = event.placePrediction.toPlace();
+          place
+            .fetchFields({ fields: ["id", "displayName", "formattedAddress"] })
+            .then(function () {
+              selectedPlace = { place_id: place.id };
+
+              document.getElementById("placeConfirmName").textContent =
+                place.displayName || "";
+              document.getElementById("placeConfirmAddress").textContent =
+                place.formattedAddress || "";
+              document.getElementById("placeConfirm").classList.add("is-visible");
+
+              buildUrl();
+            })
+            .catch(function (err) {
+              console.error("Place details lookup failed:", err);
+            });
+        });
+      };
+
+      var script = document.createElement("script");
+      script.src =
+        "https://maps.googleapis.com/maps/api/js?key=" +
+        window.NUTRICS_MAPS_API_KEY +
+        "&libraries=places&loading=async&callback=__nutricsPlacesReady";
+      script.async = true;
+      document.head.appendChild(script);
+    </script>
+  </body>
+</html>

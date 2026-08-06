@@ -1435,8 +1435,39 @@ header {
 
 /* About Section */
 .about {
+    position: relative;
     padding: 7rem 0;
     background-color: var(--paper);
+    background-image: url("assets/partners-kitchen.jpg");
+    background-size: cover;
+    background-position: center 35%;
+    background-attachment: fixed;
+}
+
+.about::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(250, 246, 241, 0.6);
+}
+
+.about .container {
+    position: relative;
+    z-index: 1;
+}
+
+.about-head {
+    max-width: 760px;
+    margin: 0 auto 3.5rem;
+    padding: 2rem 2.5rem;
+    background: rgba(250, 246, 241, 0.85);
+    backdrop-filter: blur(6px);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+}
+
+.about-head .section-description {
+    margin-bottom: 0;
 }
 
 .section-title {
@@ -1455,6 +1486,29 @@ header {
     text-align: center;
     color: var(--gray);
     font-size: 1.1rem;
+}
+
+.about-photo {
+    max-width: 900px;
+    margin: 0 auto 3.5rem;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+}
+
+.about-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.about-photo figcaption {
+    padding: 0.9rem 1.25rem;
+    background: white;
+    color: var(--gray);
+    font-size: 0.9rem;
+    text-align: center;
+    border-top: 1px solid var(--line);
 }
 
 .values {
@@ -2271,5 +2325,13 @@ footer {
 @media (max-width: 768px) {
     .store-badge img {
         height: 40px;
+    }
+}
+
+/* iOS Safari doesn't render fixed backgrounds properly — fall back to a
+   normal scrolling background there. */
+@media (max-width: 900px) {
+    .about {
+        background-attachment: scroll;
     }
 }

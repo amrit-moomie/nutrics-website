@@ -205,11 +205,7 @@
                   <i></i><i></i><i></i>
                 </div>
                 <div class="flow-chips" data-chips>
-                  <span>Mediterranean</span>
-                  <span>Portuguese</span>
-                  <span>Japanese</span>
-                  <span>Levantine</span>
-                  <span class="more">+37 kitchens</span>
+                  <span class="flow-chip-summary" data-chip-summary>38 kitchens near you</span>
                 </div>
               </div>
             </li>
@@ -412,14 +408,6 @@
             { name: "Grilled shrimp & orzo", kitchen: "Kostas Grill", cuisine: "Greek", icon: "fa-shrimp", kcal: 720, p: 46, c: 80, f: 24 },
           ],
         };
-
-        var CUISINES = [
-          "Levantine", "Japanese", "Thai", "Vietnamese", "Caribbean",
-          "North Indian", "Mexican", "Greek", "Portuguese", "Moroccan",
-          "Cantonese", "French", "Ethiopian", "Italian", "Brazilian",
-          "Mediterranean", "Korean", "Peruvian", "Filipino", "Persian",
-          "Sri Lankan",
-        ];
 
         var SLOTS = ["breakfast", "lunch", "snack", "dinner"];
         var KEYS = ["kcal", "p", "c", "f"];
@@ -689,49 +677,12 @@
         }
 
         function renderChips(combo) {
-          var chips = flow.querySelector("[data-chips]");
-          var more = chips.querySelector(".more");
-          var shown = [];
-
-          // "Breakfast" is a slot, not a kind of food — it reads oddly in a
-          // row of cuisines.
-          var skip = ["Breakfast", "Dessert"];
-
-          combo.forEach(function (meal) {
-            if (shown.indexOf(meal.cuisine) === -1 && skip.indexOf(meal.cuisine) === -1) {
-              shown.push(meal.cuisine);
-            }
-          });
-
-          // Top up from the catalog's own categories when we have them.
-          var vocabulary = CUISINES;
-          if (CATALOG && CATALOG.items) {
-            vocabulary = [];
-            CATALOG.items.forEach(function (item) {
-              if (
-                vocabulary.indexOf(item.t) === -1 &&
-                skip.indexOf(item.t) === -1
-              ) {
-                vocabulary.push(item.t);
-              }
-            });
-            if (CATALOG.totals && CATALOG.totals.kitchens) {
-              more.textContent = "+" + CATALOG.totals.kitchens + " kitchens";
-            }
-          }
-
-          var rest = vocabulary.filter(function (cuisine) {
-            return shown.indexOf(cuisine) === -1;
-          });
-          while (shown.length < 4 && rest.length) {
-            shown.push(rest.splice(Math.floor(Math.random() * rest.length), 1)[0]);
-          }
-
-          chips.innerHTML = "";
-          shown.forEach(function (cuisine) {
-            chips.appendChild(el("span", null, cuisine));
-          });
-          chips.appendChild(more);
+          // Step 2 no longer lists individual cuisines — the step's own
+          // label ("Matched against local menus") already carries that
+          // message, so this is just a single scale indicator.
+          var summary = flow.querySelector("[data-chip-summary]");
+          var count = CATALOG && CATALOG.totals && CATALOG.totals.kitchens;
+          summary.textContent = (count || 38) + " kitchens near you";
         }
 
         function render() {
@@ -828,29 +779,9 @@
             >
           </h2>
           <p class="section-description">
-            Personalized nutrition falls apart at the last mile: knowing your
-            macros is easy, finding real food that hits them is not. Our
-            in-house engine turns restaurant menus into structured nutrition
-            data, then solves your day against it — the part nobody else has
-            built.
+            Our in-house engine turns restaurant menus into structured
+            nutrition data, then solves your day against it.
           </p>
-        </div>
-
-        <!-- Real figures: the first two come from the catalog snapshot, the
-             last two from the search the hero panel just ran. -->
-        <div class="eng-stats" data-eng-stats>
-          <div>
-            <b data-stat="dishes">358</b><span>dishes indexed</span>
-          </div>
-          <div>
-            <b data-stat="variants">4</b><span>portion profiles per dish</span>
-          </div>
-          <div>
-            <b data-stat="samples">40,000</b><span>combinations per solve</span>
-          </div>
-          <div>
-            <b data-stat="ms">6<i>ms</i></b><span>to a matched day</span>
-          </div>
         </div>
 
         <ol class="eng-pipeline">
@@ -862,9 +793,7 @@
               <h3>Metabolic modelling</h3>
               <p>
                 Body composition, activity and goal become a calorie and
-                macronutrient target, then recalibrate as your weight and
-                training load actually move — not a fixed formula applied once
-                at signup.
+                macro target — then recalibrate as you actually change.
               </p>
             </div>
 
@@ -906,9 +835,9 @@
               >
               <h3>Menu structuring</h3>
               <p>
-                Restaurant menus arrive as names on a page. We decompose each
-                dish into portions and map it to verified nutrition data, so an
-                unstructured menu becomes a record a solver can reason about.
+                We decompose each dish into portions and map it to verified
+                nutrition data — a menu item becomes a record the solver can
+                reason about.
               </p>
             </div>
 
@@ -970,10 +899,8 @@
               >
               <h3>Portion &amp; combination solver</h3>
               <p>
-                Every dish carries several portion profiles. The solver searches
-                dishes, portions and quantities together to land your whole day
-                inside your macro targets — the same search the panel at the top
-                of this page ran on load.
+                The solver searches dishes, portions and quantities together
+                to land your whole day inside your macro targets.
               </p>
             </div>
 
@@ -1014,9 +941,7 @@
               <h3>Taste learning</h3>
               <p>
                 Every like, skip and reorder tunes your ranking, so plans stay
-                nutritionally correct <em>and</em> made of food you'll actually
-                eat. Adherence is the metric that matters — a perfect plan you
-                don't finish is worth nothing.
+                correct <em>and</em> made of food you'll actually eat.
               </p>
             </div>
 
@@ -1053,16 +978,6 @@
             </div>
           </li>
         </ol>
-
-        <div class="engine-proof">
-          <p>
-            <i class="fas fa-lock"></i> Built in-house. The menu-structuring
-            pipeline and the macro solver are proprietary Nutrics technology.
-          </p>
-          <a href="mailto:hello@nutrics.ca?subject=Nutrics%20technology" class="engine-link"
-            >Technical deep dive for investors <i class="fas fa-arrow-right"></i
-          ></a>
-        </div>
       </div>
     </section>
 
@@ -1104,48 +1019,6 @@
 
         function every(ms, fn) {
           timers.push(window.setInterval(fn, ms));
-        }
-
-        /* ---- stat rail ------------------------------------------------- */
-        function stats() {
-          var values = {};
-          if (CATALOG && CATALOG.totals) {
-            values.dishes = CATALOG.totals.items;
-            var variants = {};
-            CATALOG.items.forEach(function (item) {
-              for (var name in item.v) variants[name] = 1;
-            });
-            values.variants = Object.keys(variants).length;
-          }
-          if (HERO) {
-            values.samples = HERO.samples;
-            values.ms = Math.max(1, HERO.ms);
-          }
-
-          Object.keys(values).forEach(function (key) {
-            var node = q('[data-stat="' + key + '"]');
-            if (!node) return;
-            var target = values[key];
-
-            if (still) {
-              node.firstChild.nodeValue = comma(target);
-              return;
-            }
-
-            // Count up once, on first view.
-            var steps = 28;
-            var step = 0;
-            var id = window.setInterval(function () {
-              step++;
-              var eased = 1 - Math.pow(1 - step / steps, 3);
-              node.firstChild.nodeValue = comma(Math.round(target * eased));
-              if (step >= steps) {
-                node.firstChild.nodeValue = comma(target);
-                window.clearInterval(id);
-              }
-            }, 26);
-            timers.push(id);
-          });
         }
 
         /* ---- 01 metabolic model ---------------------------------------- */
@@ -1197,7 +1070,7 @@
 
           draw();
           if (still) return;
-          every(3200, function () {
+          every(5200, function () {
             index = (index + 1) % profiles.length;
             draw();
           });
@@ -1246,7 +1119,7 @@
 
           draw();
           if (still) return;
-          every(3600, function () {
+          every(5600, function () {
             index = (index + 1) % items.length;
             draw();
           });
@@ -1357,7 +1230,7 @@
           if (still) return;
 
           var signal = q("[data-taste-signal]");
-          every(2600, function () {
+          every(4600, function () {
             var row = rows[Math.floor(Math.random() * rows.length)];
             var liked = Math.random() > 0.4;
 
@@ -1380,7 +1253,6 @@
         }
 
         function start() {
-          stats();
           model();
           parse();
           solver();

@@ -567,6 +567,18 @@ header {
     color: rgba(255, 255, 255, 0.5);
 }
 
+/* Step 2's single summary chip — the step label already says "matched
+   against local menus", so this just signals scale. */
+.flow-chip-summary {
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(255, 90, 54, 0.12);
+    border: 1px solid rgba(255, 90, 54, 0.32);
+    color: #ffb9a4;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
 /* Step 3 — the day */
 .flow-plan {
     padding: 0.5rem 0.6rem 1.1rem;
@@ -835,51 +847,6 @@ header {
     color: rgba(255, 255, 255, 0.62);
 }
 
-/* Live stat rail — real catalog figures, counted up on scroll */
-.eng-stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    margin-bottom: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: var(--radius);
-    background: rgba(255, 255, 255, 0.08);
-    overflow: hidden;
-}
-
-.eng-stats>div {
-    padding: 1.4rem 1.2rem;
-    background: linear-gradient(180deg, rgba(36, 28, 22, 0.95), rgba(23, 19, 15, 0.95));
-    text-align: center;
-}
-
-.eng-stats b {
-    display: block;
-    font-family: var(--display);
-    font-size: 1.9rem;
-    font-weight: 600;
-    line-height: 1.1;
-    letter-spacing: -0.01em;
-    background: linear-gradient(120deg, #fff 25%, var(--amber));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-}
-
-.eng-stats b i {
-    font-style: normal;
-    font-size: 0.95rem;
-    letter-spacing: 0;
-}
-
-.eng-stats span {
-    display: block;
-    margin-top: 0.35rem;
-    font-size: 0.73rem;
-    line-height: 1.4;
-    color: rgba(255, 255, 255, 0.48);
-}
-
 /* The pipeline — four stages, copy on one side, a live instrument on the other */
 .eng-pipeline {
     position: relative;
@@ -1042,20 +1009,24 @@ header {
     color: rgba(255, 255, 255, 0.28);
 }
 
-/* 01 — metabolic model */
+/* 01 — metabolic model. Plain text, not chips — this is a readout of the
+   profile's own facts, not a set of tappable options, so it shouldn't wear
+   a button's pill/border/background. */
 .eng-inputs {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4rem;
+    font-size: 0.74rem;
+    color: rgba(255, 255, 255, 0.55);
 }
 
 .eng-inputs span {
-    padding: 0.28rem 0.65rem;
-    border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    background: rgba(255, 255, 255, 0.05);
-    font-size: 0.74rem;
     color: rgba(255, 255, 255, 0.8);
+}
+
+.eng-inputs span+span::before {
+    content: "·";
+    margin: 0 0.5rem;
+    color: rgba(255, 255, 255, 0.3);
 }
 
 .eng-readout {
@@ -1387,50 +1358,6 @@ header {
     .eng-macros i::after {
         transition: none;
     }
-}
-
-.engine-proof {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem 1.5rem;
-    margin-top: 2rem;
-    padding: 1.4rem 1.9rem;
-    border-radius: var(--radius);
-    border: 1px dashed rgba(255, 255, 255, 0.18);
-}
-
-.engine-proof p {
-    font-size: 0.92rem;
-    color: rgba(255, 255, 255, 0.66);
-}
-
-.engine-proof i {
-    color: var(--amber);
-    margin-right: 0.5rem;
-}
-
-.engine-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--primary);
-    font-weight: 600;
-    font-size: 0.92rem;
-    text-decoration: none;
-    white-space: nowrap;
-}
-
-.engine-link i {
-    color: inherit;
-    margin: 0;
-    font-size: 0.8rem;
-    transition: transform 0.25s ease;
-}
-
-.engine-link:hover i {
-    transform: translateX(4px);
 }
 
 /* About Section */
@@ -2080,10 +2007,6 @@ footer {
         background: linear-gradient(180deg, rgba(23, 19, 15, 0.3) 0%, rgba(23, 19, 15, 0.85) 100%);
     }
 
-    .eng-stats {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
     .app-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.75rem 1rem;
@@ -2130,6 +2053,59 @@ footer {
 }
 
 @media (max-width: 768px) {
+    /* Engine pipeline — same content, denser presentation. Copy in the
+       markup was already trimmed to one short sentence per stage; this
+       just tightens the rhythm around it so four stages don't turn into
+       an endless scroll. */
+    .eng-stage {
+        padding: 1.75rem 0 1.75rem 1.5rem;
+        gap: 1.1rem;
+    }
+
+    .eng-stage::before {
+        top: 2.25rem;
+    }
+
+    .eng-step {
+        margin-bottom: 0.55rem;
+    }
+
+    .eng-copy h3 {
+        font-size: 1.4rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .eng-copy p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .eng-panel {
+        padding: 0.85rem 1rem 1rem;
+    }
+
+    .eng-panel-head {
+        padding-bottom: 0.6rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .eng-readout b {
+        font-size: 2rem;
+    }
+
+    .eng-readout {
+        margin-bottom: 0.75rem;
+    }
+
+    .eng-macros {
+        gap: 0.4rem;
+    }
+
+    /* Five ranked dishes is more than the point needs on a phone screen. */
+    .eng-rank li:nth-child(5) {
+        display: none;
+    }
+
     .hero h1 {
         font-size: 2.5rem;
     }

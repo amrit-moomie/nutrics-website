@@ -1,0 +1,413 @@
+/*
+ * Investor overview page — a minimal one-pager summarizing the BDC business
+ * plan and cash-flow model, styled to match the main site (styles.css)
+ * rather than introducing a new visual language. Numbers here should
+ * trace back to BusinessPlan-BDC-150k.docx / Nutrics-CashFlow-BDC-150k.xlsx.
+ */
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.nav-cta {
+  padding: 10px 22px;
+  font-size: 0.9rem;
+}
+
+/* ---- Hero ---------------------------------------------------------- */
+.inv-hero {
+  background: var(--ink);
+  padding: 9rem 0 4rem;
+  text-align: center;
+}
+
+.inv-hero .hero-eyebrow {
+  color: var(--amber);
+}
+
+.inv-hero h1 {
+  font-family: var(--display);
+  color: white;
+  font-size: clamp(2.1rem, 4.5vw, 3.1rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin: 1rem 0;
+}
+
+.inv-hero .hero-highlight {
+  color: var(--primary);
+  font-style: italic;
+}
+
+.inv-hero-sub {
+  max-width: 640px;
+  margin: 0 auto 2.5rem;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 1.1rem;
+}
+
+.inv-hero-facts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.inv-hero-facts div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.inv-hero-facts b {
+  font-family: var(--display);
+  font-size: 1.9rem;
+  color: white;
+}
+
+.inv-hero-facts span {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ---- Snapshot stats ------------------------------------------------- */
+.inv-stats {
+  background: var(--paper-2);
+  padding: 3.5rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.inv-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.inv-stat {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: var(--shadow-soft);
+}
+
+.inv-stat b {
+  display: block;
+  font-family: var(--display);
+  font-size: 1.9rem;
+  color: var(--primary-dark);
+  margin-bottom: 0.35rem;
+}
+
+.inv-stat span {
+  color: var(--gray);
+  font-size: 0.9rem;
+}
+
+.inv-stats-note {
+  max-width: 700px;
+  margin: 1.5rem auto 0;
+  text-align: center;
+  color: var(--gray);
+  font-size: 0.85rem;
+}
+
+/* ---- Generic section shell ------------------------------------------ */
+.inv-section {
+  padding: 5rem 0;
+  text-align: center;
+}
+
+.inv-section--alt {
+  background: var(--paper-2);
+}
+
+.inv-section .engine-eyebrow {
+  display: inline-block;
+  color: var(--primary-dark);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+}
+
+.inv-model-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+  margin-top: 1rem;
+}
+
+.inv-model-grid .value-card {
+  max-width: none;
+  margin: 0 auto;
+}
+
+/* ---- Unit economics --------------------------------------------------- */
+.inv-unit-econ {
+  max-width: 620px;
+  margin: 3.5rem auto 0;
+  text-align: left;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  padding: 2rem 2.25rem;
+}
+
+.inv-unit-econ h3 {
+  font-family: var(--display);
+  font-size: 1.2rem;
+  margin-bottom: 1.25rem;
+  text-align: center;
+}
+
+.inv-unit-table div {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.6rem 0;
+  border-bottom: 1px dashed var(--line);
+  font-size: 0.95rem;
+}
+
+.inv-unit-table span {
+  color: var(--gray);
+}
+
+.inv-unit-table b {
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.inv-unit-total {
+  border-bottom: none !important;
+  margin-top: 0.4rem;
+  padding-top: 0.9rem !important;
+  border-top: 2px solid var(--ink) !important;
+}
+
+.inv-unit-total span,
+.inv-unit-total b {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.inv-unit-note {
+  margin-top: 1.25rem;
+  color: var(--gray);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* ---- Financial table -------------------------------------------------- */
+.inv-table-wrap {
+  max-width: 700px;
+  margin: 0 auto;
+  overflow-x: auto;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}
+
+.inv-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  font-size: 0.95rem;
+}
+
+.inv-table th,
+.inv-table td {
+  padding: 0.85rem 1.25rem;
+  text-align: right;
+  border-bottom: 1px solid var(--line);
+}
+
+.inv-table th:first-child,
+.inv-table td:first-child {
+  text-align: left;
+  color: var(--gray);
+}
+
+.inv-table thead th {
+  background: var(--ink);
+  color: white;
+  font-family: var(--display);
+  font-weight: 600;
+}
+
+.inv-table thead th:first-child {
+  color: white;
+}
+
+.inv-table-highlight td {
+  font-weight: 700;
+  color: var(--primary-dark);
+  border-bottom: none;
+}
+
+.inv-loan-note {
+  max-width: 700px;
+  margin: 2rem auto 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  text-align: left;
+  color: var(--gray);
+  font-size: 0.9rem;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 1.1rem 1.4rem;
+}
+
+.inv-loan-note i {
+  color: var(--primary);
+  margin-top: 0.2rem;
+}
+
+/* ---- Use of funds ------------------------------------------------------ */
+.inv-fund-grid {
+  max-width: 620px;
+  margin: 1rem auto 0;
+  text-align: left;
+}
+
+.inv-fund-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.inv-fund-row span {
+  color: var(--gray);
+}
+
+.inv-fund-row b {
+  color: var(--ink);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.inv-fund-note {
+  max-width: 620px;
+  margin: 1.5rem auto 0;
+  color: var(--gray);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* ---- Traction timeline -------------------------------------------------- */
+.inv-traction {
+  list-style: none;
+  max-width: 720px;
+  margin: 2.5rem auto 0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.inv-traction li {
+  display: flex;
+  gap: 1.25rem;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.inv-traction-tag {
+  flex-shrink: 0;
+  width: 92px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink);
+  color: var(--amber);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.inv-traction h4 {
+  font-family: var(--display);
+  font-size: 1.05rem;
+  margin-bottom: 0.4rem;
+}
+
+.inv-traction p {
+  color: var(--gray);
+  font-size: 0.92rem;
+}
+
+/* ---- Milestones ---------------------------------------------------------- */
+.inv-milestones {
+  list-style: none;
+  max-width: 620px;
+  margin: 2rem auto 0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.inv-milestones li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 0.9rem 1.2rem;
+  font-size: 0.95rem;
+}
+
+.inv-milestones i {
+  color: var(--primary);
+  margin-top: 0.2rem;
+  width: 18px;
+}
+
+/* ---- Responsive ------------------------------------------------------- */
+@media (max-width: 860px) {
+  .inv-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .inv-model-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .inv-hero {
+    padding-top: 7rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .inv-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .inv-hero-facts {
+    gap: 1.5rem 2rem;
+  }
+
+  .inv-table th,
+  .inv-table td {
+    padding: 0.7rem 0.85rem;
+    font-size: 0.85rem;
+  }
+}

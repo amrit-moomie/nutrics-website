@@ -76,6 +76,15 @@ server {
         add_header Cache-Control "no-cache";
     }
 
+    # Investor materials are gated behind a passcode. The htpasswd file lives
+    # only on the box (never in the repo, which is public) - see
+    # scripts/set-investors-passcode.sh to create or rotate it.
+    location = /investors.html {
+        auth_basic "Nutrics Investors";
+        auth_basic_user_file /etc/nginx/.htpasswd-investors;
+        add_header Cache-Control "no-cache";
+    }
+
     # Fingerprint-free filenames, so keep this short enough that a deploy is
     # visible within the day without re-fetching 8MB of video every visit.
     location /assets/ {

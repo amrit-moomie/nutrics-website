@@ -2247,6 +2247,7 @@ footer {
 .investor a {
     display: inline-block;
     margin-top: 1.5rem;
+    margin-inline: 0.5rem;
     background-color: var(--ink);
     color: white;
     padding: 14px 30px;
@@ -2255,6 +2256,12 @@ footer {
     font-weight: 700;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.investor a:first-of-type {
+    background-color: transparent;
+    border: 2px solid white;
+    box-shadow: none;
 }
 
 .investor a:hover {

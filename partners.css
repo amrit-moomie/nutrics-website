@@ -443,6 +443,26 @@
     color: rgba(255, 255, 255, 0.88);
 }
 
+/* Light-background variant, for the partner-qualification path timeline
+   which sits inside a "paper" section rather than the dark engine block. */
+.p-timeline--light li {
+    color: var(--gray);
+}
+
+.p-timeline--light li::after {
+    color: var(--line);
+}
+
+.p-timeline--light span {
+    background: white;
+    border-color: var(--line);
+    box-shadow: var(--shadow-soft);
+}
+
+.p-timeline--light li.is-partner {
+    color: var(--ink);
+}
+
 /* Recipe standardization panel — same two-column eng-stage layout as the
    homepage engine section, used directly here */
 .p-standardize {
@@ -929,5 +949,204 @@ gmp-place-autocomplete {
 
     .p-timeline li::after {
         content: none;
+    }
+}
+
+/* ============================================================
+   Adaptive theme — see the block at the end of styles.css for the
+   full explanation. header/footer/.engine/.about/.investor already
+   adapt from styles.css since this page reuses those classes; the
+   page-specific pieces are the photo hero (same invert trick,
+   counter-inverting the real photo) and this page's own "paper"
+   sections (hand-built dark equivalents). The co-brand nutrition-
+   label mockup is left white in both schemes on purpose — it's a
+   facsimile of a printed label, not a themed UI surface.
+   ============================================================ */
+@media (prefers-color-scheme: light) {
+    .p-hero {
+        filter: invert(1) hue-rotate(180deg);
+    }
+
+    .p-hero-img {
+        filter: invert(1) hue-rotate(180deg);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .p-founding-strip {
+        background: var(--ink-2);
+        border-bottom-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .p-founding-inner p {
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    .p-founding-inner b {
+        color: white;
+    }
+
+    .p-cobrand {
+        background: var(--ink-2);
+    }
+
+    .p-eyebrow-light {
+        background: rgba(255, 90, 54, 0.14);
+        border-color: rgba(255, 90, 54, 0.35);
+        color: #ffb9a4;
+    }
+
+    .p-cobrand .section-title {
+        color: white;
+    }
+
+    .p-cobrand-copy>p {
+        color: rgba(255, 255, 255, 0.62);
+    }
+
+    .p-cobrand-list li {
+        color: rgba(255, 255, 255, 0.85);
+    }
+
+    .p-provide,
+    .p-faq {
+        background: var(--ink);
+    }
+
+    .p-expect {
+        background: var(--ink-2);
+    }
+
+    .p-provide .section-title,
+    .p-expect .section-title,
+    .p-faq .section-title,
+    .p-apply .section-title {
+        color: white;
+    }
+
+    .p-provide .section-description,
+    .p-expect .section-description,
+    .p-apply .section-description {
+        color: rgba(255, 255, 255, 0.62);
+    }
+
+    .p-checklist li {
+        background: rgba(255, 255, 255, 0.045);
+        border-color: rgba(255, 255, 255, 0.12);
+        color: rgba(255, 255, 255, 0.85);
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+    }
+
+    .p-checklist--expect li {
+        background: rgba(255, 255, 255, 0.03);
+    }
+
+    .faq-item {
+        background: rgba(255, 255, 255, 0.045);
+        border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .faq-q {
+        color: white;
+    }
+
+    .faq-q i {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .faq-a p {
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    .p-apply {
+        background: var(--ink-2);
+    }
+
+    .p-form {
+        background: rgba(255, 255, 255, 0.045);
+        border-color: rgba(255, 255, 255, 0.12);
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+    }
+
+    .p-form-step legend {
+        color: white;
+    }
+
+    .p-form-note {
+        background: rgba(255, 255, 255, 0.05);
+        color: rgba(255, 255, 255, 0.65);
+        border-left-color: var(--amber);
+    }
+
+    .p-form-progress-bar {
+        background: rgba(255, 255, 255, 0.12);
+    }
+
+    .p-form-progress-steps {
+        color: rgba(255, 255, 255, 0.45);
+    }
+
+    .p-place-search-group {
+        border-bottom-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .p-place-search input {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.18);
+        color: white;
+    }
+
+    .p-place-search input:focus {
+        background: rgba(255, 255, 255, 0.09);
+    }
+
+    .p-place-search input::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+    }
+
+    .p-place-search i {
+        color: rgba(255, 255, 255, 0.45);
+    }
+
+    .p-place-search-hint {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .pac-container {
+        background: var(--ink-2);
+        border-color: rgba(255, 255, 255, 0.14);
+        color: white;
+    }
+
+    .pill span {
+        border-color: rgba(255, 255, 255, 0.2);
+        color: rgba(255, 255, 255, 0.85);
+    }
+
+    .pill span em {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .pill input:checked+span {
+        background: rgba(255, 90, 54, 0.16);
+        color: #ffb9a4;
+    }
+
+    .p-form-nav {
+        border-top-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .p-form-step-label {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .p-form-back {
+        border-color: rgba(255, 255, 255, 0.2);
+        color: white;
+    }
+
+    .p-form-back:hover {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.3);
     }
 }

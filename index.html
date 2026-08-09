@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nutrics - Personalized Nutrition Made Simple</title>
+    <title>Nutrics - Your Nutrition Plan. Already Cooked.</title>
     <meta
       name="description"
-      content="Nutrics delivers personalized meals from your favorite local restaurants, perfectly tailored to your unique nutritional needs, dietary preferences, and fitness goals."
+      content="Nutrics turns your nutrition plan into a week of meals that are already prepared. Trusted local culinary partners cook it to one Nutrics standard, delivered on a schedule you can count on."
     />
     <link rel="canonical" href="https://www.nutrics.ca/" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -93,7 +93,8 @@
     <link rel="manifest" href="assets/manifest.json" />
     <meta name="msapplication-TileColor" content="#ffffff" />
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#faf6f1" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#17130f" media="(prefers-color-scheme: dark)" />
   </head>
   <body>
     <!-- Header -->
@@ -109,7 +110,7 @@
           </a>
           <div class="nav-links" id="navLinks">
             <a href="#about">About Us</a>
-            <a href="#engine">Technology</a>
+            <a href="#engine">How It Works</a>
             <a href="#how-it-works">The App</a>
             <a href="partners.html">Partners</a>
             <a href="#contact">Contact</a>
@@ -130,20 +131,20 @@
       </video>
       <div class="container hero-grid">
         <div class="hero-content">
-          <span class="hero-eyebrow">Toronto &middot; Local kitchens, precisely fueled</span>
+          <span class="hero-eyebrow">Toronto &middot; Your nutrition plan, already cooked</span>
           <h1>
-            Precision <span class="hero-highlight">Nutrition</span>.<br />
-            Local Kitchens.
+            Your nutrition plan.<br />
+            <span class="hero-highlight">Already cooked.</span>
           </h1>
 
           <p class="hero-description">
-            Healthy and delicious meals from your favorite local restaurants,
-            perfectly tailored to your unique nutritional needs, dietary
-            preferences, and fitness goals.
+            Tell Nutrics how you want to eat. We build your week, trusted
+            local culinary partners prepare it to one Nutrics standard, and
+            it arrives on a schedule you can count on.
           </p>
           <div class="hero-buttons">
-            <a href="#launch" class="btn">Get Notified</a>
-            <a href="#contact" class="btn btn-outline">Contact Us</a>
+            <a href="#launch" class="btn">Build My Nutrition Profile</a>
+            <a href="#how-it-works" class="btn btn-outline">See This Week's Meals</a>
           </div>
 
           <div class="app-store-badges">
@@ -197,22 +198,22 @@
               </div>
             </li>
 
-            <!-- Step 2 — the match -->
+            <!-- Step 2 — built into the week -->
             <li class="flow-step">
-              <p class="flow-tag"><b>2</b> Matched against local menus</p>
+              <p class="flow-tag"><b>2</b> Built into your week</p>
               <div class="flow-match">
                 <div class="flow-beam" aria-hidden="true">
                   <i></i><i></i><i></i>
                 </div>
                 <div class="flow-chips" data-chips>
-                  <span class="flow-chip-summary" data-chip-summary>38 kitchens near you</span>
+                  <span class="flow-chip-summary" data-chip-summary>Trusted local culinary partners</span>
                 </div>
               </div>
             </li>
 
-            <!-- Step 3 — the plan that hits the numbers -->
+            <!-- Step 3 — the week, already cooked -->
             <li class="flow-step">
-              <p class="flow-tag"><b>3</b> Your day, delivered</p>
+              <p class="flow-tag"><b>3</b> Your week, already cooked</p>
               <div class="flow-card flow-plan">
                 <ul class="flow-meals" data-meals>
                   <li style="--i: 1">
@@ -291,6 +292,16 @@
             </li>
           </ol>
         </div>
+      </div>
+    </section>
+
+    <!-- Proof bar -->
+    <section class="proof-bar" aria-label="Nutrics standards">
+      <div class="container proof-bar-inner">
+        <span><i class="fas fa-clipboard-list" aria-hidden="true"></i> Standardized recipes</span>
+        <span><i class="fas fa-magnifying-glass-chart" aria-hidden="true"></i> Transparent nutrition</span>
+        <span><i class="fas fa-handshake" aria-hidden="true"></i> Trusted culinary partners</span>
+        <span><i class="fas fa-truck-fast" aria-hidden="true"></i> Weekly delivery</span>
       </div>
     </section>
 
@@ -678,11 +689,12 @@
 
         function renderChips(combo) {
           // Step 2 no longer lists individual cuisines — the step's own
-          // label ("Matched against local menus") already carries that
-          // message, so this is just a single scale indicator.
+          // label ("Built into your week") already carries that message,
+          // so this is just a single trust indicator.
           var summary = flow.querySelector("[data-chip-summary]");
           var count = CATALOG && CATALOG.totals && CATALOG.totals.kitchens;
-          summary.textContent = (count || 38) + " kitchens near you";
+          summary.textContent =
+            (count || 38) + " trusted local culinary partners";
         }
 
         function render() {
@@ -772,15 +784,17 @@
     <section class="engine" id="engine">
       <div class="container">
         <div class="engine-head">
-          <span class="engine-eyebrow">Nutrics Intelligence</span>
+          <span class="engine-eyebrow">How Nutrics Works</span>
           <h2 class="section-title">
-            The engine behind every&nbsp;<span class="engine-highlight"
-              >plate</span
+            Planning. Shopping. Cooking. Portioning. Tracking.<br />
+            Nutrics turns the plan into&nbsp;<span class="engine-highlight"
+              >food</span
             >
           </h2>
           <p class="section-description">
-            Our in-house engine turns restaurant menus into structured
-            nutrition data, then solves your day against it.
+            Tell us how you want to eat. We build a practical weekly meal
+            mix, trusted local culinary partners prepare it to one Nutrics
+            standard, and it arrives on your schedule.
           </p>
         </div>
 
@@ -1285,7 +1299,7 @@
         <div class="app-head">
           <span class="engine-eyebrow">Inside the app</span>
           <h2 class="section-title">
-            Where it all&nbsp;<span class="engine-highlight">lands</span>
+            Where your week&nbsp;<span class="engine-highlight">lands</span>
           </h2>
           <p class="section-description">
             Four screens, start to plate. Built and running — launching in
@@ -1311,13 +1325,13 @@
             <div class="app-phone">
               <img
                 src="assets/app-screenshots/03-web.png"
-                alt="Browsing dishes from local kitchens with portions matched to your goals"
+                alt="Your weekly meal mix, built from trusted local culinary partners"
                 loading="lazy"
                 width="360"
                 height="780"
               />
             </div>
-            <figcaption><b>02</b> Browse local kitchens</figcaption>
+            <figcaption><b>02</b> Your week, planned</figcaption>
           </figure>
 
           <figure class="app-shot">
@@ -1330,7 +1344,7 @@
                 height="780"
               />
             </div>
-            <figcaption><b>03</b> Your match score</figcaption>
+            <figcaption><b>03</b> Transparent nutrition</figcaption>
           </figure>
 
           <figure class="app-shot">
@@ -1343,112 +1357,72 @@
                 height="780"
               />
             </div>
-            <figcaption><b>04</b> Your day, swappable</figcaption>
+            <figcaption><b>04</b> Rate &amp; swap</figcaption>
           </figure>
         </div>
       </div>
     </section>
-    <!-- <section class="how-it-works" id="how-it-works">
-      <div class="container">
-        <h2 class="section-title">How Nutrics Works</h2>
-        <p class="section-description">
-          Our simple process helps you discover perfectly balanced meals that
-          match your nutrition needs
-        </p>
-
-        <div class="steps">
-          <div class="step">
-            <div class="step-number">1</div>
-            <h3>Create Your Profile</h3>
-            <p>
-              Tell us about your dietary preferences, allergies, and fitness
-              goals to create your personalized nutrition profile.
-            </p>
-          </div>
-
-          <div class="step">
-            <div class="step-number">2</div>
-            <h3>Discover Recipes</h3>
-            <p>
-              Browse through our curated selection of recipes that match your
-              macro targets and dietary requirements.
-            </p>
-          </div>
-
-          <div class="step">
-            <div class="step-number">3</div>
-            <h3>Save Favorites</h3>
-            <p>
-              Like recipes to save to your collection and build a personalized
-              cookbook of meals you enjoy.
-            </p>
-          </div>
-
-          <div class="step">
-            <div class="step-number">4</div>
-            <h3>Get Delivered</h3>
-            <p>
-              Subscribe to have personalized meals prepared by your favorite
-              local restaurants delivered right to your doorstep.
-            </p>
-          </div>
-        </div>
-
-        <div class="text-center mt-8">
-          <a href="#features" class="btn btn-secondary">Explore Features</a>
-        </div>
-      </div>
-    </section> -->
-
     <!-- About Section -->
     <section class="about" id="about">
       <div class="container">
         <div class="about-head">
           <h2 class="section-title">Why Nutrics</h2>
           <p class="section-description">
-            Hitting your goals shouldn't mean cooking every meal. Here's what
-            we're fixing, and who we're fixing it for.
+            You already know how you want to eat. Doing it every day is the
+            hard part. Here's what we're fixing, and who we're fixing it for.
           </p>
         </div>
 
         <div class="values">
           <div class="value-card">
             <div class="value-icon">
-              <i class="fas fa-code-branch"></i>
+              <i class="fas fa-shield-heart"></i>
             </div>
-            <h3>Eating out shouldn't break your plan</h3>
+            <h3>One Nutrics standard, not a directory</h3>
             <p>
-              Calorie apps hand you a grocery list. Delivery apps hand you a
-              menu. Neither tells you what a meal actually does to your day — so
-              the moment you eat out, you're guessing.
+              You're not browsing restaurants and hoping for the best. Every
+              kitchen we work with cooks to the same defined standard, so
+              your plan is dependable no matter which partner made it.
             </p>
           </div>
 
           <div class="value-card">
             <div class="value-icon">
-              <i class="fas fa-flask-vial"></i>
+              <i class="fas fa-earth-americas"></i>
             </div>
-            <h3>Built for your body, not the average one</h3>
+            <h3>Real Toronto food, not diet food</h3>
             <p>
-              Most nutrition tools are designed for an average person who
-              doesn't exist. We built for the full range instead — every goal,
-              every diet, every body. No one gets a shrunken version of someone
-              else's plan.
+              Toronto is one of the most food-diverse cities anywhere.
+              Rotating local culinary partners bring authentic variety a
+              single kitchen never could — selected to fit your week.
             </p>
           </div>
 
           <div class="value-card">
             <div class="value-icon">
-              <i class="fas fa-handshake"></i>
+              <i class="fas fa-scale-balanced"></i>
             </div>
-            <h3>Easy for restaurants to say yes to</h3>
+            <h3>Portioned to your plan, not a guess</h3>
             <p>
-              None of this works if a kitchen can't do it. So we keep the ask
-              simple: a few portion sizes for a dish they already make. No new
-              recipes, no new equipment.
+              Standardized recipes, defined yields and portion controls mean
+              the nutrition on your plate matches the nutrition on your plan
+              — with credible numbers, not "perfect macro" promises.
             </p>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Retention -->
+    <section class="retention">
+      <div class="container retention-inner">
+        <div class="retention-icon"><i class="fas fa-star"></i></div>
+        <h2 class="section-title">Your plan gets better every week</h2>
+        <p class="section-description">
+          Rate your meals and Nutrics learns what you actually enjoy —
+          swapping in more of what works and less of what doesn't, so week
+          four fits you better than week one.
+        </p>
       </div>
     </section>
 
@@ -1459,10 +1433,11 @@
           <i class="fas fa-calendar-check"></i>
           <span>Launching Fall 2026 in Toronto</span>
         </div>
-        <h2 class="section-title">Be first to know when we launch</h2>
+        <h2 class="section-title">Be first to get your week, already cooked</h2>
         <p class="section-description">
-          We're onboarding local restaurant partners now. Leave your email and
-          we'll let you know the moment Nutrics is live in your area.
+          We're onboarding trusted local culinary partners now. Leave your
+          email and we'll let you know the moment Nutrics is live in your
+          area.
         </p>
 
         <form
@@ -1609,8 +1584,8 @@
           <div class="footer-column">
             <h3>Nutrics</h3>
             <p>
-              Personalized nutrition plans and meal deliveries tailored to your
-              unique needs and goals.
+              Your nutrition plan, already cooked — prepared weekly by
+              trusted local culinary partners, to one Nutrics standard.
             </p>
           </div>
 
@@ -1618,7 +1593,7 @@
             <h3>Quick Links</h3>
             <ul class="footer-links">
               <li><a href="#about">About Us</a></li>
-              <li><a href="#engine">Technology</a></li>
+              <li><a href="#engine">How It Works</a></li>
               <li><a href="#how-it-works">The App</a></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
@@ -1627,11 +1602,11 @@
           <div class="footer-column">
             <h3>Our Services</h3>
             <ul class="footer-links">
-              <li><a href="#how-it-works">Personalized Meal Plans</a></li>
-              <li><a href="#how-it-works">Meal Delivery</a></li>
-              <li><a href="#about">Nutrition Consultation</a></li>
-              <li><a href="#how-it-works">Recipe Collection</a></li>
-              <li><a href="#about">Health Coaching</a></li>
+              <li><a href="#engine">Weekly Meal Plans</a></li>
+              <li><a href="#how-it-works">Weekly Delivery</a></li>
+              <li><a href="#about">Trusted Culinary Partners</a></li>
+              <li><a href="#about">Transparent Nutrition</a></li>
+              <li><a href="partners.html">Kitchen Partners</a></li>
             </ul>
           </div>
 

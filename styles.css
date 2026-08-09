@@ -20,6 +20,12 @@
     --radius: 18px;
     --radius-sm: 10px;
     --display: "Fraunces", serif;
+
+    /* The page adapts to the OS/browser light-or-dark preference (see the
+       adaptive theme block near the end of this file) rather than sticking
+       to one fixed look, so tell the UA both schemes are supported —
+       that fixes native form-control and scrollbar chrome in each mode. */
+    color-scheme: light dark;
 }
 
 * {
@@ -1518,6 +1524,67 @@ header {
     line-height: 1.35;
 }
 
+/* Proof bar — the trust strip directly under the hero. Quiet on purpose:
+   it's a reassurance line, not another headline. */
+.proof-bar {
+    background: var(--ink);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.proof-bar-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem 2.5rem;
+    padding: 1.1rem 1.5rem;
+}
+
+.proof-bar-inner span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.92rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.proof-bar-inner i {
+    color: var(--amber);
+    font-size: 0.9rem;
+}
+
+/* Retention — a short reassurance section between the value props and the
+   launch signup: this is a weekly relationship, not a one-time purchase. */
+.retention {
+    padding: 5rem 0;
+    background: var(--paper-2);
+    text-align: center;
+}
+
+.retention-inner {
+    max-width: 640px;
+}
+
+.retention-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 1.5rem;
+    background: var(--ink);
+    color: var(--amber);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+}
+
+.retention .section-description {
+    margin-bottom: 0;
+}
+
 /* How It Works — kept for the commented-out steps variant below the app section */
 .how-it-works {
     padding: 7rem 0;
@@ -2316,5 +2383,208 @@ footer {
 @media (max-width: 900px) {
     .about {
         background-attachment: scroll;
+    }
+}
+
+/* Stray inline link — give it the brand color instead of the browser's
+   default blue in every scheme. */
+footer .footer-column p a {
+    color: var(--amber);
+}
+
+/* ============================================================
+   Adaptive theme — follows the OS/browser light-or-dark setting
+   ------------------------------------------------------------
+   The page is authored with two families of section:
+     - "dark bands" (header, hero, engine, app, launch, footer) built
+       from white-on-ink glass at many opacity steps, plus the coral/
+       amber brand accent
+     - "paper" sections (about, contact, investor) already light
+
+   For a light OS preference, the dark bands flip to a light
+   equivalent with a single invert()+hue-rotate(180deg) pass: every
+   white-on-dark opacity step inverts to the same relative step of
+   ink-on-paper, and hue-rotate(180deg) brings the coral/amber accent
+   back close to its authored hue, so nothing there had to be
+   hand-recolored. Real photography/video/brand-badge images are
+   counter-inverted with the same filter so they keep natural color.
+
+   For a dark OS preference, the paper sections (about, contact) get
+   the mirror-image treatment by hand below, since their kitchen photo
+   can't be filter-inverted without discoloring it.
+   ============================================================ */
+@media (prefers-color-scheme: light) {
+
+    header,
+    .hero,
+    .proof-bar,
+    .engine,
+    .app,
+    .launch,
+    footer {
+        filter: invert(1) hue-rotate(180deg);
+    }
+
+    /* Counter-invert real images/video inside those bands so they keep
+       natural color instead of the inverted, hue-shifted palette. Solid
+       brand buttons (not the ghost/outline variant, which is meant to
+       invert so its white-on-dark outline becomes dark-on-light) are
+       counter-inverted too, so "Get Notified" etc. stay the same coral
+       fill with white text everywhere on the page, in both schemes. */
+    .hero-video,
+    .store-badge img,
+    .app-phone img,
+    .btn:not(.btn-outline) {
+        filter: invert(1) hue-rotate(180deg);
+    }
+
+    /* The hero stat card is translucent dark glass designed to sit on the
+       dark video — a good chunk of the backdrop shows through it on
+       purpose. Inverted, that same translucency sits on a now-bright
+       photo and washes out to near-illegible. Counter-invert it too, so
+       it stays the same dark glass card with white text in both
+       schemes — a fixed "UI preview" floating over the photo, the same
+       role the phone screenshots play in the App section below. */
+    .flow-card {
+        filter: invert(1) hue-rotate(180deg);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+
+    body {
+        background-color: var(--ink);
+    }
+
+    /* About — the kitchen photo can't be filter-inverted without
+       discoloring it, so its dark look is hand-built instead. */
+    .about {
+        background-color: var(--ink);
+    }
+
+    .about::before {
+        background: rgba(23, 19, 15, 0.72);
+    }
+
+    .about-head {
+        background: rgba(255, 255, 255, 0.06);
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+    }
+
+    .about .section-title,
+    .contact .section-title,
+    .retention .section-title {
+        color: white;
+    }
+
+    .about .section-description,
+    .contact .section-description,
+    .retention .section-description {
+        color: rgba(255, 255, 255, 0.62);
+    }
+
+    /* Retention — same "paper" family as About/Contact, hand-tuned dark look. */
+    .retention {
+        background-color: var(--ink-2);
+    }
+
+    .retention-icon {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .value-card {
+        background: rgba(255, 255, 255, 0.045);
+        border-color: rgba(255, 255, 255, 0.12);
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+    }
+
+    .value-card h3 {
+        color: white;
+    }
+
+    .value-card p {
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    .value-icon {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .value-proof {
+        border-top-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .value-proof b {
+        color: white;
+    }
+
+    .value-proof span {
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    .about-photo figcaption {
+        background: rgba(255, 255, 255, 0.045);
+        color: rgba(255, 255, 255, 0.6);
+        border-top-color: rgba(255, 255, 255, 0.12);
+    }
+
+    /* Contact */
+    .contact {
+        background-color: var(--ink);
+    }
+
+    .contact-item h4 {
+        color: white;
+    }
+
+    .contact-item p {
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    .contact-item i {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .contact-form {
+        background: rgba(255, 255, 255, 0.045);
+        border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .form-group label {
+        color: rgba(255, 255, 255, 0.85);
+    }
+
+    .form-group input,
+    .form-group textarea {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.18);
+        color: white;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        background: rgba(255, 255, 255, 0.09);
+    }
+
+    /* Not .contact-scoped — partners.html's application form reuses
+       .form-status too, on its own dark glass card. */
+    .form-status.success {
+        background-color: rgba(52, 211, 153, 0.15);
+        color: #6ee7b7;
+        border: 1px solid #34d399;
+    }
+
+    .form-status.error {
+        background-color: rgba(239, 68, 68, 0.15);
+        color: #fca5a5;
+        border: 1px solid #ef4444;
     }
 }

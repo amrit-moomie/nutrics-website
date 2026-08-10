@@ -13,6 +13,14 @@
     --gray-light: #e6ded2;
     --line: rgba(23, 19, 15, 0.1);
 
+    /* Macro-split chart colors — used by the Plan Alignment ring only.
+       Coral/amber already carry the brand accent, so protein/carbs reuse
+       them; fat gets a muted sage so all three read apart at a glance
+       without introducing a cold, off-brand hue. */
+    --macro-protein: var(--primary);
+    --macro-carbs: var(--amber);
+    --macro-fat: #6b8f6a;
+
     --shadow-glow: 0 20px 50px rgba(255, 90, 54, 0.28);
     --shadow-soft: 0 10px 30px rgba(23, 19, 15, 0.06);
     --shadow-lift: 0 30px 60px rgba(23, 19, 15, 0.14);
@@ -294,7 +302,7 @@ header.scrolled {
 }
 
 .hero-description {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.78);
     margin-bottom: 2.25rem;
     text-shadow: none;
     max-width: 500px;
@@ -317,7 +325,7 @@ header.scrolled {
 
 .hero p {
     font-size: 1.15rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.78);
     margin-bottom: 2rem;
     max-width: 600px;
 }
@@ -381,7 +389,7 @@ header.scrolled {
     font-weight: 600;
     letter-spacing: 0.07em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.62);
+    color: rgba(255, 255, 255, 0.72);
 }
 
 .flow-tag b {
@@ -884,7 +892,7 @@ header.scrolled {
 }
 
 .engine .section-description {
-    color: rgba(255, 255, 255, 0.62);
+    color: rgba(255, 255, 255, 0.74);
 }
 
 /* Retention moments — a few short, illustrative lines folded into the
@@ -903,7 +911,7 @@ header.scrolled {
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.45);
+    color: rgba(255, 255, 255, 0.6);
     margin-bottom: 1.5rem;
 }
 
@@ -919,7 +927,7 @@ header.scrolled {
 .engine-retention-list li {
     font-size: 0.92rem;
     line-height: 1.5;
-    color: rgba(255, 255, 255, 0.62);
+    color: rgba(255, 255, 255, 0.74);
     text-align: left;
 }
 
@@ -1417,6 +1425,228 @@ header.scrolled {
     opacity: 1;
 }
 
+/* 03 — feedback panel */
+.eng-panel--feedback {
+    display: grid;
+    gap: 0.9rem;
+}
+
+.eng-fb-meal {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.6rem;
+    padding: 0.7rem 0.85rem;
+    border-radius: var(--radius-sm);
+    border: 1px dashed rgba(255, 255, 255, 0.18);
+}
+
+.eng-fb-meal-name {
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: white;
+}
+
+.eng-fb-meal-macros {
+    flex: none;
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.eng-fb-prompt {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.eng-fb-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.eng-fb-btn {
+    padding: 0.42rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 0.74rem;
+    font-weight: 600;
+    cursor: default;
+}
+
+.eng-fb-btn i {
+    margin-right: 0.3rem;
+}
+
+.eng-fb-btn.is-active {
+    border-color: rgba(255, 90, 54, 0.5);
+    background: rgba(255, 90, 54, 0.14);
+    color: white;
+}
+
+.eng-fb-btn--muted {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.eng-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.eng-chips span {
+    padding: 0.22rem 0.6rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.68rem;
+    font-weight: 600;
+}
+
+.eng-chips span.is-active {
+    border-color: rgba(242, 161, 58, 0.45);
+    background: rgba(242, 161, 58, 0.14);
+    color: var(--amber);
+}
+
+.eng-fb-input {
+    display: flex;
+    gap: 0.55rem;
+    padding: 0.75rem 0.9rem;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.eng-fb-input i {
+    flex: none;
+    margin-top: 0.15rem;
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.eng-fb-input p {
+    font-size: 0.8rem;
+    font-style: italic;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.eng-understood {
+    padding-top: 0.85rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.eng-understood-label {
+    display: block;
+    margin-bottom: 0.55rem;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.42);
+}
+
+.eng-understood ul {
+    list-style: none;
+    display: grid;
+    gap: 0.4rem;
+}
+
+.eng-understood li {
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.eng-understood li i {
+    margin-right: 0.4rem;
+    color: var(--amber);
+}
+
+.eng-fb-apply {
+    padding: 0.6rem 1rem;
+    border-radius: var(--radius-sm);
+    border: none;
+    background: linear-gradient(140deg, var(--primary), var(--amber));
+    color: white;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    cursor: default;
+    box-shadow: 0 12px 28px rgba(255, 90, 54, 0.28);
+}
+
+/* 04 — result of feedback */
+.eng-changes-sub {
+    margin-top: -0.3rem;
+    margin-bottom: 0.9rem;
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.eng-changes {
+    list-style: none;
+    display: grid;
+    gap: 0.75rem;
+}
+
+.eng-changes li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.eng-changes li i {
+    flex: none;
+    margin-top: 0.2rem;
+    font-size: 0.72rem;
+    color: var(--amber);
+}
+
+.eng-changes li.is-muted {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.eng-changes li.is-muted i {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.eng-changes li span {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.eng-changes li small {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.eng-changes-foot {
+    align-items: center;
+}
+
+.eng-changes-foot b {
+    color: white;
+}
+
+.eng-review-btn {
+    padding: 0.4rem 0.85rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 0.72rem;
+    font-weight: 600;
+    cursor: default;
+}
+
 /* Values that change in place */
 .eng-swap {
     animation: engSwap 0.45s ease;
@@ -1538,6 +1768,59 @@ header.scrolled {
     background: var(--paper);
 }
 
+/* Trust strip — a quieter, secondary row beneath the four main trust
+   cards for the operational/food-safety layer. Deliberately smaller and
+   lower-contrast than .value-card so it reads as supporting detail. */
+.trust-strip {
+    margin: 3.5rem auto 0;
+    max-width: 900px;
+    padding: 1.75rem 2rem;
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    text-align: center;
+}
+
+.trust-strip-title {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    color: var(--gray);
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+}
+
+.trust-strip-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem 2.5rem;
+}
+
+.trust-strip-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--ink);
+    font-size: 0.92rem;
+    font-weight: 500;
+}
+
+.trust-strip-item i {
+    color: var(--amber);
+    font-size: 1rem;
+}
+
+.trust-strip-note {
+    margin: 1.25rem 0 0;
+    color: var(--gray);
+    font-size: 0.85rem;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /* Local food section — a three-photo grid of local culinary-partner
    production shots, in the same "paper" family as About/Retention. */
 .local-food {
@@ -1568,11 +1851,82 @@ header.scrolled {
     object-fit: cover;
 }
 
+.network-graphic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    height: 240px;
+    padding: 1.5rem;
+    background: var(--paper-2, #f4efe8);
+}
+
+.network-kitchens {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.network-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.network-node {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.55rem 1rem;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: white;
+    color: var(--ink);
+    font-size: 0.82rem;
+    font-weight: 600;
+    box-shadow: var(--shadow-soft);
+    white-space: nowrap;
+}
+
+.network-arrow {
+    color: var(--amber);
+    font-size: 0.95rem;
+    flex: 0 0 auto;
+    line-height: 1;
+}
+
+.network-node-plan {
+    background: var(--ink);
+    color: var(--amber);
+    border-color: var(--ink);
+}
+
+@media (max-width: 720px) {
+    .network-graphic {
+        flex-direction: column;
+        height: auto;
+    }
+}
+
 .local-grid figcaption {
-    padding: 0.9rem 1.25rem;
-    color: var(--gray);
-    font-size: 0.88rem;
+    padding: 1.25rem 1.5rem 1.5rem;
     border-top: 1px solid var(--line);
+    text-align: left;
+}
+
+.local-grid figcaption h3 {
+    margin: 0 0 0.5rem;
+    color: var(--ink);
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.local-grid figcaption p {
+    margin: 0;
+    color: var(--gray);
+    font-size: 0.92rem;
+    line-height: 1.55;
 }
 
 .values {
@@ -1661,6 +2015,240 @@ header.scrolled {
 .pricing {
     padding: 6rem 0;
     background: var(--paper);
+}
+
+/* Central plan card — the configurator-inspired centerpiece that replaces
+   the old three-tier layout. One card, one recommendation, room to show
+   the user can dial it back. */
+.plan-card {
+    max-width: 780px;
+    margin: 0 auto 3.5rem;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lift);
+    overflow: hidden;
+}
+
+.plan-card-header {
+    padding: 1.5rem 2.5rem;
+    background: var(--ink);
+}
+
+.plan-card-kicker {
+    font-family: var(--display);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--amber);
+}
+
+.plan-card-body {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 2rem;
+    padding: 2.5rem;
+    border-bottom: 1px solid var(--line);
+}
+
+.plan-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 2rem;
+}
+
+.plan-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.plan-stat-primary {
+    grid-column: 1 / -1;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px dashed var(--line);
+}
+
+.plan-stat-label {
+    font-size: 0.82rem;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.plan-stat-value {
+    font-family: var(--display);
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.plan-pill {
+    display: inline-block;
+    width: fit-content;
+    margin-top: 0.15rem;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    background: rgba(255, 90, 54, 0.1);
+    border: 1px solid rgba(255, 90, 54, 0.3);
+    color: var(--primary-dark);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.plan-alignment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--paper-2);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--line);
+}
+
+/* Plan Alignment ring — a donut, not a full circle, so its own shape
+   telegraphs "96%, not 100%". Each arc is one macro's share of that 96%
+   (protein/carbs/fat), so the ring reads as "how the covered plan breaks
+   down" rather than a single opaque score. */
+.plan-ring {
+    position: relative;
+    width: 148px;
+    height: 148px;
+}
+
+.plan-ring-track {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: conic-gradient(
+        var(--macro-protein) 0% var(--p-end),
+        var(--macro-carbs) var(--p-end) var(--c-end),
+        var(--macro-fat) var(--c-end) var(--f-end),
+        var(--gray-light) var(--f-end) 100%
+    );
+}
+
+.plan-ring-inner {
+    position: absolute;
+    inset: 16px;
+    border-radius: 50%;
+    background: var(--paper-2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.plan-ring-value {
+    font-family: var(--display);
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1;
+}
+
+.plan-ring-caption {
+    margin-top: 0.3rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--gray);
+    text-align: center;
+    max-width: 90px;
+}
+
+.plan-ring-legend {
+    display: flex;
+    gap: 1.1rem;
+    list-style: none;
+    margin: 1.1rem 0 0;
+    padding: 0;
+    font-size: 0.8rem;
+    color: var(--gray);
+}
+
+.plan-ring-legend li {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.plan-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.plan-dot-protein {
+    background: var(--macro-protein);
+}
+
+.plan-dot-carbs {
+    background: var(--macro-carbs);
+}
+
+.plan-dot-fat {
+    background: var(--macro-fat);
+}
+
+.plan-alignment-note {
+    margin-top: 0.9rem;
+    font-size: 0.82rem;
+    color: var(--gray);
+    line-height: 1.4;
+}
+
+.plan-adjust {
+    padding: 2rem 2.5rem 2.25rem;
+    text-align: center;
+}
+
+.plan-adjust-label {
+    display: block;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 1rem;
+}
+
+.plan-chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.65rem;
+    margin-bottom: 1.25rem;
+}
+
+.plan-chip {
+    padding: 0.5rem 1.1rem;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    color: var(--gray);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.plan-adjust-note {
+    max-width: 460px;
+    margin: 0 auto;
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.plan-principles {
+    margin-bottom: 3rem;
+}
+
+.plan-principles .value-card {
+    padding: 2rem 1.75rem;
+    max-width: 280px;
 }
 
 .value-list {
@@ -1805,7 +2393,7 @@ header.scrolled {
 }
 
 .app .section-description {
-    color: rgba(255, 255, 255, 0.62);
+    color: rgba(255, 255, 255, 0.74);
 }
 
 .app-grid {
@@ -2160,7 +2748,7 @@ footer {
 }
 
 .footer-links a {
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.68);
     text-decoration: none;
     transition: color 0.3s;
 }
@@ -2299,6 +2887,20 @@ footer {
 }
 
 @media (max-width: 768px) {
+    /* Plan card — stack the stats/alignment columns and let stats fall
+       to one per row so numbers stay readable at phone width. */
+    .plan-card-body {
+        grid-template-columns: 1fr;
+    }
+
+    .plan-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .plan-stat-primary {
+        grid-column: auto;
+    }
+
     /* Engine pipeline — same content, denser presentation. Copy in the
        markup was already trimmed to one short sentence per stage; this
        just tightens the rhythm around it so four stages don't turn into
@@ -2500,7 +3102,7 @@ footer {
 }
 
 .app-store-badges p {
-    color: rgba(255, 255, 255, 0.55);
+    color: rgba(255, 255, 255, 0.68);
     margin-bottom: 1rem;
     font-weight: 500;
     font-size: 0.85rem;

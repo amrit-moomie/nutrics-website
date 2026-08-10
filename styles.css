@@ -21,11 +21,9 @@
     --radius-sm: 10px;
     --display: "Fraunces", serif;
 
-    /* The page adapts to the OS/browser light-or-dark preference (see the
-       adaptive theme block near the end of this file) rather than sticking
-       to one fixed look, so tell the UA both schemes are supported —
-       that fixes native form-control and scrollbar chrome in each mode. */
-    color-scheme: light dark;
+    /* Light mode only — tell the UA so native form-control and scrollbar
+       chrome render with the light palette. */
+    color-scheme: light;
 }
 
 * {
@@ -131,17 +129,29 @@ body {
     padding-bottom: 5rem;
 }
 
-/* Header & Navigation */
+/* Header & Navigation
+   Starts transparent-over-hero (dark glass, white text) since the hero is
+   always dark. Once the page scrolls past the hero, .scrolled switches it
+   to a solid, high-contrast bar so it stays legible over every section
+   underneath, instead of a translucent blur fighting whatever content
+   scrolls beneath it. */
 header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(23, 19, 15, 0.5);
+    background-color: rgba(23, 19, 15, 0.35);
     backdrop-filter: blur(16px) saturate(160%);
     -webkit-backdrop-filter: blur(16px) saturate(160%);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     z-index: 1000;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+header.scrolled {
+    background-color: rgba(23, 19, 15, 0.96);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(23, 19, 15, 0.25);
 }
 
 .navbar {
@@ -174,7 +184,7 @@ header {
 
 .nav-links a {
     text-decoration: none;
-    color: rgba(255, 255, 255, 0.78);
+    color: rgba(255, 255, 255, 0.85);
     font-weight: 500;
     font-size: 0.95rem;
     position: relative;
@@ -840,17 +850,87 @@ header {
     text-transform: uppercase;
 }
 
-.engine .section-title {
-    color: white;
+/* The pain line — same display face and size as the killer line so they
+   read as one thought, struck through and in plain ink to mark it as the
+   old, discarded way of doing things. The killer line then lands in full
+   brand color as the answer.
+
+   Color is rgba(white), not var(--ink): this section sits in the
+   permanently inverted list (.engine, see the theme block below), which
+   flips near-black to near-white. rgba(white) is the convention the
+   rest of .engine already uses so it inverts the other way — landing as
+   dark ink on the light background. */
+.engine-pain {
+    font-family: var(--display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
+    line-height: 1.15;
+    color: rgba(255, 255, 255, 0.92);
+    text-decoration: line-through;
+    text-decoration-thickness: 0.05em;
+    margin: 0 0 0.5rem;
 }
 
-.engine-highlight {
+.engine .section-title {
     color: var(--primary);
+}
+
+/* Section title is already brand-colored end to end (see .engine
+   .section-title); the highlight now only needs to carry the italic
+   emphasis, not a second color, or it'd disappear into its own line. */
+.engine-highlight {
+    color: inherit;
     font-style: italic;
 }
 
 .engine .section-description {
     color: rgba(255, 255, 255, 0.62);
+}
+
+/* Retention moments — a few short, illustrative lines folded into the
+   mechanism section rather than a separate section. Plain rgba(white)
+   values, same as the rest of .engine, so the section's permanent
+   invert (see the theme block below) handles it without extra rules. */
+.engine-retention {
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.engine-retention-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+    margin-bottom: 1.5rem;
+}
+
+.engine-retention-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.engine-retention-list li {
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.62);
+    text-align: left;
+}
+
+.engine-retention-list i {
+    color: var(--amber);
+    margin-right: 0.4rem;
+}
+
+.engine-retention-list b {
+    color: white;
+    font-weight: 600;
 }
 
 /* The pipeline — four stages, copy on one side, a live instrument on the other */
@@ -1124,6 +1204,13 @@ header {
     display: flex;
     gap: 0.4rem;
     margin-bottom: 0.9rem;
+}
+
+/* Stage 03 "why this plan" panel reuses the tag look for several short,
+   plain-language reasons rather than the single dish-tag + slot pair the
+   menu-structuring panel uses, so it needs to wrap. */
+.eng-tags--wrap {
+    flex-wrap: wrap;
 }
 
 .eng-tags span {
@@ -1444,6 +1531,50 @@ header {
     border-top: 1px solid var(--line);
 }
 
+/* Trust section — reuses .values/.value-card (defined below) for its four
+   pillars, so it inherits that pattern's light/dark handling for free. */
+.trust {
+    padding: 6rem 0;
+    background: var(--paper);
+}
+
+/* Local food section — a three-photo grid of local culinary-partner
+   production shots, in the same "paper" family as About/Retention. */
+.local-food {
+    padding: 6rem 0;
+    background: var(--paper-2);
+}
+
+.local-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.local-grid figure {
+    margin: 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    background: white;
+}
+
+.local-grid img {
+    display: block;
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+}
+
+.local-grid figcaption {
+    padding: 0.9rem 1.25rem;
+    color: var(--gray);
+    font-size: 0.88rem;
+    border-top: 1px solid var(--line);
+}
+
 .values {
     display: flex;
     flex-wrap: wrap;
@@ -1522,6 +1653,46 @@ header {
     color: var(--gray);
     font-size: 0.9rem;
     line-height: 1.35;
+}
+
+/* Founding 150 offer — reuses .values/.value-card for its three panels
+   (size, price, value-beyond-price), so the light/dark handling above
+   applies for free. */
+.pricing {
+    padding: 6rem 0;
+    background: var(--paper);
+}
+
+.value-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.65rem;
+    color: var(--gray);
+}
+
+.value-list i {
+    color: var(--primary);
+    margin-right: 0.5rem;
+}
+
+.pricing-note {
+    max-width: 700px;
+    margin: 3rem auto 0;
+    text-align: center;
+    color: var(--gray);
+    font-weight: 500;
+}
+
+.pricing-note i {
+    color: var(--primary);
+    margin-right: 0.4rem;
+}
+
+.pricing-cta {
+    text-align: center;
+    margin-top: 1.75rem;
 }
 
 /* Proof bar — the trust strip directly under the hero. Quiet on purpose:
@@ -2117,6 +2288,14 @@ footer {
     .testimonial-featured {
         grid-row: span 1;
     }
+
+    .local-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .engine-retention-list {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 768px) {
@@ -2393,7 +2572,7 @@ footer .footer-column p a {
 }
 
 /* ============================================================
-   Adaptive theme — follows the OS/browser light-or-dark setting
+   Theme — light mode only
    ------------------------------------------------------------
    The page is authored with two families of section:
      - "dark bands" (header, hero, engine, app, launch, footer) built
@@ -2401,190 +2580,60 @@ footer .footer-column p a {
        amber brand accent
      - "paper" sections (about, contact, investor) already light
 
-   For a light OS preference, the dark bands flip to a light
-   equivalent with a single invert()+hue-rotate(180deg) pass: every
-   white-on-dark opacity step inverts to the same relative step of
-   ink-on-paper, and hue-rotate(180deg) brings the coral/amber accent
-   back close to its authored hue, so nothing there had to be
-   hand-recolored. Real photography/video/brand-badge images are
-   counter-inverted with the same filter so they keep natural color.
-
-   For a dark OS preference, the paper sections (about, contact) get
-   the mirror-image treatment by hand below, since their kitchen photo
-   can't be filter-inverted without discoloring it.
+   The dark bands are flipped to their light equivalent with a single
+   invert()+hue-rotate(180deg) pass: every white-on-dark opacity step
+   inverts to the same relative step of ink-on-paper, and
+   hue-rotate(180deg) brings the coral/amber accent back close to its
+   authored hue, so nothing there had to be hand-recolored. Real
+   photography/video/brand-badge images are counter-inverted with the
+   same filter so they keep natural color.
    ============================================================ */
-@media (prefers-color-scheme: light) {
-
-    header,
-    .hero,
-    .proof-bar,
-    .engine,
-    .app,
-    .launch,
-    footer {
-        filter: invert(1) hue-rotate(180deg);
-    }
-
-    /* Counter-invert real images/video inside those bands so they keep
-       natural color instead of the inverted, hue-shifted palette. Solid
-       brand buttons (not the ghost/outline variant, which is meant to
-       invert so its white-on-dark outline becomes dark-on-light) are
-       counter-inverted too, so "Get Notified" etc. stay the same coral
-       fill with white text everywhere on the page, in both schemes. */
-    .hero-video,
-    .store-badge img,
-    .app-phone img,
-    .btn:not(.btn-outline) {
-        filter: invert(1) hue-rotate(180deg);
-    }
-
-    /* The hero stat card is translucent dark glass designed to sit on the
-       dark video — a good chunk of the backdrop shows through it on
-       purpose. Inverted, that same translucency sits on a now-bright
-       photo and washes out to near-illegible. Counter-invert it too, so
-       it stays the same dark glass card with white text in both
-       schemes — a fixed "UI preview" floating over the photo, the same
-       role the phone screenshots play in the App section below. */
-    .flow-card {
-        filter: invert(1) hue-rotate(180deg);
-    }
+header,
+.hero,
+.proof-bar,
+.engine,
+.app,
+.launch,
+footer {
+    filter: invert(1) hue-rotate(180deg);
 }
 
-@media (prefers-color-scheme: dark) {
+/* Counter-invert real images/video inside those bands so they keep
+   natural color instead of the inverted, hue-shifted palette. Solid
+   brand buttons (not the ghost/outline variant, which is meant to
+   invert so its white-on-dark outline becomes dark-on-light) are
+   counter-inverted too, so "Get Notified" etc. stay the same coral
+   fill with white text everywhere on the page. */
+.hero-video,
+.store-badge img,
+.app-phone img,
+.btn:not(.btn-outline) {
+    filter: invert(1) hue-rotate(180deg);
+}
 
-    body {
-        background-color: var(--ink);
-    }
+/* The hero stat card is translucent dark glass designed to sit on the
+   dark video — a good chunk of the backdrop shows through it on
+   purpose. Inverted, that same translucency sits on a now-bright
+   photo and washes out to near-illegible. Counter-invert it too, so
+   it stays the same dark glass card with white text — a fixed "UI
+   preview" floating over the photo, the same role the phone
+   screenshots play in the App section below.
 
-    /* About — the kitchen photo can't be filter-inverted without
-       discoloring it, so its dark look is hand-built instead. */
-    .about {
-        background-color: var(--ink);
-    }
+   backdrop-filter doesn't survive that counter-invert: once an
+   ancestor (.hero) has its own `filter`, a descendant's
+   backdrop-filter stops sampling the real page behind it in most
+   browsers, so the blur/tint collapses to almost nothing. Swap it
+   for a solid-enough background here so the card doesn't depend on
+   backdrop sampling at all. */
+.flow-card {
+    filter: invert(1) hue-rotate(180deg);
+    background: linear-gradient(180deg, rgba(23, 19, 15, 0.86), rgba(23, 19, 15, 0.78));
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
 
-    .about::before {
-        background: rgba(23, 19, 15, 0.72);
-    }
-
-    .about-head {
-        background: rgba(255, 255, 255, 0.06);
-        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
-    }
-
-    .about .section-title,
-    .contact .section-title,
-    .retention .section-title {
-        color: white;
-    }
-
-    .about .section-description,
-    .contact .section-description,
-    .retention .section-description {
-        color: rgba(255, 255, 255, 0.62);
-    }
-
-    /* Retention — same "paper" family as About/Contact, hand-tuned dark look. */
-    .retention {
-        background-color: var(--ink-2);
-    }
-
-    .retention-icon {
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.14);
-    }
-
-    .value-card {
-        background: rgba(255, 255, 255, 0.045);
-        border-color: rgba(255, 255, 255, 0.12);
-        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
-    }
-
-    .value-card h3 {
-        color: white;
-    }
-
-    .value-card p {
-        color: rgba(255, 255, 255, 0.6);
-    }
-
-    .value-icon {
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.14);
-    }
-
-    .value-proof {
-        border-top-color: rgba(255, 255, 255, 0.12);
-    }
-
-    .value-proof b {
-        color: white;
-    }
-
-    .value-proof span {
-        color: rgba(255, 255, 255, 0.6);
-    }
-
-    .about-photo figcaption {
-        background: rgba(255, 255, 255, 0.045);
-        color: rgba(255, 255, 255, 0.6);
-        border-top-color: rgba(255, 255, 255, 0.12);
-    }
-
-    /* Contact */
-    .contact {
-        background-color: var(--ink);
-    }
-
-    .contact-item h4 {
-        color: white;
-    }
-
-    .contact-item p {
-        color: rgba(255, 255, 255, 0.6);
-    }
-
-    .contact-item i {
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.14);
-    }
-
-    .contact-form {
-        background: rgba(255, 255, 255, 0.045);
-        border-color: rgba(255, 255, 255, 0.12);
-    }
-
-    .form-group label {
-        color: rgba(255, 255, 255, 0.85);
-    }
-
-    .form-group input,
-    .form-group textarea {
-        background: rgba(255, 255, 255, 0.06);
-        border-color: rgba(255, 255, 255, 0.18);
-        color: white;
-    }
-
-    .form-group input::placeholder,
-    .form-group textarea::placeholder {
-        color: rgba(255, 255, 255, 0.4);
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-        background: rgba(255, 255, 255, 0.09);
-    }
-
-    /* Not .contact-scoped — partners.html's application form reuses
-       .form-status too, on its own dark glass card. */
-    .form-status.success {
-        background-color: rgba(52, 211, 153, 0.15);
-        color: #6ee7b7;
-        border: 1px solid #34d399;
-    }
-
-    .form-status.error {
-        background-color: rgba(239, 68, 68, 0.15);
-        color: #fca5a5;
-        border: 1px solid #ef4444;
-    }
+.flow-chips span {
+    background: rgba(23, 19, 15, 0.8);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
 }

@@ -93,8 +93,7 @@
     <link rel="manifest" href="assets/manifest.json" />
     <meta name="msapplication-TileColor" content="#ffffff" />
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
-    <meta name="theme-color" content="#faf6f1" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#17130f" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#faf6f1" />
   </head>
   <body>
     <!-- Header -->
@@ -111,7 +110,10 @@
           <div class="nav-links" id="navLinks">
             <a href="#about">About Us</a>
             <a href="#engine">How It Works</a>
+            <a href="#trust">Trust</a>
+            <a href="#local-food">Local Food</a>
             <a href="#how-it-works">The App</a>
+            <a href="#founding-150">Pricing</a>
             <a href="partners.html">Partners</a>
             <a href="#contact">Contact</a>
           </div>
@@ -131,20 +133,19 @@
       </video>
       <div class="container hero-grid">
         <div class="hero-content">
-          <span class="hero-eyebrow">Toronto &middot; Your nutrition plan, already cooked</span>
           <h1>
             Your nutrition plan.<br />
             <span class="hero-highlight">Already cooked.</span>
           </h1>
 
           <p class="hero-description">
-            Tell Nutrics how you want to eat. We build your week, trusted
-            local culinary partners prepare it to one Nutrics standard, and
-            it arrives on a schedule you can count on.
+            Tell Nutrics how you want to eat. We build a weekly plan,
+            trusted local culinary partners prepare it to one Nutrics
+            standard, and it arrives on a schedule you can count on.
           </p>
           <div class="hero-buttons">
-            <a href="#launch" class="btn">Build My Nutrition Profile</a>
-            <a href="#how-it-works" class="btn btn-outline">See This Week's Meals</a>
+            <a href="#launch" class="btn">Build My Week</a>
+            <!-- <a href="#how-it-works" class="btn btn-outline">See This Week's Meals</a> -->
           </div>
 
           <div class="app-store-badges">
@@ -266,25 +267,25 @@
                     >
                     <span class="flow-total-badge"
                       ><i class="fas fa-check"></i>
-                      <b data-match>96%</b> match</span
+                      Built to fit your week</span
                     >
                   </div>
                   <div class="flow-bars">
                     <div>
                       <span style="--fill: 100%" data-bar="kcal"></span
-                      ><em data-bar-label="kcal">Calories 103%</em>
+                      ><em data-bar-label="kcal">Calories</em>
                     </div>
                     <div>
                       <span style="--fill: 100%" data-bar="p"></span
-                      ><em data-bar-label="p">Protein 106%</em>
+                      ><em data-bar-label="p">Protein</em>
                     </div>
                     <div>
                       <span style="--fill: 100%" data-bar="c"></span
-                      ><em data-bar-label="c">Carbs 103%</em>
+                      ><em data-bar-label="c">Carbs</em>
                     </div>
                     <div>
                       <span style="--fill: 100%" data-bar="f"></span
-                      ><em data-bar-label="f">Fat 102%</em>
+                      ><em data-bar-label="f">Fat</em>
                     </div>
                   </div>
                 </div>
@@ -298,10 +299,10 @@
     <!-- Proof bar -->
     <section class="proof-bar" aria-label="Nutrics standards">
       <div class="container proof-bar-inner">
-        <span><i class="fas fa-clipboard-list" aria-hidden="true"></i> Standardized recipes</span>
-        <span><i class="fas fa-magnifying-glass-chart" aria-hidden="true"></i> Transparent nutrition</span>
-        <span><i class="fas fa-handshake" aria-hidden="true"></i> Trusted culinary partners</span>
-        <span><i class="fas fa-truck-fast" aria-hidden="true"></i> Weekly delivery</span>
+        <span><i class="fas fa-bullseye" aria-hidden="true"></i> Built around your goals</span>
+        <span><i class="fas fa-utensils" aria-hidden="true"></i> Meals you'll actually want</span>
+        <span><i class="fas fa-arrows-rotate" aria-hidden="true"></i> Adapts every week</span>
+        <span><i class="fas fa-truck-fast" aria-hidden="true"></i> Cooked &amp; delivered</span>
       </div>
     </section>
 
@@ -757,9 +758,9 @@
             total.kcal.toLocaleString("en-US") + " kcal";
           flow.querySelector("[data-sum-protein]").textContent =
             total.p + "g protein";
-          flow.querySelector("[data-match]").textContent =
-            Math.max(0, Math.round(100 - plan.score * 100)) + "%";
 
+          // The bars stay as a visual sense of balance across the day — the
+          // widget intentionally doesn't lead with a precision match number.
           var labels = {
             kcal: "Calories",
             p: "Protein",
@@ -772,7 +773,7 @@
               .querySelector('[data-bar="' + key + '"]')
               .style.setProperty("--fill", Math.min(value, 100) + "%");
             flow.querySelector('[data-bar-label="' + key + '"]').textContent =
-              labels[key] + " " + value + "%";
+              labels[key];
           });
         }
 
@@ -785,35 +786,31 @@
       <div class="container">
         <div class="engine-head">
           <span class="engine-eyebrow">How Nutrics Works</span>
+          <p class="engine-pain">
+            Planning. Shopping. Cooking. Portioning. Choosing again tomorrow.
+          </p>
           <h2 class="section-title">
-            Planning. Shopping. Cooking. Portioning. Tracking.<br />
-            Nutrics turns the plan into&nbsp;<span class="engine-highlight"
-              >food</span
+            Nutrics turns your nutrition into a plan that fits your&nbsp;<span class="engine-highlight"
+              >life</span
             >
           </h2>
-          <p class="section-description">
-            Tell us how you want to eat. We build a practical weekly meal
-            mix, trusted local culinary partners prepare it to one Nutrics
-            standard, and it arrives on your schedule.
-          </p>
         </div>
 
         <ol class="eng-pipeline">
           <li class="eng-stage">
             <div class="eng-copy">
               <span class="eng-step"
-                ><i class="fas fa-calculator"></i> Stage 01</span
+                ><i class="fas fa-calendar-week"></i> Stage 01</span
               >
-              <h3>Metabolic modelling</h3>
+              <h3>Tell Nutrics what should fit your week</h3>
               <p>
-                Body composition, activity and goal become a calorie and
-                macro target — then recalibrate as you actually change.
+                Your goals, preferences, schedule and dietary needs shape your weekly plan.
               </p>
             </div>
 
             <div class="eng-panel" data-panel="model">
               <div class="eng-panel-head">
-                <span class="eng-live"></span> metabolic model
+                <span class="eng-live"></span> this week's target
                 <em data-model-goal>Build muscle</em>
               </div>
               <div class="eng-inputs" data-model-in>
@@ -847,11 +844,9 @@
               <span class="eng-step"
                 ><i class="fas fa-diagram-project"></i> Stage 02</span
               >
-              <h3>Menu structuring</h3>
+              <h3>We build a week that fits</h3>
               <p>
-                We decompose each dish into portions and map it to verified
-                nutrition data — a menu item becomes a record the solver can
-                reason about.
+Nutrics selects meals that work with your nutrition goals, tastes and schedule, then has trusted local kitchens prepare them.
               </p>
             </div>
 
@@ -909,40 +904,29 @@
           <li class="eng-stage">
             <div class="eng-copy">
               <span class="eng-step"
-                ><i class="fas fa-shuffle"></i> Stage 03</span
+                ><i class="fas fa-comment-dots"></i> Stage 03</span
               >
-              <h3>Portion &amp; combination solver</h3>
+              <h3>Tell us what worked</h3>
               <p>
-                The solver searches dishes, portions and quantities together
-                to land your whole day inside your macro targets.
+               Loved it, good, or not for me. A quick response is enough for Nutrics to learn.
               </p>
             </div>
 
-            <div class="eng-panel eng-panel--mono" data-panel="solver">
+            <div class="eng-panel eng-panel--mono" data-panel="reasons">
               <div class="eng-panel-head">
-                <span class="eng-live"></span> solver trace
-                <em data-solve-meta>96 portion candidates</em>
+                <span class="eng-live"></span> why this plan
+                <em data-reasons-meta>4 kitchens, 3 cuisines</em>
               </div>
-              <ul class="eng-trace" data-trace>
-                <li>
-                  <span>#1</span><i style="--fill: 61%"></i><b>61%</b>
-                </li>
-                <li>
-                  <span>#38</span><i style="--fill: 79%"></i><b>79%</b>
-                </li>
-                <li>
-                  <span>#2,904</span><i style="--fill: 93%"></i><b>93%</b>
-                </li>
-                <li class="is-best">
-                  <span>#18,551</span><i style="--fill: 98%"></i><b>98%</b>
-                </li>
-              </ul>
+              <div class="eng-tags eng-tags--wrap" data-reasons>
+                <span>Fits your week's targets</span>
+                <span>Feasible for local kitchens this week</span>
+                <span>Matches cuisines you like</span>
+              </div>
               <div class="eng-panel-foot">
                 <span
-                  ><i class="fas fa-check"></i> best of
-                  <b data-solve-samples>40,000</b> sampled days</span
+                  ><i class="fas fa-check"></i> Every recommendation can
+                  explain itself</span
                 >
-                <span data-solve-ms>6ms</span>
               </div>
             </div>
           </li>
@@ -952,10 +936,9 @@
               <span class="eng-step"
                 ><i class="fas fa-wand-magic-sparkles"></i> Stage 04</span
               >
-              <h3>Taste learning</h3>
+              <h3>Next week fits you better</h3>
               <p>
-                Every like, skip and reorder tunes your ranking, so plans stay
-                correct <em>and</em> made of food you'll actually eat.
+                Nutrics uses what you liked, skipped and reordered to improve your next plan — while keeping it aligned with your goals.
               </p>
             </div>
 
@@ -992,6 +975,27 @@
             </div>
           </li>
         </ol>
+
+        <div class="engine-retention">
+          <p class="engine-retention-label">What this looks like in a normal week</p>
+          <ul class="engine-retention-list">
+            <li>
+              <i class="fas fa-flag-checkered"></i>
+              <b>After onboarding:</b> your week is handled — built around
+              what you told us.
+            </li>
+            <li>
+              <i class="fas fa-clock"></i>
+              <b>Before cutoff:</b> next week is ready. Here is what we
+              changed.
+            </li>
+            <li>
+              <i class="fas fa-plane"></i>
+              <b>Need a lighter week?</b> Skip, pause or change the week —
+              resume any time.
+            </li>
+          </ul>
+        </div>
       </div>
     </section>
 
@@ -1139,44 +1143,32 @@
           });
         }
 
-        /* ---- 03 solver trace ------------------------------------------- */
-        function solver() {
-          if (!HERO || !HERO.plan || !HERO.plan.trace) return;
-          var trace = HERO.plan.trace;
-          if (trace.length < 2) return;
+        /* ---- 03 why this plan -------------------------------------------
+         * Plain-language reasons, not a precision score — this panel
+         * intentionally shows what the plan actually did (real kitchen and
+         * cuisine counts from this load's plan), never a "match %" or a
+         * sampled-days/ms performance trace.
+         */
+        function reasons() {
+          if (!HERO || !HERO.plan || !HERO.plan.combo) return;
+          var combo = HERO.plan.combo;
 
-          set(q("[data-solve-samples]"), comma(HERO.samples));
-          set(q("[data-solve-ms]"), Math.max(1, HERO.ms) + "ms");
-          set(q("[data-solve-meta]"), HERO.candidates + " portion candidates");
-
-          // The real trace can be dozens of leaders long; show the first, the
-          // last and an even spread between.
-          var want = Math.min(5, trace.length);
-          var shown = [];
-          for (var i = 0; i < want; i++) {
-            shown.push(trace[Math.round((i * (trace.length - 1)) / (want - 1))]);
-          }
-
-          var list = q("[data-trace]");
-          list.innerHTML = "";
-          shown.forEach(function (entry, i) {
-            var match = Math.max(0, Math.round(100 - entry.score * 100));
-            var row = document.createElement("li");
-            row.style.setProperty("--i", i);
-            if (i === shown.length - 1) row.className = "is-best";
-
-            var step = document.createElement("span");
-            step.textContent = "#" + comma(entry.n);
-            var bar = document.createElement("i");
-            bar.style.setProperty("--fill", match + "%");
-            var value = document.createElement("b");
-            value.textContent = match + "%";
-
-            row.appendChild(step);
-            row.appendChild(bar);
-            row.appendChild(value);
-            list.appendChild(row);
+          var kitchens = {};
+          var cuisines = {};
+          combo.forEach(function (meal) {
+            kitchens[meal.kitchen] = 1;
+            if (meal.cuisine) cuisines[meal.cuisine] = 1;
           });
+          var kitchenCount = Object.keys(kitchens).length;
+          var cuisineCount = Object.keys(cuisines).length;
+
+          set(
+            q("[data-reasons-meta]"),
+            kitchenCount +
+              (kitchenCount === 1 ? " kitchen, " : " kitchens, ") +
+              cuisineCount +
+              (cuisineCount === 1 ? " cuisine" : " cuisines")
+          );
         }
 
         /* ---- 04 taste learning ----------------------------------------- */
@@ -1269,7 +1261,7 @@
         function start() {
           model();
           parse();
-          solver();
+          reasons();
           taste();
         }
 
@@ -1362,6 +1354,119 @@
         </div>
       </div>
     </section>
+
+    <!-- Trust -->
+    <section class="trust" id="trust">
+      <div class="container">
+        <div class="about-head">
+          <span class="engine-eyebrow">Trust</span>
+          <h2 class="section-title">What you can count on</h2>
+          <p class="section-description">
+            A few things we can promise plainly, rather than a long list of
+            things we can't.
+          </p>
+        </div>
+
+        <div class="values">
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fas fa-clipboard-check"></i>
+            </div>
+            <h3>One Nutrics standard, every kitchen</h3>
+            <p>
+              Every local culinary partner cooks to the same standardized
+              recipes, defined portions and yields. Every production run
+              ties back to a specific approved recipe version, so what
+              changes week to week is the kitchen, not the standard.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fas fa-magnifying-glass-chart"></i>
+            </div>
+            <h3>Nutrition information you can see</h3>
+            <p>
+              Every meal lists its ingredients and nutrition information
+              before it reaches your door — no hidden macros, no guessing
+              what's actually in a portion.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fas fa-temperature-low"></i>
+            </div>
+            <h3>Handled at the right temperature</h3>
+            <p>
+              Potentially hazardous food is kept at or below 4&deg;C, or at
+              or above 60&deg;C, from kitchen to your door, in line with
+              Ontario's food-safety requirements — with a documented
+              process for the rare exception.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fas fa-shield-heart"></i>
+            </div>
+            <h3>Honest about allergens</h3>
+            <p>
+              We show you what a kitchen can accommodate and disclose known
+              allergens clearly. Meals are prepared in shared commercial
+              kitchens, so we can't guarantee a zero-cross-contact
+              environment — if we can't offer a safe match, we'll tell you
+              that instead of guessing.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Local food -->
+    <section class="local-food" id="local-food">
+      <div class="container">
+        <div class="about-head">
+          <span class="engine-eyebrow">Local food</span>
+          <h2 class="section-title">
+            Toronto on your plate, cooked by people who live here
+          </h2>
+          <p class="section-description">
+            Every meal comes from a local culinary partner, not a central
+            commissary — Toronto's food culture is the point, not a
+            garnish.
+          </p>
+        </div>
+
+        <div class="local-grid">
+          <figure>
+            <img
+              src="assets/partners/production-meals.jpg"
+              alt="Trays of standardized Nutrics meals ready for portioning at a local partner kitchen"
+              loading="lazy"
+            />
+            <figcaption>Standardized portions, cooked by local kitchens</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="assets/partners/production-stack.jpg"
+              alt="A stack of packed Nutrics meal containers from a partner kitchen's production run"
+              loading="lazy"
+            />
+            <figcaption>One production run, packed for the week ahead</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="assets/partners/spanish-quarters-web.jpg"
+              alt="A Spanish-inspired dish prepared by one of Nutrics' local culinary partners"
+              loading="lazy"
+            />
+            <figcaption>Real dishes from real Toronto kitchens</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
     <!-- About Section -->
     <section class="about" id="about">
       <div class="container">
@@ -1423,6 +1528,73 @@
           swapping in more of what works and less of what doesn't, so week
           four fits you better than week one.
         </p>
+      </div>
+    </section>
+
+    <!-- Founding 150 offer -->
+    <section class="pricing" id="founding-150">
+      <div class="container">
+        <div class="about-head">
+          <span class="engine-eyebrow">The Offer</span>
+          <h2 class="section-title">Founding 150 &mdash; a 4-week consistency pilot</h2>
+          <p class="section-description">
+            The first 150 Toronto members don't get a discount code. They
+            get a structured four-week pilot built to prove Nutrics fits a
+            real week &mdash; with the flexibility to change it as life
+            happens.
+          </p>
+        </div>
+
+        <div class="values">
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fas fa-bowl-food"></i>
+            </div>
+            <h3>10 meals a week, your way</h3>
+            <p>
+              10 meals a week is the hero size &mdash; enough to replace a
+              meaningful amount of planning without asking you to hand over
+              your whole week. 6-meal and 14-meal weeks are also available.
+              Tell us which meal occasions Nutrics should cover; we don't
+              assume a fixed breakfast/lunch/dinner schedule.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fas fa-tag"></i>
+            </div>
+            <h3>Priced plainly</h3>
+            <p>
+              Full pricing is shared with founding members before you
+              commit to anything &mdash; priced from what it actually costs
+              to run a kitchen, package and deliver each week, not to look
+              impressive next to a discount code.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fas fa-list-check"></i>
+            </div>
+            <h3>More than a box of food</h3>
+            <ul class="value-list">
+              <li><i class="fas fa-check"></i> Your plan learns what worked and adapts next week</li>
+              <li><i class="fas fa-check"></i> Skip a week or pause for travel without losing your setup</li>
+              <li><i class="fas fa-check"></i> Rotating local culinary partners, not one commissary</li>
+              <li><i class="fas fa-check"></i> One weekly decision instead of daily ones</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="pricing-note">
+          <i class="fas fa-shield-heart"></i> Skip, pause or cancel any time
+          &mdash; no lock-in.
+        </p>
+
+        <div class="pricing-cta">
+          <a href="#launch" class="btn">Join the Founding 150 Waitlist</a>
+        </div>
       </div>
     </section>
 
@@ -1594,7 +1766,10 @@
             <ul class="footer-links">
               <li><a href="#about">About Us</a></li>
               <li><a href="#engine">How It Works</a></li>
+              <li><a href="#trust">Trust</a></li>
+              <li><a href="#local-food">Local Food</a></li>
               <li><a href="#how-it-works">The App</a></li>
+              <li><a href="#founding-150">Pricing</a></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
           </div>
@@ -1621,8 +1796,9 @@
 
         <div class="copyright">
           <p>
-            &copy; 2026 Nutrics. All rights reserved. | Privacy Policy | Terms
-            of Service
+            &copy; 2026 Nutrics. All rights reserved. |
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms of Service</a>
           </p>
         </div>
       </div>
@@ -1743,6 +1919,20 @@
           });
         }
       });
+    </script>
+    <script>
+      // Solidify the header once the page scrolls past the hero, so it
+      // stays legible over every section instead of a translucent blur
+      // fighting whatever content is scrolling underneath it.
+      (function () {
+        const header = document.querySelector("header");
+        if (!header) return;
+        const onScroll = () => {
+          header.classList.toggle("scrolled", window.scrollY > 40);
+        };
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+      })();
     </script>
     <script>
       // Mobile Menu Toggle

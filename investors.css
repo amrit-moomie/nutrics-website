@@ -413,110 +413,12 @@
 }
 
 /* ============================================================
-   Adaptive theme — see the matching block at the end of styles.css
-   for the full explanation. header/footer/.investor already adapt
-   from styles.css since this page shares those rules; the page-
-   specific pieces here are the dark ink hero band (same invert
-   trick) and the white "paper" cards used throughout the report
-   sections (hand-built dark equivalents, same as .about/.contact).
+   Theme — light mode only
+   ------------------------------------------------------------
+   header/footer/.investor already invert from styles.css since this
+   page shares those rules; the page-specific piece here is the dark
+   ink hero band (same invert trick).
    ============================================================ */
-@media (prefers-color-scheme: light) {
-  .inv-hero {
-    filter: invert(1) hue-rotate(180deg);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .inv-section .section-title {
-    color: white;
-  }
-
-  /* Base .engine-eyebrow (styles.css) is already a legible light-pink-on-
-     dark chip; this page overrides it to the darker primary-dark for its
-     paper background, so put the lighter tone back for the ink one. */
-  .inv-section .engine-eyebrow {
-    color: #ffb9a4;
-  }
-
-  .inv-section .section-description {
-    color: rgba(255, 255, 255, 0.62);
-  }
-
-  .inv-stats {
-    background: var(--ink-2);
-    border-bottom-color: rgba(255, 255, 255, 0.1);
-  }
-
-  .inv-stat {
-    background: rgba(255, 255, 255, 0.045);
-    border-color: rgba(255, 255, 255, 0.12);
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
-  }
-
-  .inv-stat span,
-  .inv-stats-note,
-  .inv-unit-table span,
-  .inv-unit-note,
-  .inv-fund-row span,
-  .inv-fund-note,
-  .inv-traction p,
-  .inv-table th:first-child,
-  .inv-table td:first-child {
-    color: rgba(255, 255, 255, 0.6);
-  }
-
-  .inv-section--alt {
-    background: var(--ink-2);
-  }
-
-  .inv-unit-econ,
-  .inv-table-wrap,
-  .inv-table,
-  .inv-loan-note,
-  .inv-traction li,
-  .inv-milestones li {
-    background: rgba(255, 255, 255, 0.045);
-    border-color: rgba(255, 255, 255, 0.12);
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
-  }
-
-  .inv-unit-econ h3,
-  .inv-unit-table b,
-  .inv-unit-total span,
-  .inv-unit-total b,
-  .inv-fund-row b,
-  .inv-traction h4,
-  .inv-milestones li {
-    color: white;
-  }
-
-  .inv-unit-table div,
-  .inv-fund-row {
-    border-bottom-color: rgba(255, 255, 255, 0.12);
-  }
-
-  .inv-unit-total {
-    border-top-color: white !important;
-  }
-
-  .inv-table th,
-  .inv-table td {
-    border-bottom-color: rgba(255, 255, 255, 0.12);
-  }
-
-  .inv-table td:not(:first-child) {
-    color: rgba(255, 255, 255, 0.85);
-  }
-
-  /* Same specificity as the rule above and declared after it, so the
-     emphasis row keeps its accent color instead of blending into the
-     other rows. */
-  .inv-table-highlight td:not(:first-child) {
-    color: var(--primary);
-  }
-
-  .inv-traction-tag {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-  }
+.inv-hero {
+  filter: invert(1) hue-rotate(180deg);
 }

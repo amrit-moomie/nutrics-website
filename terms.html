@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terms of Service - Nutrics</title>
+    <meta
+      name="description"
+      content="Nutrics' terms of service are being finalized ahead of launch. Contact hello@nutrics.ca with any questions in the meantime."
+    />
+    <link rel="canonical" href="https://www.nutrics.ca/terms" />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
+    <link rel="manifest" href="assets/manifest.json" />
+    <meta name="theme-color" content="#17130f" />
+    <style>
+      .legal-main {
+        padding: 160px 0 120px;
+        min-height: 60vh;
+      }
+      .legal-main .container {
+        max-width: 760px;
+      }
+      .legal-main h1 {
+        font-family: var(--display);
+        font-size: clamp(2rem, 4vw, 2.75rem);
+        margin-bottom: 24px;
+      }
+      .legal-main p {
+        color: var(--gray);
+        margin-bottom: 20px;
+        font-size: 1.05rem;
+      }
+      .legal-main a {
+        color: var(--primary);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav class="navbar">
+          <a href="index.html" class="logo">
+            <img
+              src="./assets/logos/logo_transparent_background.png"
+              alt="Nutrics Logo"
+              height="60"
+            />
+          </a>
+          <div class="nav-links" id="navLinks">
+            <a href="index.html#about">About Us</a>
+            <a href="index.html#engine">How It Works</a>
+            <a href="index.html#trust">Trust</a>
+            <a href="index.html#local-food">Local Food</a>
+            <a href="index.html#how-it-works">The App</a>
+            <a href="index.html#founding-150">Pricing</a>
+            <a href="partners.html">Partners</a>
+            <a href="index.html#contact">Contact</a>
+          </div>
+          <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="legal-main">
+      <div class="container">
+        <h1>Terms of Service</h1>
+        <p>
+          This page is being finalized ahead of launch. Nutrics is still a
+          pre-launch product, and our terms of service — covering ordering,
+          subscriptions, delivery and cancellation — are being written
+          alongside the product itself rather than published as placeholder
+          legal text.
+        </p>
+        <p>
+          If you have a question in the meantime, email us directly at
+          <a href="mailto:hello@nutrics.ca?subject=Terms%20Question">hello@nutrics.ca</a>
+          and we'll answer it in plain language.
+        </p>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-column">
+            <h3>Nutrics</h3>
+            <p>
+              Your nutrition plan, already cooked — prepared weekly by
+              trusted local culinary partners, to one Nutrics standard.
+            </p>
+          </div>
+
+          <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul class="footer-links">
+              <li><a href="index.html#about">About Us</a></li>
+              <li><a href="index.html#engine">How It Works</a></li>
+              <li><a href="index.html#trust">Trust</a></li>
+              <li><a href="index.html#local-food">Local Food</a></li>
+              <li><a href="index.html#how-it-works">The App</a></li>
+              <li><a href="index.html#founding-150">Pricing</a></li>
+              <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h3>Our Services</h3>
+            <ul class="footer-links">
+              <li><a href="index.html#engine">Weekly Meal Plans</a></li>
+              <li><a href="index.html#how-it-works">Weekly Delivery</a></li>
+              <li><a href="index.html#about">Trusted Culinary Partners</a></li>
+              <li><a href="index.html#about">Transparent Nutrition</a></li>
+              <li><a href="partners.html">Kitchen Partners</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h3>Stay Updated</h3>
+            <p>
+              Sign up on our <a href="index.html#launch">launch page</a> to
+              be notified the moment Nutrics opens in your city.
+            </p>
+          </div>
+        </div>
+
+        <div class="copyright">
+          <p>
+            &copy; 2026 Nutrics. All rights reserved. |
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms of Service</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var menuBtn = document.getElementById("mobileMenuBtn");
+        var navLinks = document.getElementById("navLinks");
+        if (menuBtn && navLinks) {
+          menuBtn.addEventListener("click", function () {
+            navLinks.classList.toggle("active");
+            var icon = this.querySelector("i");
+            icon.classList.toggle("fa-bars");
+            icon.classList.toggle("fa-times");
+          });
+        }
+      });
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6WW7F07SK2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-6WW7F07SK2");
+    </script>
+  </body>
+</html>

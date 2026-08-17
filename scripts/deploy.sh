@@ -45,7 +45,6 @@ for host in "$DOMAIN" "$WWW_DOMAIN"; do
 done
 
 # ── 2. Sync the site ──────────────────────────────────────────────────────────
-# routes.json is Azure Static Web Apps config - nginx does the equivalent below.
 echo "[2/4] Syncing site to $EC2_HOST..."
 ssh_run "mkdir -p $STATIC_DIR"
 rsync -az --delete \
@@ -54,7 +53,6 @@ rsync -az --delete \
   --exclude '.gitignore' \
   --exclude '.DS_Store' \
   --exclude 'scripts' \
-  --exclude 'routes.json' \
   -e "ssh $SSH_OPTS" \
   "$REPO/" "$EC2_USER@$EC2_HOST:$STATIC_DIR/"
 
@@ -91,7 +89,7 @@ server {
         add_header Cache-Control "public, max-age=86400";
     }
 
-    # Equivalent of routes.json's navigationFallback.
+    # SPA-style fallback: unknown paths serve index.html instead of a 404.
     location / {
         try_files \$uri \$uri/ /index.html;
     }

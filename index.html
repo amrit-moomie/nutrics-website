@@ -848,54 +848,24 @@ Nutrics selects meals that work with your nutrition goals, tastes and schedule, 
               </p>
             </div>
 
-            <div class="eng-panel eng-panel--mono" data-panel="parse">
+            <div class="eng-panel eng-panel--day" data-panel="overview">
               <div class="eng-panel-head">
-                <span class="eng-live"></span> menu → structured record
+                <span class="eng-live"></span> today's meals
+                <em data-overview-day>day 1 of 7</em>
               </div>
-              <div class="eng-raw">
-                <i class="fas fa-file-lines"></i>
-                <span data-parse-raw>Lemon Garlic Chicken</span>
-                <em data-parse-kitchen>Clean Cravings</em>
+              <ul class="flow-meals" data-overview-meals></ul>
+              <div class="flow-total">
+                <div class="flow-total-head">
+                  <span class="flow-total-sum"
+                    ><b data-overview-kcal>2,267 kcal</b> &middot;
+                    <span data-overview-protein>234g protein</span></span
+                  >
+                  <span class="flow-total-badge"
+                    ><i class="fas fa-check"></i>
+                    <span data-overview-match>93% target matched</span></span
+                  >
+                </div>
               </div>
-              <div class="eng-arrow"><i class="fas fa-arrow-down"></i></div>
-              <div class="eng-tags">
-                <span data-parse-tag>Chicken</span>
-                <span data-parse-slots>lunch · dinner</span>
-              </div>
-              <table class="eng-table">
-                <thead>
-                  <tr>
-                    <th>portion</th>
-                    <th>kcal</th>
-                    <th>P</th>
-                    <th>C</th>
-                    <th>F</th>
-                  </tr>
-                </thead>
-                <tbody data-parse-rows>
-                  <tr>
-                    <td>normal</td>
-                    <td>300</td>
-                    <td>27</td>
-                    <td>30</td>
-                    <td>8</td>
-                  </tr>
-                  <tr>
-                    <td>high-protein</td>
-                    <td>379</td>
-                    <td>38</td>
-                    <td>23</td>
-                    <td>15</td>
-                  </tr>
-                  <tr>
-                    <td>low-fat</td>
-                    <td>297</td>
-                    <td>25</td>
-                    <td>29</td>
-                    <td>9</td>
-                  </tr>
-                </tbody>
-              </table>
             </div>
           </li>
 
@@ -939,7 +909,6 @@ Nutrics selects meals that work with your nutrition goals, tastes and schedule, 
                 <span>Different cuisines</span>
                 <span class="is-active">More chicken</span>
                 <span class="is-active">Different fish</span>
-                <span>Change portions</span>
               </div>
 
               <div class="eng-fb-input">
@@ -1088,107 +1057,117 @@ Nutrics selects meals that work with your nutrition goals, tastes and schedule, 
         }
 
         /* ---- 01 metabolic model ---------------------------------------- */
+        /* ---- 01 metabolic model ------------------------------------------
+         * Draws HERO.profile once, the one profile the rest of the section
+         * (Stage 02's meals, Stage 02's match %) is actually built from —
+         * it no longer cycles through the full profile set, since rotating
+         * would show targets Stage 02 was never solved against.
+         */
         function model() {
-          var profiles = (HERO && HERO.profiles) || [];
-          if (!profiles.length) return;
+          var profile = HERO && HERO.profile;
+          if (!profile) return;
 
-          // Bar fills are relative to the largest target in the set, so the
-          // bars actually compare across profiles.
-          var ceilings = { p: 0, c: 0, f: 0 };
-          profiles.forEach(function (profile) {
-            ["p", "c", "f"].forEach(function (key) {
-              ceilings[key] = Math.max(ceilings[key], profile[key]);
-            });
+          set(q("[data-model-goal]"), profile.goal);
+          set(q("[data-model-kcal]"), comma(profile.kcal));
+
+          var inputs = q("[data-model-in]");
+          inputs.innerHTML = "";
+          // "M · 29 · 78kg · lifts 4×/week" — one chip per fact, with the
+          // bare sex and age tokens spelled out so they read on their own.
+          profile.who.split(" · ").forEach(function (fact) {
+            var chip = document.createElement("span");
+            if (fact === "M" || fact === "F") {
+              chip.textContent = fact === "M" ? "male" : "female";
+            } else if (/^\d+$/.test(fact)) {
+              chip.textContent = fact + " y";
+            } else {
+              chip.textContent = fact;
+            }
+            inputs.appendChild(chip);
           });
 
-          var index = profiles.indexOf(HERO.profile);
-          if (index < 0) index = 0;
-
-          function draw() {
-            var profile = profiles[index];
-            set(q("[data-model-goal]"), profile.goal);
-            set(q("[data-model-kcal]"), comma(profile.kcal));
-
-            var inputs = q("[data-model-in]");
-            inputs.innerHTML = "";
-            // "M · 29 · 78kg · lifts 4×/week" — one chip per fact, with the
-            // bare sex and age tokens spelled out so they read on their own.
-            profile.who.split(" · ").forEach(function (fact) {
-              var chip = document.createElement("span");
-              if (fact === "M" || fact === "F") {
-                chip.textContent = fact === "M" ? "male" : "female";
-              } else if (/^\d+$/.test(fact)) {
-                chip.textContent = fact + " y";
-              } else {
-                chip.textContent = fact;
-              }
-              inputs.appendChild(chip);
-            });
-
-            ["p", "c", "f"].forEach(function (key) {
-              set(q('[data-model="' + key + '"]'), profile[key] + "g");
-              q('[data-model-bar="' + key + '"]').style.setProperty(
-                "--fill",
-                Math.round((profile[key] / ceilings[key]) * 100) + "%"
-              );
-            });
-          }
-
-          draw();
-          if (still) return;
-          every(5200, function () {
-            index = (index + 1) % profiles.length;
-            draw();
+          // Bars show each macro's share of this profile's own calorie
+          // target (protein/carbs at 4 kcal/g, fat at 9) — there's no other
+          // profile on screen to compare against anymore.
+          var kcalPerGram = { p: 4, c: 4, f: 9 };
+          ["p", "c", "f"].forEach(function (key) {
+            set(q('[data-model="' + key + '"]'), profile[key] + "g");
+            var share = (profile[key] * kcalPerGram[key]) / profile.kcal;
+            q('[data-model-bar="' + key + '"]').style.setProperty(
+              "--fill",
+              Math.round(Math.min(share, 1) * 100) + "%"
+            );
           });
         }
 
-        /* ---- 02 menu structuring --------------------------------------- */
-        function parse() {
-          if (!CATALOG || !CATALOG.items || !CATALOG.items.length) return;
+        /* ---- 02 plan overview --------------------------------------------
+         * Renders the same solved day (HERO.plan.combo) shown as Stage 01's
+         * target, so the two panels always agree — this is that day's
+         * actual meals, not a separately-fabricated total.
+         */
+        function overview() {
+          if (!HERO || !HERO.plan || !HERO.plan.combo) return;
+          var combo = HERO.plan.combo;
+          var total = HERO.plan.total;
 
-          // Show dishes carrying the most portion profiles — they make the
-          // point of the panel.
-          var items = CATALOG.items.filter(function (item) {
-            return Object.keys(item.v).length >= 3;
-          });
-          if (!items.length) items = CATALOG.items;
+          var list = q("[data-overview-meals]");
+          list.innerHTML = "";
+          combo.forEach(function (meal, index) {
+            var servings = meal.servings || 1;
+            var li = document.createElement("li");
+            li.style.setProperty("--i", index + 1);
 
-          var index = Math.floor(Math.random() * items.length);
+            var icon = document.createElement("i");
+            icon.className = "fas " + meal.icon + " ico";
+            icon.setAttribute("aria-hidden", "true");
 
-          function draw() {
-            var item = items[index];
-            set(q("[data-parse-raw]"), item.n);
-            set(q("[data-parse-kitchen]"), item.k);
-            set(q("[data-parse-tag]"), item.t);
-            set(q("[data-parse-slots]"), item.s.join(" · "));
-
-            var body = q("[data-parse-rows]");
-            body.innerHTML = "";
-            Object.keys(item.v).forEach(function (name) {
-              var macros = item.v[name];
-              var row = document.createElement("tr");
-              [name, macros[0], macros[1], macros[2], macros[3]].forEach(
-                function (value) {
-                  var cell = document.createElement("td");
-                  cell.textContent = value;
-                  row.appendChild(cell);
-                }
-              );
-              body.appendChild(row);
-            });
-            if (!still) {
-              body.classList.remove("eng-swap");
-              void body.offsetWidth;
-              body.classList.add("eng-swap");
+            var name = document.createElement("span");
+            name.className = "flow-meal-name";
+            name.appendChild(document.createTextNode(meal.name));
+            if (servings > 1) {
+              var servingsB = document.createElement("b");
+              servingsB.className = "flow-servings";
+              servingsB.textContent = "×" + servings;
+              name.appendChild(servingsB);
             }
-          }
+            if (meal.variant && meal.variant !== "regular") {
+              var variantB = document.createElement("b");
+              variantB.className = "flow-variant";
+              variantB.textContent = meal.variant;
+              name.appendChild(variantB);
+            }
+            var meta = document.createElement("em");
+            meta.textContent = meal.kitchen + " · " + (HERO.slots[index] || "");
+            name.appendChild(meta);
 
-          draw();
-          if (still) return;
-          every(5600, function () {
-            index = (index + 1) % items.length;
-            draw();
+            var num = document.createElement("span");
+            num.className = "flow-meal-num";
+            num.appendChild(
+              document.createTextNode(String(meal.kcal * servings))
+            );
+            var small = document.createElement("small");
+            small.textContent = "kcal";
+            num.appendChild(small);
+            var protein = document.createElement("em");
+            protein.textContent = meal.p * servings + "g protein";
+            num.appendChild(protein);
+
+            li.appendChild(icon);
+            li.appendChild(name);
+            li.appendChild(num);
+            list.appendChild(li);
           });
+
+          set(q("[data-overview-kcal]"), comma(total.kcal) + " kcal");
+          set(q("[data-overview-protein]"), total.p + "g protein");
+
+          // HERO.plan.score is the solver's own weighted relative error for
+          // this exact combo (see solve() in the hero script) — reusing it
+          // keeps the badge truthful to what the solver actually found,
+          // rather than a second, independently-derived match number.
+          var pct = Math.round((1 - HERO.plan.score) * 100);
+          pct = Math.max(0, Math.min(100, pct));
+          set(q("[data-overview-match]"), pct + "% target matched");
         }
 
         /* ---- 03 why this plan -------------------------------------------
@@ -1308,7 +1287,7 @@ Nutrics selects meals that work with your nutrition goals, tastes and schedule, 
 
         function start() {
           model();
-          parse();
+          overview();
           reasons();
           taste();
         }
@@ -2099,20 +2078,6 @@ Nutrics selects meals that work with your nutrition goals, tastes and schedule, 
           });
         }
       });
-    </script>
-    <script>
-      // Solidify the header once the page scrolls past the hero, so it
-      // stays legible over every section instead of a translucent blur
-      // fighting whatever content is scrolling underneath it.
-      (function () {
-        const header = document.querySelector("header");
-        if (!header) return;
-        const onScroll = () => {
-          header.classList.toggle("scrolled", window.scrollY > 40);
-        };
-        onScroll();
-        window.addEventListener("scroll", onScroll, { passive: true });
-      })();
     </script>
     <script>
       // Mobile Menu Toggle

@@ -138,28 +138,18 @@ body {
 }
 
 /* Header & Navigation
-   Starts transparent-over-hero (dark glass, white text) since the hero is
-   always dark. Once the page scrolls past the hero, .scrolled switches it
-   to a solid, high-contrast bar so it stays legible over every section
-   underneath, instead of a translucent blur fighting whatever content
+   Always a solid, high-contrast dark bar so it stays legible over every
+   section, instead of a translucent blur fighting whatever content
    scrolls beneath it. */
 header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(23, 19, 15, 0.35);
-    backdrop-filter: blur(16px) saturate(160%);
-    -webkit-backdrop-filter: blur(16px) saturate(160%);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    z-index: 1000;
-    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-header.scrolled {
     background-color: rgba(23, 19, 15, 0.96);
-    border-bottom-color: rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 10px 30px rgba(23, 19, 15, 0.25);
+    z-index: 1000;
 }
 
 .navbar {

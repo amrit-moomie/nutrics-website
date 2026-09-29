@@ -83,6 +83,12 @@ server {
         add_header Cache-Control "no-cache";
     }
 
+    # Superseded public decks: old links land on the current deck instead of
+    # the stale copy (or the index.html fallback once the file is gone).
+    location ~ ^/guides/(nutrics-deck-base|Nutrics-Deck-V5-Public|Nutrics-Deck-V6-Public|Nutrics_MaRS_Pitch_Deck)\.pdf\$ {
+        return 301 /guides/Nutrics-Deck-V7-Public.pdf;
+    }
+
     # Fingerprint-free filenames, so keep this short enough that a deploy is
     # visible within the day without re-fetching 8MB of video every visit.
     location /assets/ {

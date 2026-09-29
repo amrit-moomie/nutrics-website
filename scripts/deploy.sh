@@ -74,13 +74,10 @@ server {
         add_header Cache-Control "no-cache";
     }
 
-    # Investor materials are gated behind a passcode. The htpasswd file lives
-    # only on the box (never in the repo, which is public) - see
-    # scripts/set-investors-passcode.sh to create or rotate it.
-    location = /investors.html {
-        auth_basic "Nutrics Investors";
-        auth_basic_user_file /etc/nginx/.htpasswd-investors;
-        add_header Cache-Control "no-cache";
+    # The investors page was retired; send old links home rather than
+    # silently serving index.html under the investors URL.
+    location ~ ^/investors(\.html)?\$ {
+        return 301 /;
     }
 
     # Superseded public decks: old links land on the current deck instead of

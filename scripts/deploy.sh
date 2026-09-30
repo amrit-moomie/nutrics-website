@@ -82,8 +82,8 @@ server {
 
     # Superseded public decks: old links land on the current deck instead of
     # the stale copy (or the index.html fallback once the file is gone).
-    location ~ ^/guides/(nutrics-deck-base|Nutrics-Deck-V5-Public|Nutrics-Deck-V6-Public|Nutrics-Deck-V7-Public|Nutrics-Deck-V8-Public|Nutrics_MaRS_Pitch_Deck)\.pdf\$ {
-        return 301 /guides/Nutrics-Deck-V8.1-Public.pdf;
+    location ~ ^/guides/(nutrics-deck-base|Nutrics-Deck-V5-Public|Nutrics-Deck-V6-Public|Nutrics-Deck-V7-Public|Nutrics-Deck-V8-Public|Nutrics-Deck-V8\.1-Public|Nutrics-Deck-V8\.2-Public|Nutrics-Deck-V8\.3-Public|Nutrics_MaRS_Pitch_Deck)\.pdf\$ {
+        return 301 /guides/Nutrics-Deck-V8.4-Public.pdf;
     }
 
     # Fingerprint-free filenames, so keep this short enough that a deploy is

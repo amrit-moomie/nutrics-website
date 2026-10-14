@@ -106,6 +106,31 @@ document.addEventListener("DOMContentLoaded", function () {
     return ok;
   }
 
+  // Pricing asks only about the proteins / categories picked in Step 3.
+  // Unpicked fields are disabled as well as hidden, so FormData skips them;
+  // a value typed earlier comes back if the category is picked again.
+  function syncPriceFields() {
+    var picked = {};
+    form.querySelectorAll('input[name="Proteins"]:checked').forEach(function (box) {
+      picked[box.value] = true;
+    });
+    form.querySelectorAll(".p-price-group").forEach(function (group) {
+      var shown = 0;
+      group.querySelectorAll("[data-category]").forEach(function (field) {
+        var on = !!picked[field.getAttribute("data-category")];
+        field.hidden = !on;
+        field.querySelector("input").disabled = !on;
+        if (on) shown++;
+      });
+      group.hidden = shown === 0;
+    });
+  }
+
+  form.querySelectorAll('input[name="Proteins"]').forEach(function (box) {
+    box.addEventListener("change", syncPriceFields);
+  });
+  syncPriceFields();
+
   function render() {
     steps.forEach(function (step, i) {
       step.classList.toggle("is-active", i === current);

@@ -990,6 +990,16 @@ gmp-place-autocomplete {
     margin-bottom: 1rem;
 }
 
+/* Pricing shows only the categories picked in Step 3 (partners.js). */
+.p-price-group[hidden],
+.p-price-group [hidden] {
+    display: none;
+}
+
+.p-price-group + .p-price-group {
+    margin-top: 0.5rem;
+}
+
 /* With the standardization panel gone, the timeline closes the section. */
 .p-how .p-timeline:last-child {
     margin-bottom: 0;

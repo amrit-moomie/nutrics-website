@@ -80,10 +80,16 @@ server {
         return 301 /;
     }
 
-    # Superseded public decks: old links land on the current deck instead of
-    # the stale copy (or the index.html fallback once the file is gone).
-    location ~ ^/guides/(nutrics-deck-base|Nutrics-Deck-V5-Public|Nutrics-Deck-V6-Public|Nutrics-Deck-V7-Public|Nutrics-Deck-V8-Public|Nutrics-Deck-V8\.1-Public|Nutrics-Deck-V8\.2-Public|Nutrics-Deck-V8\.3-Public|Nutrics_MaRS_Pitch_Deck)\.pdf\$ {
-        return 301 /guides/Nutrics-Deck-V8.4-Public.pdf;
+    # The one public deck URL. scripts/publish-deck.sh puts the latest version
+    # here; no-cache makes browsers revalidate, so a new deck shows up at once.
+    location = /guides/nutrics-deck.pdf {
+        add_header Cache-Control "no-cache";
+    }
+
+    # Every versioned or retired deck link (V5 … V8.10 and later) lands on the
+    # one URL instead of a stale copy or the index.html fallback.
+    location ~ ^/guides/(nutrics-deck-base|Nutrics-Deck-V[0-9][0-9.]*(-Public)?|Nutrics_MaRS_Pitch_Deck)\.pdf\$ {
+        return 301 /guides/nutrics-deck.pdf;
     }
 
     # Fingerprint-free filenames, so keep this short enough that a deploy is
@@ -91,6 +97,10 @@ server {
     location /assets/ {
         add_header Cache-Control "public, max-age=86400";
     }
+
+    # Extra routes owned by other repos, e.g. /admins/ → the internal team site
+    # (nutric-business-model/deploy). Matches nothing until that is deployed.
+    include /etc/nginx/nutrics-website.d/*.conf;
 
     # SPA-style fallback: unknown paths serve index.html instead of a 404.
     location / {
@@ -100,6 +110,7 @@ server {
 EOF
 scp_put /tmp/nutrics-website.nginx.conf /tmp/nutrics-website.nginx.conf
 ssh_run "
+  set -e  # a failed nginx -t must stop the reload
   sudo mv /tmp/nutrics-website.nginx.conf /etc/nginx/conf.d/nutrics-website.conf
   sudo nginx -t
   sudo systemctl enable nginx

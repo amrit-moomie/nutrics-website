@@ -2388,8 +2388,10 @@ header {
 
 .app-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.75rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3.5rem 2.5rem;
+    max-width: 960px;
+    margin: 0 auto;
 }
 
 .app-shot {
@@ -2428,6 +2430,14 @@ header {
     font-size: 0.9rem;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.75);
+}
+
+.app-story {
+    max-width: 17rem;
+    margin: 0.5rem auto 0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.58);
 }
 
 .app-shot figcaption b {
@@ -2825,7 +2835,11 @@ footer {
 
     .app-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 1.75rem 1rem;
+        gap: 2.25rem 1rem;
+    }
+
+    .app-story {
+        font-size: 0.8rem;
     }
 
     /* Two-line labels look lopsided beside the numeral at this width */

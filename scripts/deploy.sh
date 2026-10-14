@@ -102,9 +102,13 @@ server {
     # (nutric-business-model/deploy). Matches nothing until that is deployed.
     include /etc/nginx/nutrics-website.d/*.conf;
 
-    # SPA-style fallback: unknown paths serve index.html instead of a 404.
+    # Pages, CSS and JS: no-cache makes browsers revalidate (a cheap 304 when
+    # unchanged), so a deploy shows up at once instead of after a heuristic
+    # cache expiry. /partners serves partners.html, matching the canonical
+    # URLs; other unknown paths serve index.html instead of a 404.
     location / {
-        try_files \$uri \$uri/ /index.html;
+        add_header Cache-Control "no-cache";
+        try_files \$uri \$uri.html \$uri/ /index.html;
     }
 }
 EOF

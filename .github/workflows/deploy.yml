@@ -1,0 +1,82 @@
+name: Deploy website
+
+# Deploys the static marketing site (https://www.nutrics.ca) to the shared EC2 box:
+#   push to main  -> live site
+#   Run workflow  -> live site, from main only
+# The box only accepts SSH from a runner the job has just allowed, so this is
+# the way to deploy - scripts/deploy.sh times out from a laptop.
+#
+# One-time setup - run scripts/setup-github-deploy-access.sh (needs AWS admin + gh):
+#   repo secret     EC2_SSH_KEY   private key for ec2-user@15.223.48.150
+#   repo variables  AWS_REGION, AWS_DEPLOY_ROLE_ARN, EC2_SECURITY_GROUP_ID - the
+#                   nutrics-github-deploy role shared with the nutrics app repo; its
+#                   trust policy must list repo:amrit-moomie/nutrics-website:environment:production
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-website
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy www.nutrics.ca
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      id-token: write # OIDC token for the AWS role that opens SSH to this runner
+    environment:
+      name: production
+      url: https://www.nutrics.ca
+    steps:
+      - name: Deploys only from main
+        if: github.ref != 'refs/heads/main'
+        run: |
+          echo "::error::The website deploys from main only, not ${{ github.ref_name }}."
+          exit 1
+
+      - uses: actions/checkout@v7
+
+      - name: Load SSH key
+        env:
+          EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
+        run: |
+          [ -n "$EC2_SSH_KEY" ] || { echo "::error::Repository secret EC2_SSH_KEY is not set - run scripts/setup-github-deploy-access.sh."; exit 1; }
+          [ -n "${{ vars.AWS_DEPLOY_ROLE_ARN }}" ] || { echo "::error::Repository variable AWS_DEPLOY_ROLE_ARN is not set - run scripts/setup-github-deploy-access.sh."; exit 1; }
+          umask 077
+          printf '%s\n' "$EC2_SSH_KEY" > "$RUNNER_TEMP/ec2.pem"
+          {
+            echo "SSH_KEY_FILE=$RUNNER_TEMP/ec2.pem"
+            echo "SSH_KNOWN_HOSTS=$GITHUB_WORKSPACE/scripts/known_hosts"
+          } >> "$GITHUB_ENV"
+
+      - name: Assume AWS deploy role
+        uses: aws-actions/configure-aws-credentials@v6
+        with:
+          role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+          role-session-name: nutrics-website-deploy-${{ github.run_id }}
+
+      - name: Open SSH to this runner
+        run: ./scripts/github-ssh-ingress.sh open
+        env:
+          EC2_SECURITY_GROUP_ID: ${{ vars.EC2_SECURITY_GROUP_ID }}
+
+      - name: Deploy site
+        run: ./scripts/deploy.sh
+
+      - name: Close SSH to this runner
+        if: always()
+        run: ./scripts/github-ssh-ingress.sh close
+        env:
+          EC2_SECURITY_GROUP_ID: ${{ vars.EC2_SECURITY_GROUP_ID }}
+
+      - name: Remove credentials
+        if: always()
+        run: rm -f "$RUNNER_TEMP/ec2.pem"

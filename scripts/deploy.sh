@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
 # deploy.sh — Deploy the Nutrics marketing site (static HTML/CSS/assets) to the
 # shared Nutrics EC2 box (Amazon Linux 2023).
-# Usage: ./scripts/deploy.sh
+# Usage: runs from .github/workflows/deploy.yml on every push to main (or
+# Actions -> Deploy website -> Run workflow). The box only accepts SSH from a
+# GitHub Actions runner whose IP the workflow has just allowed, so running this
+# from a laptop times out on port 22.
 # Prerequisites:
-#   - PEM key at ../nutrics/.pvt/nutrics-n2026.pem (override with NUTRICS_PEM).
+#   - In Actions: SSH_KEY_FILE (from the EC2_SSH_KEY secret) and SSH_KNOWN_HOSTS
+#     (scripts/known_hosts, the box's pinned host keys) are set by the workflow.
+#     Elsewhere: PEM key at ../nutrics/.pvt/nutrics-n2026.pem (or NUTRICS_PEM).
 #   - nutrics.ca and www.nutrics.ca A records pointing at $EC2_HOST, or the
 #     certbot step will fail.
 #
@@ -14,13 +19,19 @@
 set -euo pipefail
 
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
-PEM_KEY="${NUTRICS_PEM:-$REPO/../nutrics/.pvt/nutrics-n2026.pem}"
+PEM_KEY="${SSH_KEY_FILE:-${NUTRICS_PEM:-$REPO/../nutrics/.pvt/nutrics-n2026.pem}}"
 EC2_USER="ec2-user"
 EC2_HOST="15.223.48.150"
 DOMAIN="nutrics.ca"
 WWW_DOMAIN="www.nutrics.ca"
 STATIC_DIR="/home/$EC2_USER/nutrics-website"
-SSH_OPTS="-i $PEM_KEY -o StrictHostKeyChecking=accept-new -o BatchMode=yes"
+SSH_OPTS="-i $PEM_KEY -o BatchMode=yes -o ConnectTimeout=15"
+if [ -n "${SSH_KNOWN_HOSTS:-}" ]; then
+  # Pinned host keys: a box that answers with a different key is refused.
+  SSH_OPTS="$SSH_OPTS -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$SSH_KNOWN_HOSTS"
+else
+  SSH_OPTS="$SSH_OPTS -o StrictHostKeyChecking=accept-new"
+fi
 
 ssh_run() { ssh $SSH_OPTS "$EC2_USER@$EC2_HOST" "$@"; }
 scp_put() { scp $SSH_OPTS "$1" "$EC2_USER@$EC2_HOST:$2"; }
@@ -35,6 +46,7 @@ fi
 # half-propagated record burns a rate-limited issuance attempt for nothing.
 echo "[1/4] Checking DNS..."
 for host in "$DOMAIN" "$WWW_DOMAIN"; do
+  command -v dig > /dev/null || { echo "  dig not installed - skipping DNS check"; break; }
   resolved="$(dig +short "$host" A | tail -1)"
   if [ "$resolved" != "$EC2_HOST" ]; then
     echo "  WARNING: $host resolves to '${resolved:-nothing}', expected $EC2_HOST." >&2
@@ -68,6 +80,14 @@ server {
 
     root $STATIC_DIR;
     index index.html;
+    error_page 404 /404.html;
+
+    # One host for search engines and link previews: the apex 301s to www,
+    # which every canonical URL and the sitemap use. Certbot copies this into
+    # the HTTPS block it derives from this one.
+    if (\$host = $DOMAIN) {
+        return 301 https://$WWW_DOMAIN\$request_uri;
+    }
 
     # index.html is the whole site - never let a client cache a stale copy.
     location = /index.html {
@@ -105,10 +125,18 @@ server {
     # Pages, CSS and JS: no-cache makes browsers revalidate (a cheap 304 when
     # unchanged), so a deploy shows up at once instead of after a heuristic
     # cache expiry. /partners serves partners.html, matching the canonical
-    # URLs; other unknown paths serve index.html instead of a 404.
+    # URLs. Unknown paths get a real 404 (404.html); serving index.html with a
+    # 200 there made Google see every typo URL as a duplicate homepage.
     location / {
         add_header Cache-Control "no-cache";
-        try_files \$uri \$uri.html \$uri/ /index.html;
+        try_files \$uri \$uri.html \$uri/ =404;
+    }
+
+    # Old .html links (partners.html, team.html, ...) 301 to the clean URLs
+    # the canonicals use, so each page has one indexable address. Rep links
+    # (partners.html?business=...) keep their query string.
+    location ~ ^/(partners|team|privacy|terms)\.html\$ {
+        return 301 /\$1\$is_args\$args;
     }
 }
 EOF
@@ -143,6 +171,6 @@ WWW_STATUS=$(curl -s -o /dev/null -w "%{http_code}" --max-time 5 "https://$WWW_D
 echo ""
 echo "====================================="
 echo "  Deployed to https://$DOMAIN"
-echo "  Apex health check: $APEX_STATUS"
+echo "  Apex health check: $APEX_STATUS (301 to www is expected)"
 echo "  www health check:  $WWW_STATUS"
 echo "====================================="

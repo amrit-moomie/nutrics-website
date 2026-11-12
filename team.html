@@ -8,13 +8,21 @@
       name="description"
       content="Nutrics started in the kitchen. Founder Amritpal Moomie built and operated Nutrics V1, a Toronto-region prepared-meal business, in 2017–2018, and returned in 2026 to rebuild it."
     />
-    <link rel="canonical" href="https://www.nutrics.ca/team.html" />
+    <link rel="canonical" href="https://www.nutrics.ca/team" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Nutrics" />
+    <meta property="og:url" content="https://www.nutrics.ca/team" />
     <meta property="og:title" content="Team - Nutrics" />
-    <meta
-      property="og:description"
-      content="Nutrics started in the kitchen."
-    />
-    <meta property="og:image" content="https://www.nutrics.ca/assets/team/amritpal-moomie-800.jpg" />
+    <meta property="og:description" content="Nutrics started in the kitchen. Founder Amritpal Moomie built and operated Nutrics V1 in 2017–2018, and returned in 2026 to rebuild it." />
+    <meta property="og:image" content="https://www.nutrics.ca/assets/og-team.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Nutrics founder Amritpal Moomie" />
+    <meta property="og:locale" content="en_CA" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Team - Nutrics" />
+    <meta name="twitter:description" content="Nutrics started in the kitchen. Founder Amritpal Moomie built and operated Nutrics V1 in 2017–2018, and returned in 2026 to rebuild it." />
+    <meta name="twitter:image" content="https://www.nutrics.ca/assets/og-team.jpg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -38,7 +46,7 @@
     <header>
       <div class="container">
         <nav class="navbar">
-          <a href="index.html" class="logo">
+          <a href="/" class="logo">
             <img
               src="./assets/logos/logo_transparent_background.png"
               alt="Nutrics Logo"
@@ -46,14 +54,14 @@
             />
           </a>
           <div class="nav-links" id="navLinks">
-            <a href="index.html">Home</a>
-            <a href="index.html#engine">How It Works</a>
-            <a href="partners.html">Partners</a>
-            <a href="team.html" class="is-active" aria-current="page">Team</a>
-            <a href="index.html#contact">Contact</a>
+            <a href="/">Home</a>
+            <a href="/#engine">How It Works</a>
+            <a href="/partners">Partners</a>
+            <a href="/team" class="is-active" aria-current="page">Team</a>
+            <a href="/#contact">Contact</a>
           </div>
           <div class="nav-right">
-            <a href="index.html#launch" class="btn nav-cta">Join the waitlist</a>
+            <a href="/#launch" class="btn nav-cta">Join the waitlist</a>
             <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
               <i class="fas fa-bars"></i>
             </button>
@@ -75,66 +83,60 @@
       </div>
     </section>
 
-    <!-- Founder -->
-    <section class="team-founder">
-      <div class="container founder-grid">
-        <figure class="founder-photo">
-          <img
-            src="assets/team/amritpal-moomie.jpg"
-            srcset="assets/team/amritpal-moomie-800.jpg 800w, assets/team/amritpal-moomie.jpg 1200w"
-            sizes="(max-width: 900px) 440px, 42vw"
-            width="1200"
-            height="1800"
-            alt="Amritpal Moomie, founder of Nutrics, working through notes at a table"
-          />
-        </figure>
+    <!-- Team: one card per person, all the same size. To add someone, copy
+         an <li class="member"> block, add a square photo in assets/team/
+         and keep the bio to one or two sentences. -->
+    <section class="team-members">
+      <div class="container">
+        <span class="team-eyebrow">The team</span>
+        <h2>The people building Nutrics.</h2>
 
-        <div class="founder-body">
-          <h2 class="founder-name">Amritpal Moomie</h2>
-          <p class="founder-role">Founder &amp; CEO</p>
-          <p class="founder-lede">
-            A technology founder with firsthand food-operations experience.
-          </p>
-
-          <ul class="founder-points">
-            <li>
-              <h3>Technology</h3>
-              <p>
-                15 years building and shipping production software. Built the
-                current Nutrics MVP, personalization engine and platform.
-              </p>
-            </li>
-            <li>
-              <h3>Operating experience</h3>
-              <p>
-                Built and operated Nutrics V1 in 2017&ndash;2018, a
-                prepared-meal business in the Toronto region with paid
-                customer orders, weekly menus, a culinary team led by a Head
-                Chef, online ordering and recurring delivery.
-              </p>
-            </li>
-            <li>
-              <h3>What V1 taught</h3>
-              <p>
-                Personalized nutrition is not only a recommendation problem.
-                It is also an execution problem: the food has to match
-                changing customer needs, stay interesting, be produced
-                consistently and reach the customer reliably.
-              </p>
-            </li>
-            <li>
-              <h3>Why Nutrics V2</h3>
-              <p>
-                After years of further technology and product work, Amrit
-                returned to Nutrics in 2026 to rebuild it around a nutritional
-                intelligence layer, distributed food partners and structured
-                fulfillment.
-              </p>
-            </li>
-          </ul>
-          <!-- Add a "Read the Nutrics V1 story" link here once the V1 archive
-               PDF is finalized and approved for public sharing. -->
-        </div>
+        <ul class="members">
+          <li class="member">
+            <img
+              src="assets/team/amritpal-moomie-headshot.jpg"
+              width="240"
+              height="240"
+              alt="Amritpal Moomie, founder and CEO of Nutrics"
+            />
+            <h3 class="member-name">Amritpal Moomie</h3>
+            <p class="member-role">Founder &amp; CEO</p>
+            <p class="member-bio">
+              15 years building production software. Built the Nutrics
+              planner and platform, and built and operated Nutrics V1 in
+              2017&ndash;2018.
+            </p>
+          </li>
+          <li class="member">
+            <img
+              src="assets/team/pooja-mansukhani.jpg"
+              width="500"
+              height="500"
+              alt="Pooja Mansukhani, Nutrition Lead at Nutrics"
+            />
+            <h3 class="member-name">Pooja Mansukhani</h3>
+            <p class="member-role">Nutrition Lead</p>
+            <p class="member-bio">
+              Registered Dietitian. Leads recipe and nutrition standards for
+              Nutrics.
+            </p>
+          </li>
+          <li class="member">
+            <img
+              src="assets/team/jugal-mehta.jpg"
+              width="320"
+              height="320"
+              alt="Jugal Mehta, COO of Nutrics"
+            />
+            <h3 class="member-name">Jugal Mehta</h3>
+            <p class="member-role">COO</p>
+            <p class="member-bio">
+              Operations leader with Amazon fulfillment and e-commerce
+              experience. Leads supplier and logistics coordination for
+              Nutrics.
+            </p>
+          </li>
+        </ul>
       </div>
     </section>
 
@@ -143,6 +145,12 @@
       <div class="container">
         <span class="team-eyebrow">How we got here</span>
         <h2>Built once. Rebuilt with experience.</h2>
+        <p class="evolution-lede">
+          Personalized nutrition is not only a recommendation problem. It is
+          also an execution problem: the food has to match changing customer
+          needs, stay interesting, be produced consistently and reach the
+          customer reliably.
+        </p>
         <ol class="evolution-steps">
           <li>
             <span class="step-label">2017&ndash;2018</span>
@@ -176,32 +184,24 @@
     <section class="team-hiring">
       <div class="container">
         <span class="team-eyebrow">Growing the team</span>
-        <h2>The first roles we plan to hire.</h2>
+        <h2>The next roles we plan to hire.</h2>
         <p class="hiring-note">
-          Nutrics has a solo founder today. These are the first roles planned
-          as we move toward launch.
+          These are the next roles planned as we move toward launch.
         </p>
 
         <ul class="roles">
           <li>
-            <h3>Nutrition Lead / Nutritionist</h3>
+            <h3>Sales Lead</h3>
             <p>
-              Nutrition framework, macro logic, recipe standards and
-              food-partner validation.
+              Gym, studio and workplace partnerships, plus outreach to new
+              food partners across Toronto.
             </p>
           </li>
           <li>
-            <h3>Fulfillment Operations Lead</h3>
+            <h3>Marketing Lead</h3>
             <p>
-              Receiving, consolidation, cold-chain process, quality control
-              and dispatch.
-            </p>
-          </li>
-          <li>
-            <h3>Logistics Coordinator</h3>
-            <p>
-              Partner pickups, routing, last-mile coordination and delivery
-              reliability.
+              Brand, content and community, plus the waitlist and launch
+              campaigns that bring in our first customers.
             </p>
           </li>
         </ul>
@@ -228,17 +228,17 @@
           <div class="footer-column">
             <h3>Quick Links</h3>
             <ul class="footer-links">
-              <li><a href="index.html#engine">Technology</a></li>
-              <li><a href="index.html#how-it-works">The App</a></li>
-              <li><a href="team.html">Team</a></li>
-              <li><a href="index.html#contact">Contact</a></li>
+              <li><a href="/#engine">Technology</a></li>
+              <li><a href="/#how-it-works">The App</a></li>
+              <li><a href="/team">Team</a></li>
+              <li><a href="/#contact">Contact</a></li>
             </ul>
           </div>
 
           <div class="footer-column">
             <h3>For Partners</h3>
             <ul class="footer-links">
-              <li><a href="partners.html">Kitchen partners</a></li>
+              <li><a href="/partners">Kitchen partners</a></li>
               <li><a href="mailto:amrit@nutrics.ca?subject=Investor%20Inquiry">Investor inquiries</a></li>
             </ul>
           </div>
@@ -246,7 +246,7 @@
           <div class="footer-column">
             <h3>Stay Updated</h3>
             <p>
-              Sign up on our <a href="index.html#launch">launch page</a> to be
+              Sign up on our <a href="/#launch">launch page</a> to be
               notified the moment Nutrics opens in your city.
             </p>
           </div>
@@ -255,8 +255,8 @@
         <div class="copyright">
           <p>
             &copy; 2026 Nutrics. All rights reserved. |
-            <a href="privacy.html">Privacy Policy</a> |
-            <a href="terms.html">Terms of Service</a>
+            <a href="/privacy">Privacy Policy</a> |
+            <a href="/terms">Terms of Service</a>
           </p>
         </div>
       </div>

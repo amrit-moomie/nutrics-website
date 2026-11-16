@@ -112,6 +112,13 @@ server {
         return 301 /guides/nutrics-deck.pdf;
     }
 
+    # Short link printed on the brand ambassadors' QR codes (nutrics/scripts/launch-qr.sh):
+    # /taste?a=jane -> the launch catalogue vote in the web app, keeping the ambassador.
+    # 302, not 301: browsers must not cache it, so it can point elsewhere after the vote.
+    location = /taste {
+        return 302 https://app.nutrics.ca/launch\$is_args\$args;
+    }
+
     # Fingerprint-free filenames, so keep this short enough that a deploy is
     # visible within the day without re-fetching 8MB of video every visit.
     location /assets/ {
